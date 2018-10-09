@@ -1,0 +1,38 @@
+=====================================Règles du jeu :=====================================
+
+A chaque tour de jeu, les joueurs jouent l'un après l'autre selon un ordre initialement défini, ou selon
+un ordre tiré aléatoirement à chaque tour.
+
+Une action possible est:
+
+	- Déplacement d'une case (4 directions possibles seulement).
+	- Dépôt d'une mine ou d'une bombe sur l'une des 8 cases voisines.
+	- Utilisation d'un tir horizontal ou d'un tir vertical.
+	- Déclenchement du bouclier, qui protège des tirs et bombes lors du prochain tour.
+	- Ne rien faire pour économiser son énergie.
+
+
+La grille peut contenir, lors de sa création, des murs (cases non utilisables par les combattants
+et infranchissables par les tirs), et des pastilles d'énergie que les combattants peuvent récupérer
+en se plaçant dessus.
+
+Une mine explose lorsqu'un combattant se place sur la case qu'elle occupe.
+
+Une bombe explose au bout d'un certain délai t (compte à rebours en nombre de tours de jeu),
+et impacte les combattants se trouvant sur l'une des 8 cases voisines, ou , comme une mine,
+si l'on se place dessus.
+
+Les bombes et les mines peuvent avoir deux types de visibilité: visible de tous les combattants,
+ou visible seulement du combattant qui l'a déposée.
+
+Un tir horizontal impacte les combattants se trouvant sur la même ligne horizontale, à un nombre
+de cases inférieur à la distance d (portée limitée). Idem pour un tir vertical (i.e sur la même
+colonne).
+
+Une explosion ou un tir impactant un combattant fait baisser son énergie d'une certaine valeur
+qui fera partie des paramètres du jeu.
+
+Un déplacement et l'utilisation du bouclier ont eux aussi leurs coûts respectifs.
+
+Un combattant perd le jeu lorsque son énergie est négative ou nulle. Il disparaît alors du jeu.
+Le gagnant est le dernier survivant.
