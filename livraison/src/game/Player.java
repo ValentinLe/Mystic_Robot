@@ -20,30 +20,17 @@ public class Player extends AbstractTile {
     this.energy.add(amount.getEnergyAmount());
   }*/
 
-  // savoir si un player peut bouger
-  public Boolean canMove(Board board, Position deplacement){
-    if (!(board.isObstacleTile(deplacement))){
-      return true;
-    }
-    return false;
-  }
-
-  public void move(Board board, Position deplacement) {
-    Position new_pos = new Position(deplacement.getX()+this.position.getX(),deplacement.getY()+this.position.getY());
-    if (this.canMove(board,deplacement)){
-      board.getTile(this.position).setIsObstacle(false);
-      this.position=new_pos;
-      board.getTile(this.position).setIsObstacle(true);
-    }
-  }
-
   public void use(Stuff item) {
 
   }
 
-  @Override
-  public Position getPosition() {
-    return this.position;
+  // add + ou - de l'énergie
+  public void addEnergy(int i){
+    this.energy+=i;
+  }
+
+  public int getEnergy(){
+    return this.energy;
   }
 
   @Override
