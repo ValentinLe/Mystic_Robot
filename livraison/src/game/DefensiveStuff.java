@@ -1,10 +1,10 @@
 package game;
 
-public class DefensiveStuff implements Stuff {
+public abstract class DefensiveStuff implements Stuff {
 
   protected int durability;
 
-  public Weapon(int durability) {
+  public DefensiveStuff(int durability) {
     this.durability = durability;
   }
 

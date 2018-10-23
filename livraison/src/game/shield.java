@@ -1,8 +1,13 @@
 package game;
 
-public class DefensiveStuff extends DefensiveStuff {
+public class Shield extends DefensiveStuff {
 
-  public DefensiveStuff(){
-    
+  public Shield(){
+    super(1);
+  }
+
+  @Override
+  public int getDurability() {
+    return this.durability;
   }
 }

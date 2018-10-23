@@ -7,30 +7,29 @@ public class Board {
   private ArrayList<Player> players = new ArrayList<>();;
 
   public Board(int width, int height){
-    this.grid = generateGrid(width,height);
+    generateGrid(width,height);
   }
 
-  public Board(){
-    this.grid = generateGrid(0,0);
-  }
-
-  public Tile[][] generateGrid(int width, int height) {
-    Tile[][] grid = new Tile[width][height];
+  public void generateGrid(int width, int height) {
+    this.grid = new Tile[width][height];
     for (int i = 0; i < width; i++) {
       for (int j = 0; j < height; j++) {
-        if (i == 0 && j == 0) {
-          Map<Stuff,Integer> stuff = new HashMap<Stuff,Integer>();
-          Stuff  st = new Winchester();
-          stuff.put(st,10);
-          Player p1 = new Player(new Position(0,0), 100, false, stuff);
-          this.players.add(p1);
-          continue;
-        }
-        Position pos = new Position(i, j);
-        grid[i][j] = new EmptyTile(pos);
+        this.setTile(new EmptyTile(new Position(i,j)));
       }
     }
-    return grid;
+  }
+
+  public void setTile(Tile tile) {
+    this.grid[tile.getPosition().getX()][tile.getPosition().getY()] = tile;
+  }
+
+  public void setPlayerPositions(Player player) {
+    if (this.grid[player.getPosition().getX()][player.getPosition().getY()] instanceof EmptyTile) {
+      setTile(player);
+      //this.grid[player.getPosition().getX()][player.getPosition().getY()] = player;
+    } else {
+      throw new RuntimeException("Cette case n'est pas vide");
+    }
   }
 
   @Override
