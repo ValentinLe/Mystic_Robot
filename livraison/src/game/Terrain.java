@@ -15,4 +15,9 @@ public abstract class Terrain implements Tile {
     return this.pos;
   }
 
+  @Override
+  public boolean isObstacle() {
+    return this.isObstacle;
+  }
+
 }

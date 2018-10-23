@@ -47,6 +47,11 @@ public class Player implements Tile {
   }
 
   @Override
+  public boolean isObstacle() {
+    return true;
+  }
+
+  @Override
   public String toString() {
     return "p";
   }
