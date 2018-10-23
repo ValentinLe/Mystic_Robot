@@ -5,8 +5,8 @@ public class ExplosifPlate extends Usable {
   private Explosif type;
   private Player owner;
 
-  public ExplosifPlate(Position pos, boolean isActivable, Explosif type, Player owner) {
-    super(pos, isActivable);
+  public ExplosifPlate(Position position, boolean isActivable, Explosif type, Player owner) {
+    super(position, isActivable);
     this.type = type;
     this.owner = owner;
   }
