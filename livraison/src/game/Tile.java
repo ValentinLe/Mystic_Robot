@@ -1,6 +1,6 @@
 package game;
 
-public class Tile {
+public interface Tile {
 
   public Position getPosition();
 }
