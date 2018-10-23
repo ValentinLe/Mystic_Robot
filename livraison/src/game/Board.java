@@ -23,8 +23,8 @@ public class Board {
     this.grid[tile.getPosition().getX()][tile.getPosition().getY()] = tile;
   }
 
-  public void setPlayerPositions(Player player) {
-    if (this.grid[player.getPosition().getX()][player.getPosition().getY()] instanceof EmptyTile) {
+  public void initPlayer(Player player) {
+    if (player.canMove(this, player.getPosition())) {
       setTile(player);
       //this.grid[player.getPosition().getX()][player.getPosition().getY()] = player;
     } else {
@@ -34,7 +34,7 @@ public class Board {
 
   // verifie si une case à la position pos de la grille est un obstacle
   public Boolean isObstacleTile(Position pos){
-    return this.grid[pos.getX()][pos.getY()].isObstacle();
+    return this.grid[pos.getX()][pos.getY()].getIsObstacle();
   }
 
   // verifie si une case à la position pos de la grille est un player
@@ -45,6 +45,10 @@ public class Board {
       }
     }
     return false;
+  }
+
+  public Tile getTile(Position pos){
+    return this.grid[pos.getX()][pos.getY()];
   }
 
   @Override
