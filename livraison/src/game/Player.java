@@ -2,15 +2,15 @@ package game;
 
 import java.util.*;
 
-public class Player implements Tile {
+public class Player extends AbstractTile {
 
   private Position position;
   private int energy;
   private boolean haveShield;
   private Map<Stuff, Integer> stuff;
 
-  public Player(Position pos, int energy, boolean haveShield, Map<Stuff,Integer> stuff) {
-    this.position = postion;
+  public Player(Position position, int energy, boolean haveShield, Map<Stuff,Integer> stuff) {
+    super(position, true);
     this.energy = energy;
     this.haveShield = haveShield;
     this.stuff = stuff;
@@ -22,7 +22,7 @@ public class Player implements Tile {
 
   // savoir si un player peut bouger
   public Boolean canMove(Board board, Position deplacement){
-    if (!(board.isObstacleTile(pos))){
+    if (!(board.isObstacleTile(deplacement))){
       return true;
     }
     return false;
@@ -47,7 +47,7 @@ public class Player implements Tile {
   }
 
   @Override
-  public boolean isObstacle() {
+  public boolean getIsObstacle() {
     return true;
   }
 

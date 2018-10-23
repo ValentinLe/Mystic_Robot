@@ -4,5 +4,7 @@ public interface Tile {
 
   public Position getPosition();
 
-  public boolean isObstacle();
+  public boolean getIsObstacle();
+
+  public void setIsObstacle(boolean isObstacle);
 }

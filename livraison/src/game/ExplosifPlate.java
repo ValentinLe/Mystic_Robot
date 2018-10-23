@@ -3,10 +3,12 @@ package game;
 public class ExplosifPlate extends Usable {
 
   private Explosif type;
+  private Player owner;
 
-  public ExplosifPlate(Position pos, boolean isActivable, Explosif type) {
+  public ExplosifPlate(Position pos, boolean isActivable, Explosif type, Player owner) {
     super(pos, isActivable);
     this.type = type;
+    this.owner = owner;
   }
 
   @Override

@@ -2,8 +2,8 @@ package game;
 
 public class EmptyTile extends Terrain {
 
-  public EmptyTile(Position pos) {
-    super(pos, false);
+  public EmptyTile(Position position) {
+    super(position, false);
   }
 
   @Override

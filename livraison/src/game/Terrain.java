@@ -1,23 +1,8 @@
 package game;
 
-public abstract class Terrain implements Tile {
+public abstract class Terrain extends AbstractTile {
 
-  private Position pos;
-  private boolean isObstacle;
-
-  public Terrain(Position pos, boolean isObstacle) {
-    this.pos = pos;
-    this.isObstacle = isObstacle;
+  public Terrain(Position position, boolean isObstacle) {
+    super(position, isObstacle);
   }
-
-  @Override
-  public Position getPosition() {
-    return this.pos;
-  }
-
-  @Override
-  public boolean isObstacle() {
-    return this.isObstacle;
-  }
-
 }
