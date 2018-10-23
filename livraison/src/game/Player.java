@@ -20,8 +20,21 @@ public class Player implements Tile {
     this.energy.add(amount.getEnergyAmount());
   }*/
 
-  public void move(Position pos) {
+  // savoir si un player peut bouger
+  public Boolean canMove(Board board, Position deplacement){
+    if (!(board.isObstacleTile(pos))){
+      if (!(board.isPlayerOnPos(pos))){
+        return true;
+      }
+    }
+    return false;
+  }
 
+  public void move(Board board, Position deplacement) {
+    Position new_pos = new Position(deplacement.getX()+this.pos.getX(),deplacement.getY()+this.pos.getY());
+    if (this.canMove(board,deplacement)){
+      this.pos=new_pos;
+    }
   }
 
   public void use(Stuff item) {

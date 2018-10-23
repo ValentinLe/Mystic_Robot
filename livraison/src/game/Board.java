@@ -32,6 +32,21 @@ public class Board {
     }
   }
 
+  // verifie si une case à la position pos de la grille est un obstacle
+  public Boolean isObstacleTile(Position pos){
+    return this.grid[pos.getX()][pos.getY()].isObstacle();
+  }
+
+  // verifie si une case à la position pos de la grille est un player
+  public Boolean isPlayerOnPos(Position pos){
+    for(Player p : this.players){
+      if (p.getPosition().getX()==pos.getX() && p.getPosition().getY()==pos.getY()){
+        return true;
+      }
+    }
+    return false;
+  }
+
   @Override
   public String toString() {
     String res = "";
