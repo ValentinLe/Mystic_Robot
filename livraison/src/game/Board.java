@@ -6,23 +6,27 @@ public class Board {
   private Tile[][] grid;
   private ArrayList<Player> players = new ArrayList<>();;
   private RobotFactory factory;
+  private int width;
+  private int height;
 
   public Board(int width, int height, int nbPlayer, RobotFactory factory){
     this.factory = factory;
-    initGrid(width,height,nbPlayer);
+    this.width = width;
+    this.height = height;
+    initGrid(nbPlayer);
   }
 
-  public void generateGrid(int width, int height) {
-    this.grid = new Tile[width][height];
-    for (int i = 0; i < width; i++) {
-      for (int j = 0; j < height; j++) {
+  public void generateGrid() {
+    this.grid = new Tile[this.width][this.height];
+    for (int i = 0; i < this.width; i++) {
+      for (int j = 0; j < this.height; j++) {
         this.setTile(new EmptyTile(new Position(i,j)));
       }
     }
   }
 
-  public void initGrid(int width, int height, int nbPlayer) {
-    this.generateGrid(width, height);
+  public void initGrid(int nbPlayer) {
+    this.generateGrid();
     Random r = new Random();
     int xPlayer;
     int yPlayer;
@@ -109,6 +113,10 @@ public class Board {
 
   public Tile[][] getGrid() {
     return this.grid;
+  }
+
+  public ArrayList<Player> getPlayerList() {
+    return this.players;
   }
 
   @Override

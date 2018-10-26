@@ -15,6 +15,10 @@ public abstract class AbstractTile implements Tile {
     return this.position;
   }
 
+  public void setPosition(Position position) {
+    this.position = position;
+  }
+
   @Override
   public boolean getIsObstacle() {
     return this.isObstacle;

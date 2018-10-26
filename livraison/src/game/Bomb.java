@@ -5,8 +5,8 @@ public class Bomb extends Explosif {
   private int damage;
   private int counter;
 
-  public Bomb(int damage, int counter) {
-    super(damage);
+  public Bomb(int counter) {
+    super(5);
     this.counter = counter;
   }
 

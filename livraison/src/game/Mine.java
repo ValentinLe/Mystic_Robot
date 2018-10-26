@@ -2,8 +2,10 @@ package game;
 
 public class Mine extends Explosif {
 
-  public Mine(int damage) {
-    super(damage);
+  private int damage;
+
+  public Mine() {
+    super(4);
   }
 
   @Override
