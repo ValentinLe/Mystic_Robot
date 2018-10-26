@@ -20,7 +20,7 @@ public class Board {
   }
 
   public void initPlayer(Player player) {
-    if (player.canMove(this, player.getPosition())) {
+    if (this.canMove(player.getPosition())) {
       setTile(player);
       //this.grid[player.getPosition().getX()][player.getPosition().getY()] = player;
     } else {
@@ -45,7 +45,7 @@ public class Board {
 
   // savoir si un player peut bouger
   public Boolean canMove(Position position){
-    return !(board.isObstacleTile(position));
+    return !(this.isObstacleTile(position));
   }
 
   public void move(Player player, Position deplacement) {
@@ -56,22 +56,22 @@ public class Board {
       // création d'une nouvelle empty_tile pour remplacer l'emplacement du joueur
       Tile new_tile = new EmptyTile(p);
       // positionnement de la nouvelle empty_tile dans le board
-      board.setTile(new_tile);
+      this.setTile(new_tile);
       // changement de l'emplacement du joueur
-      player.setPosition()=new_pos;
+      player.setPosition(new_pos);
 
       // active le terrain sur lequelle le joueurva se déplacer
       this.activate(new_pos);
 
 
       // positionnement du joueur dans le board
-      board.setTile(this);
+      this.setTile(player);
     }
   }
 
   public void activate(Position positionTerrain){
     if (this.grid[positionTerrain.getX()][positionTerrain.getY()] instanceof Usable){
-      this.grid[positionTerrain.getX()][positionTerrain.getY()].action();
+      ((Usable)this.grid[positionTerrain.getX()][positionTerrain.getY()]).action();
     }
   }
 
@@ -81,6 +81,10 @@ public class Board {
 
   public Tile getTile(Position pos){
     return this.grid[pos.getX()][pos.getY()];
+  }
+
+  public Tile[][] getGrid() {
+    return this.grid;
   }
 
   @Override

@@ -24,6 +24,10 @@ public class Player extends AbstractTile {
 
   }
 
+  public void setPosition(Position posiiton) {
+    this.position = position;
+  }
+
   // add + ou - de l'énergie
   public void addEnergy(int i){
     this.energy+=i;

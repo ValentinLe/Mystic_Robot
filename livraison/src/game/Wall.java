@@ -1,6 +1,6 @@
 package game;
 
-public class Wall extends Terrain {
+public class Wall extends AbstractTile {
 
   public Wall(Position position) {
     super(position,true);
