@@ -1,6 +1,6 @@
 package game;
 
-public class Shield extends DefensiveStuff {
+public class Shield extends DefensiveEquipement {
 
   public Shield(){
     super(1);

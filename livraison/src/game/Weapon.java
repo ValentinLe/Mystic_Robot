@@ -1,6 +1,6 @@
 package game;
 
-public class Weapon implements Stuff {
+public class Weapon implements Equipement {
 
   protected int damage;
   protected int range;
