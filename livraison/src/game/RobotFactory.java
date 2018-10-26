@@ -14,8 +14,12 @@ public class RobotFactory {
 
   public RobotFactory() {
     this.tankStuff.put(new Winchester(),4);
+    this.rocketManStuff.put(new Mine(),2);
+    this.rocketManStuff.put(new Bomb(),2);
     this.sniperStuff.put(new Winchester(),20);
     this.rocketManStuff.put(new Winchester(),8);
+    this.rocketManStuff.put(new Mine(),4);
+    this.rocketManStuff.put(new Bomb(),4);
 
     this.tank = new Player("Tank",null,30,false,this.tankStuff);
     this.sniper = new Player("Sniper",null,5,false,this.sniperStuff);
