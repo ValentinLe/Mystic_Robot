@@ -4,13 +4,15 @@ import java.util.*;
 
 public class Player extends AbstractTile {
 
+  private String name;
   private Position position;
   private int energy;
   private boolean haveShield;
   private Map<Stuff, Integer> stuff;
 
-  public Player(Position position, int energy, boolean haveShield, Map<Stuff,Integer> stuff) {
+  public Player(String name, Position position, int energy, boolean haveShield, Map<Stuff,Integer> stuff) {
     super(position, true);
+    this.name = name;
     this.energy = energy;
     this.haveShield = haveShield;
     this.stuff = stuff;
@@ -40,6 +42,10 @@ public class Player extends AbstractTile {
   @Override
   public boolean getIsObstacle() {
     return true;
+  }
+
+  public String getName() {
+    return this.name;
   }
 
   @Override

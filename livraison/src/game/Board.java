@@ -5,9 +5,11 @@ import java.util.*;
 public class Board {
   private Tile[][] grid;
   private ArrayList<Player> players = new ArrayList<>();;
+  private RobotFactory factory;
 
-  public Board(int width, int height){
-    generateGrid(width,height);
+  public Board(int width, int height, int nbPlayer, RobotFactory factory){
+    this.factory = factory;
+    initGrid(width,height,nbPlayer);
   }
 
   public void generateGrid(int width, int height) {
@@ -16,6 +18,28 @@ public class Board {
       for (int j = 0; j < height; j++) {
         this.setTile(new EmptyTile(new Position(i,j)));
       }
+    }
+  }
+
+  public void initGrid(int width, int height, int nbPlayer) {
+    this.generateGrid(width, height);
+    Random r = new Random();
+    int xPlayer;
+    int yPlayer;
+    int choseRobot;
+    for (int i = 0; i < nbPlayer; i++) {
+      xPlayer = r.nextInt(width);
+      yPlayer = r.nextInt(height);
+      choseRobot = r.nextInt(this.factory.getRobotList().size());
+      Player newPlayer = this.factory.getRobotList().get(choseRobot);
+      if (newPlayer.getName().equals("Tank")) {
+        newPlayer = this.factory.createTank(new Position(xPlayer,yPlayer));
+      } else if (newPlayer.getName().equals("Sniper")) {
+        newPlayer = this.factory.createSniper(new Position(xPlayer,yPlayer));
+      } else {
+        newPlayer = this.factory.createRocketMan(new Position(xPlayer,yPlayer));
+      }
+      this.initPlayer(newPlayer);
     }
   }
 
