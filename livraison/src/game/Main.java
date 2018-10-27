@@ -7,7 +7,7 @@ public class Main{
 
   public static void main(String[] args) {
     RobotFactory factory = new RobotFactory();
-    Board b = new Board(20,20,1,factory);
+    RealBoard b = new RealBoard(20,20,1,factory);
     Scanner sc= new Scanner(System.in);
 
     System.out.println("Chose a class: tank(t), sniper(s), rocketman(r)");

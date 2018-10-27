@@ -12,13 +12,14 @@ public abstract class Explosif extends Weapon {
   }
 
   @Override
-  public void applyDamage(Board b, Position explosifPosition, Position direction) {
+  public void applyDamage(RealBoard b, Position explosifPosition, Position direction) {
     int xExplosif = explosifPosition.getX();
     int yExplosif = explosifPosition.getY();
     for (int i = -1; i < 2; i++) {
       for (int j = -1; j < 2; j++) {
-        if (b.getGrid()[xExplosif+i][yExplosif+j] instanceof Player) {
-          ((Player)b.getGrid()[xExplosif+i][yExplosif+j]).addEnergy(-this.damage);
+        Tile tile = b.getTileAt(new Position(xExplosif + i, yExplosif + j));
+        if (tile instanceof Player) {
+          ((Player)tile).addEnergy(-this.damage);
         }
       }
     }

@@ -18,7 +18,7 @@ public class Weapon implements Equipement {
     return this.range;
   }
 
-  public void applyDamage(Board board, Position playerPosition, Position direction) {
+  public void applyDamage(RealBoard board, Position playerPosition, Position direction) {
     Tile[][] grid = board.getGrid();
     if (direction.getX()!=0) {
       for (int i = playerPosition.getX(); i < this.range; i+=direction.getX()) {

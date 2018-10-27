@@ -5,7 +5,7 @@ public abstract class Usable extends AbstractTile {
   protected boolean isActivable;
 
   public Usable(Position pos, boolean isActivable) {
-    super(pos,false);
+    super(pos, false);
     this.isActivable = isActivable;
   }
 
