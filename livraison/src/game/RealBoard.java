@@ -58,7 +58,7 @@ public class RealBoard implements Board {
 
   // verifie si une case à la position pos de la grille est un obstacle
   public boolean isObstacleTile(Position pos){
-    return this.grid[pos.getX()][pos.getY()].getIsObstacle();
+    return this.grid[pos.getY()][pos.getX()].getIsObstacle();
   }
 
   // verifie si une case à la position pos de la grille est un player
