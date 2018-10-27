@@ -8,21 +8,21 @@ public class Player extends AbstractTile {
   private Position position;
   private int energy;
   private boolean haveShield;
-  private Map<Stuff, Integer> stuff;
+  private Map<Equipement, Integer> equipement;
 
-  public Player(String name, Position position, int energy, boolean haveShield, Map<Stuff,Integer> stuff) {
+  public Player(String name, Position position, int energy, boolean haveShield, Map<Equipement,Integer> equipement) {
     super(position, true);
     this.name = name;
     this.energy = energy;
     this.haveShield = haveShield;
-    this.stuff = stuff;
+    this.equipement = equipement;
   }
 
   /*public void addEnergy(EnergyPlate amount) {
     this.energy.add(amount.getEnergyAmount());
   }*/
 
-  public void use(Stuff item) {
+  public void use(Equipement item) {
 
   }
 
@@ -42,6 +42,10 @@ public class Player extends AbstractTile {
 
   public String getName() {
     return this.name;
+  }
+
+  public Map<Equipement,Integer> getEquipement() {
+    return this.equipement;
   }
 
   @Override

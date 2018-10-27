@@ -8,9 +8,9 @@ public class RobotFactory {
   private Player sniper;
   private Player rocketMan;
 
-  private Map<Stuff,Integer> tankStuff = new HashMap<Stuff,Integer>();
-  private Map<Stuff,Integer> sniperStuff = new HashMap<Stuff,Integer>();
-  private Map<Stuff,Integer> rocketManStuff = new HashMap<Stuff,Integer>();
+  private Map<Equipement,Integer> tankStuff = new HashMap<Equipement,Integer>();
+  private Map<Equipement,Integer> sniperStuff = new HashMap<Equipement,Integer>();
+  private Map<Equipement,Integer> rocketManStuff = new HashMap<Equipement,Integer>();
 
   public RobotFactory() {
     this.tankStuff.put(new Winchester(),4);
