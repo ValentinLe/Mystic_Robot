@@ -1,15 +1,45 @@
 package game;
 
 import java.util.*;
+import java.io.*;
 
 public class Main{
 
   public static void main(String[] args) {
     RobotFactory factory = new RobotFactory();
-    Board b = new Board(20,20,2,factory);
-    System.out.println(b);
-    Map<Stuff,Integer> stuff = new HashMap<Stuff,Integer>();
-    Stuff winchester = new Winchester();
-    stuff.put(winchester,1);
+    Board b = new Board(20,20,1,factory);
+    Scanner sc= new Scanner(System.in);
+
+    System.out.println("Chose a class: tank(t), sniper(s), rocketman(r)");
+    Player playerRobot = null;
+    String playerClass = sc.nextLine();
+    if (playerClass.equals("t")) {
+      playerRobot = factory.createTank(new Position(0,0));
+      b.initPlayer(playerRobot);
+    } else if (playerClass.equals("s")) {
+      playerRobot = factory.createSniper(new Position(0,0));
+      b.initPlayer(playerRobot);
+    } else if (playerClass.equals("r")) {
+      playerRobot = factory.createRocketMan(new Position(0,0));
+      b.initPlayer(playerRobot);
+    }
+
+    while(b.getPlayerList().size() != 1) {
+      System.out.println(b);
+      System.out.println("Action: up(z), down(s), left(q), right(d)");
+      String nextAction = sc.nextLine();
+      if (nextAction.equals("z")) {
+        b.move(playerRobot, new Position(0,-1));
+      } else if (nextAction.equals("q")) {
+        b.move(playerRobot, new Position(-1,0));
+      } else if (nextAction.equals("s")) {
+        b.move(playerRobot, new Position(0,1));
+      } else if (nextAction.equals("d")) {
+        b.move(playerRobot, new Position(1,0));
+      } else {
+        System.out.println("mauvaise entrée");
+      }
+      System.out.println(playerRobot.getPosition());
+    }
   }
 }
