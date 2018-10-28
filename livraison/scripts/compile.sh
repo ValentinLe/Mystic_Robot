@@ -1,5 +1,5 @@
 #!bin/sh
 
 cd $(dirname $0)/..
-mkdir build/ || rm -rf build/
+[ -d build/ ] || mkdir build/
 javac src/*/*.java -d build/

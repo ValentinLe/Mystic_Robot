@@ -4,31 +4,43 @@ import java.util.*;
 
 public class Player extends AbstractTile {
 
+  private final static int MAX_ENERGY = 20;
+
   private String name;
-  private Position position;
   private int energy;
-  private boolean haveShield;
+  private boolean hasShield;
   private Map<Equipement, Integer> equipement;
 
-  public Player(String name, Position position, int energy, boolean haveShield, Map<Equipement,Integer> equipement) {
+  public Player(String name, Position position, int energy, boolean hasShield, Map<Equipement,Integer> equipement) {
     super(position, true);
     this.name = name;
     this.energy = energy;
-    this.haveShield = haveShield;
+    this.hasShield = hasShield;
     this.equipement = equipement;
   }
-
-  /*public void addEnergy(EnergyPlate amount) {
-    this.energy.add(amount.getEnergyAmount());
-  }*/
 
   public void use(Equipement item) {
 
   }
 
-  // add + ou - de l'énergie
-  public void addEnergy(int i){
-    this.energy+=i;
+  // add + de l'énergie
+  public void addEnergy(int energy){
+    this.energy += energy;
+    if (this.energy > MAX_ENERGY) {
+      this.energy = MAX_ENERGY;
+    }
+  }
+
+  // applique les dommages au joueur selon si il a un bouclier
+  public void applyDamage(int damage) {
+    if (this.hasShield) {
+      this.hasShield = false;
+    } else {
+      this.energy -= damage;
+      if (this.energy < 0) {
+        this.energy = 0;
+      }
+    }
   }
 
   public int getEnergy(){
@@ -46,6 +58,10 @@ public class Player extends AbstractTile {
 
   public Map<Equipement,Integer> getEquipement() {
     return this.equipement;
+  }
+
+  public String getStringStats() {
+    return "Player " + this.name + " " + this.position + " : energy=" + this.energy + " shield=" + this.hasShield;
   }
 
   @Override
