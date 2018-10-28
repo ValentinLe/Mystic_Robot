@@ -27,7 +27,7 @@ public class RobotFactory {
   }
 
   public Player createTank(Position position) {
-    Player newTank = new Player("Tank",position,30,false,this.tankStuff);
+    Player newTank = new Player("Tank",position,7,false,this.tankStuff);
     return newTank;
   }
 

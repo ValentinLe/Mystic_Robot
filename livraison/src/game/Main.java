@@ -25,8 +25,11 @@ public class Main{
     }*/
 
     Player playerRobot = factory.createTank(new Position(0,0));
+    b.setTile(new EnergyPlate(new Position(2,3), true, 5));
+    b.setTile(new EnergyPlate(new Position(3,4), true, 5));
+    b.setTile(new EnergyPlate(new Position(7,10), true, 5));
+    b.setTile(new EnergyPlate(new Position(8,2), true, 5));
     b.initPlayer(playerRobot);
-
 
     while(b.getPlayerList().size() != 1) {
       System.out.println(b);

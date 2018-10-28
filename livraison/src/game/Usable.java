@@ -9,7 +9,7 @@ public abstract class Usable extends AbstractTile {
     this.isActivable = isActivable;
   }
 
-  public abstract void action();
+  public abstract void action(Player player);
 
   public abstract boolean isActivable();
 }

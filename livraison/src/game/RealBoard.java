@@ -89,7 +89,7 @@ public class RealBoard implements Board {
       player.setPosition(new_pos);
 
       // active le terrain sur lequelle le joueurva se déplacer
-      this.activate(new_pos);
+      this.activate(player, new_pos);
 
 
       // positionnement du joueur dans le board
@@ -97,10 +97,10 @@ public class RealBoard implements Board {
     }
   }
 
-  public void activate(Position positionTerrain){
+  public void activate(Player player, Position positionTerrain){
     Tile tile = this.grid[positionTerrain.getY()][positionTerrain.getX()];
     if (tile instanceof Usable){
-      ((Usable)tile).action();
+      ((Usable)tile).action(player);
     }
   }
 

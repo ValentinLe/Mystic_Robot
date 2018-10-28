@@ -10,12 +10,17 @@ public class EnergyPlate extends Usable {
   }
 
   @Override
-  public void action() {
-
+  public void action(Player player) {
+    player.addEnergy(this.energyAmount);
   }
 
   @Override
   public boolean isActivable() {
     return this.isActivable;
+  }
+
+  @Override
+  public String toString() {
+    return "+";
   }
 }

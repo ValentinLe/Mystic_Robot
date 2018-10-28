@@ -61,7 +61,7 @@ public class Player extends AbstractTile {
   }
 
   public String getStringStats() {
-    return "Player " + this.name + " " + this.position + " : energy=" + this.energy + " shield=" + this.hasShield;
+    return "Player " + this.name + " " + this.position + " : energy=" + this.energy + "/" + MAX_ENERGY + " shield=" + this.hasShield;
   }
 
   @Override

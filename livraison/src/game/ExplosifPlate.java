@@ -12,7 +12,7 @@ public class ExplosifPlate extends Usable {
   }
 
   @Override
-  public void action() {
+  public void action(Player player) {
 
   }
 
