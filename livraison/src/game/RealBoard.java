@@ -79,28 +79,29 @@ public class RealBoard implements Board {
   public void move(Player player, Position deplacement) {
     Position new_pos = new Position(deplacement.getX()+player.getPosition().getX(),deplacement.getY()+player.getPosition().getY());
     if (this.canMove(new_pos)){
-      // nouvelle position pour éviter les problèmes de référrence
-      Position p = new Position(player.getPosition().getX(),player.getPosition().getY());
-      // création d'une nouvelle empty_tile pour remplacer l'emplacement du joueur
-      Tile new_tile = new EmptyTile(p);
+      Tile tileTarget = this.grid[new_pos.getY()][new_pos.getX()];
+      Position positionPlayer = player.getPosition();
+
+      Tile new_tile = new EmptyTile(positionPlayer);
       // positionnement de la nouvelle empty_tile dans le board
       this.setTile(new_tile);
       // changement de l'emplacement du joueur
       player.setPosition(new_pos);
 
-      // active le terrain sur lequelle le joueurva se déplacer
-      this.activate(player, new_pos);
-
-
       // positionnement du joueur dans le board
       this.setTile(player);
+
+      // active le terrain sur lequelle le joueurva se déplacer
+      this.activate(tileTarget);
     }
   }
 
-  public void activate(Player player, Position positionTerrain){
-    Tile tile = this.grid[positionTerrain.getY()][positionTerrain.getX()];
+  public void activate(Tile tile) {
     if (tile instanceof Usable){
-      ((Usable)tile).action(player);
+      Usable plate = ((Usable)tile);
+      Position positionPlate = plate.getPosition();
+      List<Player> players = this.getPlayersAround(positionPlate, plate.getRange());
+      plate.action(players);
     }
   }
 
@@ -115,6 +116,41 @@ public class RealBoard implements Board {
 
   public ArrayList<Player> getPlayerList() {
     return this.players;
+  }
+
+  public boolean isInIndex(Position position) {
+    int x = position.getX();
+    int y = position.getY();
+    return 0 <= x && x < this.width && 0 <= y && y < this.height;
+  }
+
+  public List<Tile> consvois(Position position, int size) {
+    List<Tile> listConsvois = new ArrayList<>();
+    int posX = position.getX();
+    int posY = position.getY();
+    for (int j = posY-size; j < (posY + size + 1); j++) {
+      for (int i = posX-size; i < (posX + size + 1); i++) {
+        if (this.isInIndex(new Position(i, j))) {
+          listConsvois.add(this.grid[j][i]);
+        }
+      }
+    }
+    return listConsvois;
+  }
+
+  public List<Player> getPlayersInList(List<Tile> listTiles) {
+    List<Player> listPlayer = new ArrayList<>();
+    for (Tile tile : listTiles) {
+      if (tile instanceof Player) {
+        listPlayer.add(((Player) tile));
+      }
+    }
+    return listPlayer;
+  }
+
+  public List<Player> getPlayersAround(Position position, int range) {
+    List<Tile> voisins = this.consvois(position, range);
+    return this.getPlayersInList(voisins);
   }
 
   @Override

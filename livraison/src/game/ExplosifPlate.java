@@ -1,20 +1,24 @@
 package game;
 
+import java.util.*;
+
 public class ExplosifPlate extends Usable {
 
   private Explosif type;
   private Player owner;
 
-  public ExplosifPlate(Position position, boolean isActivable, Explosif type, Player owner) {
-    super(position, isActivable);
+  public ExplosifPlate(Position position, boolean isActivable, int range, Explosif type, Player owner) {
+    super(position, isActivable, range);
     this.type = type;
     this.owner = owner;
+    this.range = range;
   }
 
   @Override
-  public void action(Player player) {
-    System.out.println("dam : " + this.type.getDamage());
-    player.applyDamage(this.type.getDamage());
+  public void action(List<Player> players) {
+    for (Player player : players) {
+      player.applyDamage(this.type.getDamage());
+    }
   }
 
   @Override

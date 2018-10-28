@@ -43,6 +43,13 @@ public class Player extends AbstractTile {
     }
   }
 
+  public void move(Position deplacement) {
+    int posX = deplacement.getX() + this.position.getX();
+    int posY = deplacement.getY() + this.position.getY();
+    this.position.setX(posX);
+    this.position.setY(posY);
+  }
+
   public int getEnergy(){
     return this.energy;
   }
