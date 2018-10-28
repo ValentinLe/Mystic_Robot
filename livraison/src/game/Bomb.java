@@ -1,8 +1,7 @@
 package game;
 
 public class Bomb extends Explosif {
-
-  private int damage;
+  
   private int counter;
 
   public Bomb(int damage, int counter) {

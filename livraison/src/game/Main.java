@@ -29,6 +29,12 @@ public class Main{
     b.setTile(new EnergyPlate(new Position(3,4), true, 5));
     b.setTile(new EnergyPlate(new Position(7,10), true, 5));
     b.setTile(new EnergyPlate(new Position(8,2), true, 5));
+
+    b.setTile(new ExplosifPlate(new Position(8,5), true, new Bomb(4,2), playerRobot));
+    b.setTile(new ExplosifPlate(new Position(5,5), true, new Bomb(5,2), playerRobot));
+    b.setTile(new ExplosifPlate(new Position(15,5), true, new Bomb(2,2), playerRobot));
+    b.setTile(new ExplosifPlate(new Position(8,10), true, new Bomb(8,2), playerRobot));
+
     b.initPlayer(playerRobot);
 
     while(b.getPlayerList().size() != 1) {

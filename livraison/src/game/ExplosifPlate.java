@@ -13,7 +13,8 @@ public class ExplosifPlate extends Usable {
 
   @Override
   public void action(Player player) {
-
+    System.out.println("dam : " + this.type.getDamage());
+    player.applyDamage(this.type.getDamage());
   }
 
   @Override
@@ -23,5 +24,10 @@ public class ExplosifPlate extends Usable {
 
   public int getDamage() {
     return this.type.getDamage();
+  }
+
+  @Override
+  public String toString() {
+    return "x";
   }
 }
