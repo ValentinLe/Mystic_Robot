@@ -7,7 +7,7 @@ public class Main{
 
   public static void main(String[] args) {
     RobotFactory factory = new RobotFactory();
-    RealBoard b = new RealBoard(20,20,1,factory);
+    RealBoard b = new RealBoard(10,10,8,factory);
     Scanner sc= new Scanner(System.in);
     /*
     System.out.println("Chose a class: tank(t), sniper(s), rocketman(r)");
@@ -25,24 +25,12 @@ public class Main{
     }*/
 
     Player playerRobot = factory.createTank(new Position(0,0));
-    Player playerRobot2 = factory.createTank(new Position(5,4));
-    b.setTile(new EnergyPlate(new Position(2,3), true, 0, 5));
-    b.setTile(new EnergyPlate(new Position(3,4), true, 0, 5));
-    b.setTile(new EnergyPlate(new Position(7,10), true, 0, 5));
-    b.setTile(new EnergyPlate(new Position(8,2), true, 0, 5));
-
-    b.setTile(new ExplosifPlate(new Position(8,5), true, 1, new Bomb(4,2), playerRobot));
-    b.setTile(new ExplosifPlate(new Position(5,5), true, 1, new Bomb(5,2), playerRobot));
-    b.setTile(new ExplosifPlate(new Position(15,5), true, 1, new Bomb(2,2), playerRobot));
-    b.setTile(new ExplosifPlate(new Position(8,10), true, 1, new Bomb(8,2), playerRobot));
 
     b.initPlayer(playerRobot);
-    b.initPlayer(playerRobot2);
 
     while(b.getPlayerList().size() != 1) {
+      System.out.println("\033[H\033[2J\n");
       System.out.println(b);
-      System.out.println(playerRobot.getStringStats());
-      System.out.println(playerRobot2.getStringStats());
       System.out.println("Action: up(z), down(s), left(q), right(d), quit(quit)");
       String nextAction = sc.nextLine();
       if (nextAction.equals("z")) {

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Player extends AbstractTile {
 
-  private final static int MAX_ENERGY = 20;
+  public final static int MAX_ENERGY = 20;
 
   private String name;
   private int energy;

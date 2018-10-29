@@ -13,7 +13,7 @@ public class RealBoard implements Board {
     this.factory = factory;
     this.width = width;
     this.height = height;
-    initGrid(nbPlayer);
+    initGrid(nbPlayer, 20);
   }
 
   public void generateGrid() {
@@ -25,34 +25,51 @@ public class RealBoard implements Board {
     }
   }
 
-  public void initGrid(int nbPlayer) {
+  public void initGrid(int nbPlayer, int nbEnergy) {
     this.generateGrid();
     Random r = new Random();
+    Player testPb = null;
+
+    int xPlate;
+    int yPlate;
+    for (int j = 0; j < nbEnergy; j++) {
+      xPlate = r.nextInt(width);
+      yPlate = r.nextInt(height);
+      Tile energyPlate = new EnergyPlate(new Position(xPlate, yPlate), true, 0, 5);
+      this.setTile(energyPlate);
+    }
+
+    int xBomb;
+    int yBomb;
+    for (int k = 0; k < nbEnergy; k++) {
+      xBomb = r.nextInt(width);
+      yBomb = r.nextInt(height);
+      Tile bomb = new ExplosifPlate(new Position(xBomb, yBomb), true, 1, new Bomb(r.nextInt(10)+1,2), testPb);
+      this.setTile(bomb);
+    }
+
     int xPlayer;
     int yPlayer;
-    int choseRobot;
     for (int i = 0; i < nbPlayer; i++) {
       xPlayer = r.nextInt(width);
       yPlayer = r.nextInt(height);
-      choseRobot = r.nextInt(this.factory.getRobotList().size());
-      Player newPlayer = this.factory.getRobotList().get(choseRobot);
-      if (newPlayer.getName().equals("Tank")) {
-        newPlayer = this.factory.createTank(new Position(xPlayer,yPlayer));
-      } else if (newPlayer.getName().equals("Sniper")) {
-        newPlayer = this.factory.createSniper(new Position(xPlayer,yPlayer));
-      } else {
-        newPlayer = this.factory.createRocketMan(new Position(xPlayer,yPlayer));
+      Position positionPlayer = new Position(xPlayer, yPlayer);
+      while (!this.canMove(positionPlayer)) {
+        xPlayer = r.nextInt(width);
+        yPlayer = r.nextInt(height);
+        positionPlayer.setX(xPlayer);
+        positionPlayer.setY(yPlayer);
       }
+      Player newPlayer = new Player("" + i, positionPlayer, 10, false, new HashMap<>());
       this.initPlayer(newPlayer);
     }
+    testPb = this.players.get(0);
   }
 
   public void initPlayer(Player player) {
     if (this.canMove(player.getPosition())) {
+      this.players.add(player);
       setTile(player);
-      //this.grid[player.getPosition().getX()][player.getPosition().getY()] = player;
-    } else {
-      throw new RuntimeException("Cette case n'est pas vide");
     }
   }
 
@@ -167,6 +184,10 @@ public class RealBoard implements Board {
         res += " " + tile + " ";
       }
       res += "\n";
+    }
+    res += "\n";
+    for (Player player : this.players) {
+      res += player.getStringStats() + "\n";
     }
     return res;
   }
