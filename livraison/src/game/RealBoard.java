@@ -138,6 +138,10 @@ public class RealBoard implements Board {
   public boolean isInIndex(Position position) {
     int x = position.getX();
     int y = position.getY();
+    return this.isInIndex(x, y);
+  }
+
+  public boolean isInIndex(int x, int y) {
     return 0 <= x && x < this.width && 0 <= y && y < this.height;
   }
 
@@ -147,7 +151,7 @@ public class RealBoard implements Board {
     int posY = position.getY();
     for (int j = posY-size; j < (posY + size + 1); j++) {
       for (int i = posX-size; i < (posX + size + 1); i++) {
-        if (this.isInIndex(new Position(i, j))) {
+        if (this.isInIndex(i, j)) {
           listConsvois.add(this.grid[j][i]);
         }
       }
