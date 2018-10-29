@@ -5,12 +5,10 @@ import java.util.*;
 public class RealBoard implements Board {
   private Tile[][] grid;
   private ArrayList<Player> players = new ArrayList<>();;
-  private RobotFactory factory;
   private int width;
   private int height;
 
   public RealBoard(int width, int height, int nbPlayer, RobotFactory factory){
-    this.factory = factory;
     this.width = width;
     this.height = height;
     initGrid(nbPlayer, 20);
