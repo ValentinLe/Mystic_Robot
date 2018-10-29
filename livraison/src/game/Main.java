@@ -32,6 +32,12 @@ public class Main{
       // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");
       System.out.println(b);
+      
+      System.out.println("up    " + b.getTileInDirection(playerRobot.getPosition(), Direction.UP, 3));
+      System.out.println("down  " + b.getTileInDirection(playerRobot.getPosition(), Direction.DOWN, 3));
+      System.out.println("right " + b.getTileInDirection(playerRobot.getPosition(), Direction.RIGHT, 3));
+      System.out.println("left  " + b.getTileInDirection(playerRobot.getPosition(), Direction.LEFT, 3));
+      
       System.out.println("Action: up(z), down(s), left(q), right(d), quit(quit)");
       String nextAction = sc.nextLine();
       if (nextAction.equals("z")) {

@@ -216,6 +216,28 @@ public class RealBoard implements Board {
     List<Tile> voisins = this.consvois(position, range);
     return this.getPlayersInList(voisins);
   }
+  
+  /**
+   * Recupére les cases depuis une position dans une direction selon une portée
+   * @param position la position de départ
+   * @param direction la direction dans laquelle aller chercher les cases
+   * @param range la porté (le nombre de cases à avoir)
+   * @return la liste des cases voulues
+   */
+  public List<Tile> getTileInDirection(Position position, Direction direction, int range) {
+    List<Tile> listTile = new ArrayList<>();
+    int dirX = direction.getX();
+    int dirY = direction.getY();
+    Position tempPos = position.getCopy();
+    for (int k = 1; k < (range + 1); k++) {
+      tempPos.setX(position.getX() + k * dirX);
+      tempPos.setY(position.getY() + k * dirY);
+      if (this.isInIndex(tempPos)) {
+        listTile.add(this.getTileAt(tempPos));
+      }
+    }
+    return listTile;
+  }
 
   /**
    * Getter de la case présente à la position
