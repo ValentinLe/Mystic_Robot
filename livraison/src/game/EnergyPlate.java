@@ -11,6 +11,10 @@ public class EnergyPlate extends Usable {
     this.energyAmount = energyAmount;
   }
 
+  /**
+   * Ajoute de l'energy aux joueurs de la liste 
+   * @param players liste des joueurs
+   */
   @Override
   public void action(List<Player> players) {
     for (Player player : players) {

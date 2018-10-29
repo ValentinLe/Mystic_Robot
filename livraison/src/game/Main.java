@@ -29,6 +29,7 @@ public class Main{
     b.initPlayer(playerRobot);
 
     while(b.getPlayerList().size() != 1) {
+      // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");
       System.out.println(b);
       System.out.println("Action: up(z), down(s), left(q), right(d), quit(quit)");

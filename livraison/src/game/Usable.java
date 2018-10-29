@@ -13,11 +13,11 @@ public abstract class Usable extends AbstractTile {
     this.range = range;
   }
 
-  public abstract void action(List<Player> player);
-
   public int getRange() {
     return this.range;
   }
+  
+  public abstract void action(List<Player> player);
 
   public abstract boolean isActivable();
 }

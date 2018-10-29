@@ -4,6 +4,7 @@ import java.util.*;
 
 public class Player extends AbstractTile {
 
+  // vie maximale d'un joueur
   public final static int MAX_ENERGY = 20;
 
   private String name;
@@ -34,15 +35,17 @@ public class Player extends AbstractTile {
   // applique les dommages au joueur selon si il a un bouclier
   public void applyDamage(int damage) {
     if (this.hasShield) {
+      // retire le bouclier
       this.hasShield = false;
     } else {
       this.energy -= damage;
+      // evite une energy negative
       if (this.energy < 0) {
         this.energy = 0;
       }
     }
   }
-
+  // pour l'instant inutile peut etre à supprimer
   public void move(Position deplacement) {
     int posX = deplacement.getX() + this.position.getX();
     int posY = deplacement.getY() + this.position.getY();
@@ -67,6 +70,10 @@ public class Player extends AbstractTile {
     return this.equipement;
   }
 
+  /**
+   * Retourne les stats du joueur sous forme de String
+   * @return les stats du joueur
+   */
   public String getStringStats() {
     return "Player " + this.name + " " + this.position + " : energy=" + this.energy + "/" + MAX_ENERGY + " shield=" + this.hasShield;
   }
