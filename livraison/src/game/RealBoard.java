@@ -90,8 +90,7 @@ public class RealBoard implements Board {
 
   // savoir si un player peut bouger
   public boolean canMove(Position position){
-    boolean res = this.isInIndex(position);
-    if (res) {
+    if (this.isInIndex(position)) {
       return !(this.isObstacleTile(position));
     }
     return false;
