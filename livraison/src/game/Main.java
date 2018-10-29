@@ -35,13 +35,13 @@ public class Main{
       System.out.println("Action: up(z), down(s), left(q), right(d), quit(quit)");
       String nextAction = sc.nextLine();
       if (nextAction.equals("z")) {
-        b.move(playerRobot, new Position(0,-1));
+        b.move(playerRobot, Direction.UP);
       } else if (nextAction.equals("q")) {
-        b.move(playerRobot, new Position(-1,0));
+        b.move(playerRobot, Direction.LEFT);
       } else if (nextAction.equals("s")) {
-        b.move(playerRobot, new Position(0,1));
+        b.move(playerRobot, Direction.DOWN);
       } else if (nextAction.equals("d")) {
-        b.move(playerRobot, new Position(1,0));
+        b.move(playerRobot, Direction.RIGHT);
       } else if (nextAction.equals("quit")) {
         break;
       } else {

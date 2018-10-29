@@ -46,9 +46,9 @@ public class Player extends AbstractTile {
     }
   }
   // pour l'instant inutile peut etre à supprimer
-  public void move(Position deplacement) {
-    int posX = deplacement.getX() + this.position.getX();
-    int posY = deplacement.getY() + this.position.getY();
+  public void move(Direction direction) {
+    int posX = direction.getX() + this.position.getX();
+    int posY = direction.getY() + this.position.getY();
     this.position.setX(posX);
     this.position.setY(posY);
   }

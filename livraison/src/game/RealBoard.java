@@ -102,11 +102,14 @@ public class RealBoard implements Board {
     return false;
   }
 
-  public void move(Player player, Position deplacement) {
-    Position new_pos = new Position(deplacement.getX()+player.getPosition().getX(),deplacement.getY()+player.getPosition().getY());
+  public void move(Player player, Direction direction) {
+    Position positionPlayer = player.getPosition();
+    Position new_pos = new Position(
+            direction.getX() + positionPlayer.getX(),
+            direction.getY() + positionPlayer.getY()
+    );
     if (this.canMove(new_pos)){
       Tile tileTarget = this.grid[new_pos.getY()][new_pos.getX()];
-      Position positionPlayer = player.getPosition();
 
       Tile new_tile = new EmptyTile(positionPlayer);
       // positionnement de la nouvelle empty_tile dans le board
