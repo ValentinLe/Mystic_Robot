@@ -19,7 +19,7 @@ public abstract class Explosif extends Weapon {
       for (int j = -1; j < 2; j++) {
         Tile tile = b.getTileAt(new Position(xExplosif + i, yExplosif + j));
         if (tile instanceof Player) {
-          ((Player)tile).addEnergy(-this.damage);
+          ((Player)tile).applyDamage(this.damage);
         }
       }
     }

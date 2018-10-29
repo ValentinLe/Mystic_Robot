@@ -23,14 +23,14 @@ public class Weapon implements Equipement {
     if (direction.getX()!=0) {
       for (int i = playerPosition.getX(); i < this.range; i+=direction.getX()) {
         if (grid[i][playerPosition.getY()] instanceof Player) {
-          ((Player)grid[i][playerPosition.getY()]).addEnergy(-this.damage);
+          ((Player)grid[i][playerPosition.getY()]).applyDamage(this.damage);
           break;
         }
       }
     } else {
       for (int i = playerPosition.getY(); i < this.range; i+=direction.getY()) {
         if (grid[playerPosition.getX()][i] instanceof Player) {
-          ((Player)grid[playerPosition.getX()][i]).addEnergy(-this.damage);
+          ((Player)grid[playerPosition.getX()][i]).applyDamage(this.damage);
           break;
         }
       }
