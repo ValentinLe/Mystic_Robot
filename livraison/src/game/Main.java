@@ -23,37 +23,38 @@ public class Main{
       playerRobot = factory.createRocketMan(new Position(0,0));
       b.initPlayer(playerRobot);
     }*/
+    
+    boolean saisie = true;
+    Player player = null;
 
-    Player playerRobot = factory.createTank(new Position(0,0));
-
-    b.initPlayer(playerRobot);
-
-    while(b.getPlayerList().size() != 1) {
+    while(b.getPlayerList().size() != 1 || !saisie) {
       // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");
+      if (saisie) {
+        // si le joueur précédent à fait un coup correct
+        player = b.getNextPlayer();
+      }
       System.out.println(b);
-      
-      System.out.println("up    " + b.getTileInDirection(playerRobot.getPosition(), Direction.UP, 3));
-      System.out.println("down  " + b.getTileInDirection(playerRobot.getPosition(), Direction.DOWN, 3));
-      System.out.println("right " + b.getTileInDirection(playerRobot.getPosition(), Direction.RIGHT, 3));
-      System.out.println("left  " + b.getTileInDirection(playerRobot.getPosition(), Direction.LEFT, 3));
-      
+      System.out.println("\n" + player.getStringStats());
       System.out.println("Action: up(z), down(s), left(q), right(d), quit(quit)");
+      saisie = false;
       String nextAction = sc.nextLine();
       if (nextAction.equals("z")) {
-        b.move(playerRobot, Direction.UP);
+        saisie = b.move(player, Direction.UP);
       } else if (nextAction.equals("q")) {
-        b.move(playerRobot, Direction.LEFT);
+        saisie = b.move(player, Direction.LEFT);
       } else if (nextAction.equals("s")) {
-        b.move(playerRobot, Direction.DOWN);
+        saisie = b.move(player, Direction.DOWN);
       } else if (nextAction.equals("d")) {
-        b.move(playerRobot, Direction.RIGHT);
+        saisie = b.move(player, Direction.RIGHT);
       } else if (nextAction.equals("quit")) {
-        break;
+        return;
       } else {
+        saisie = false;
         System.out.println("mauvaise entrée");
       }
-      System.out.println(playerRobot.getPosition());
+      
+      System.out.println(player.getPosition());
     }
   }
 }

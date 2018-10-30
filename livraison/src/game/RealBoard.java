@@ -4,7 +4,8 @@ import java.util.*;
 
 public class RealBoard implements Board {
   private Tile[][] grid;
-  private List<Player> players = new ArrayList<>();;
+  // utilisation d'une file plutot qu'une liste
+  private Queue<Player> players = new LinkedList<>();;
   private int width;
   private int height;
 
@@ -63,7 +64,7 @@ public class RealBoard implements Board {
       Player newPlayer = new Player("" + i, positionPlayer, 10, false, new HashMap<>());
       this.initPlayer(newPlayer);
     }
-    testPb = this.players.get(0);
+    testPb = this.players.peek();
   }
   
   /**
@@ -100,7 +101,7 @@ public class RealBoard implements Board {
     return false;
   }
 
-  public void move(Player player, Direction direction) {
+  public boolean move(Player player, Direction direction) {
     Position positionPlayer = player.getPosition();
     Position new_pos = new Position(
             direction.getX() + positionPlayer.getX(),
@@ -120,7 +121,10 @@ public class RealBoard implements Board {
 
       // active le terrain sur lequelle le joueurva se déplacer
       this.activate(tileTarget);
+      this.players.add(player);
+      return true;
     }
+    return false;
   }
   
   /**
@@ -146,8 +150,16 @@ public class RealBoard implements Board {
     return this.grid;
   }
 
-  public List<Player> getPlayerList() {
+  public Queue<Player> getPlayerList() {
     return this.players;
+  }
+  
+  /**
+   * récupère le premier joueur de la file
+   * @return le prochain joueur qui doit jouer
+   */
+  public Player getNextPlayer() {
+    return this.players.poll();
   }
 
   /**
@@ -251,8 +263,14 @@ public class RealBoard implements Board {
 
   @Override
   public String toString() {
-    String res = "";
+    String res = "  ";
+    // numero superieurs
+    for (int k = 0; k < this.width; k++) {
+      res += " " + k + " ";
+    }
+    res += "\n";
     for (int j = 0; j < this.grid.length; j++) {
+      res += j + " "; // numeros coté
       for (int i = 0; i < this.grid[0].length; i++) {
         Tile tile = this.getTileAt(new Position(i, j));
         res += " " + tile + " ";
