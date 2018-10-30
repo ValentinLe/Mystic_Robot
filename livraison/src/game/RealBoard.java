@@ -4,7 +4,7 @@ import java.util.*;
 
 public class RealBoard implements Board {
   private Tile[][] grid;
-  private ArrayList<Player> players = new ArrayList<>();;
+  private List<Player> players = new ArrayList<>();;
   private int width;
   private int height;
 
@@ -146,7 +146,7 @@ public class RealBoard implements Board {
     return this.grid;
   }
 
-  public ArrayList<Player> getPlayerList() {
+  public List<Player> getPlayerList() {
     return this.players;
   }
 
