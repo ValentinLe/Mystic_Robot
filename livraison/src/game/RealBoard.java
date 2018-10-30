@@ -101,14 +101,17 @@ public class RealBoard implements Board {
     return false;
   }
 
-  public boolean move(Player player, Direction direction) {
+  public boolean move(Direction direction) {
+    Player player = this.getNextPlayer();
     Position positionPlayer = player.getPosition();
     Position new_pos = new Position(
             direction.getX() + positionPlayer.getX(),
             direction.getY() + positionPlayer.getY()
     );
     if (this.canMove(new_pos)){
-      this.players.poll();
+      // place le joueur qui joue à la fin de la file
+      this.switchPlayer();
+      
       Tile tileTarget = this.grid[new_pos.getY()][new_pos.getX()];
 
       Tile new_tile = new EmptyTile(positionPlayer);
@@ -122,7 +125,6 @@ public class RealBoard implements Board {
 
       // active le terrain sur lequelle le joueurva se déplacer
       this.activate(tileTarget);
-      this.players.add(player);
       return true;
     }
     return false;
@@ -161,6 +163,14 @@ public class RealBoard implements Board {
    */
   public Player getNextPlayer() {
     return this.players.peek();
+  }
+  
+  /**
+   * place le joueur en tete de file à la fin de celle-ci
+   */
+  public void switchPlayer() {
+    Player HeadPlayer = this.players.poll();
+    this.players.add(HeadPlayer);
   }
 
   /**

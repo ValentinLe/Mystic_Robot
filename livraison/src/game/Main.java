@@ -25,32 +25,28 @@ public class Main{
     }*/
     
     boolean saisie = true;
-    Player player = null;
 
     while(b.getPlayerList().size() != 1 || !saisie) {
       // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");
-      player = b.getNextPlayer();
       System.out.println(b);
       System.out.println("Action: up(z), down(s), left(q), right(d), quit(quit)");
       saisie = false;
       String nextAction = sc.nextLine();
       if (nextAction.equals("z")) {
-        saisie = b.move(player, Direction.UP);
+        saisie = b.move(Direction.UP);
       } else if (nextAction.equals("q")) {
-        saisie = b.move(player, Direction.LEFT);
+        saisie = b.move(Direction.LEFT);
       } else if (nextAction.equals("s")) {
-        saisie = b.move(player, Direction.DOWN);
+        saisie = b.move(Direction.DOWN);
       } else if (nextAction.equals("d")) {
-        saisie = b.move(player, Direction.RIGHT);
+        saisie = b.move(Direction.RIGHT);
       } else if (nextAction.equals("quit")) {
         return;
       } else {
         saisie = false;
         System.out.println("mauvaise entrée");
       }
-      
-      System.out.println(player.getPosition());
     }
   }
 }
