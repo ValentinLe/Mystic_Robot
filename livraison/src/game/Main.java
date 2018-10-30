@@ -30,12 +30,8 @@ public class Main{
     while(b.getPlayerList().size() != 1 || !saisie) {
       // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");
-      if (saisie) {
-        // si le joueur précédent à fait un coup correct
-        player = b.getNextPlayer();
-      }
+      player = b.getNextPlayer();
       System.out.println(b);
-      System.out.println("\n" + player.getStringStats());
       System.out.println("Action: up(z), down(s), left(q), right(d), quit(quit)");
       saisie = false;
       String nextAction = sc.nextLine();

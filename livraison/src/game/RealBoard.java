@@ -108,6 +108,7 @@ public class RealBoard implements Board {
             direction.getY() + positionPlayer.getY()
     );
     if (this.canMove(new_pos)){
+      this.players.poll();
       Tile tileTarget = this.grid[new_pos.getY()][new_pos.getX()];
 
       Tile new_tile = new EmptyTile(positionPlayer);
@@ -159,7 +160,7 @@ public class RealBoard implements Board {
    * @return le prochain joueur qui doit jouer
    */
   public Player getNextPlayer() {
-    return this.players.poll();
+    return this.players.peek();
   }
 
   /**
