@@ -19,6 +19,10 @@ public class Player extends AbstractTile {
     this.hasShield = hasShield;
     this.equipement = equipement;
   }
+  
+  public void setHasShield(boolean newState) {
+    this.hasShield = newState;
+  }
 
   public void use(Equipement item) {
 

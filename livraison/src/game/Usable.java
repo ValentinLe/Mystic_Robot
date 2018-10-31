@@ -19,5 +19,7 @@ public abstract class Usable extends AbstractTile {
   
   public abstract void action(List<Player> player);
 
-  public abstract boolean isActivable();
+  public boolean isActivable() {
+    return this.isActivable;
+  }
 }
