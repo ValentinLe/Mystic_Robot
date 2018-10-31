@@ -48,6 +48,17 @@ public class RealBoard implements Board {
       Tile bomb = new ExplosifPlate(new Position(xBomb, yBomb), true, 1, new Bomb(r.nextInt(10)+1,2), testPb);
       this.setTile(bomb);
     }
+    
+    // placement des boucliers
+    int xShield;
+    int yShield;
+    for (int s = 0; s < nbEnergy; s++) {
+      xShield = r.nextInt(width);
+      yShield = r.nextInt(height);
+      Tile shield = new ShieldPlate(new Position(xShield, yShield), true, 0);
+      this.setTile(shield);
+    }
+    
     // placement des joueurs
     int xPlayer;
     int yPlayer;

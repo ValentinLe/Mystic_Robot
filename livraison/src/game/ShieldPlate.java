@@ -9,6 +9,10 @@ public class ShieldPlate extends Usable {
     super(pos, isActivable, range);
   }
   
+  /**
+   * met tous les bouclier des joueurs à true
+   * @param players liste des joueurs impliqués
+   */
   @Override
   public void action(List<Player> players) {
     for (Player player : players) {
