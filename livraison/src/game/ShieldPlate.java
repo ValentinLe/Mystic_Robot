@@ -4,11 +4,11 @@ package game;
 import java.util.List;
 
 public class ShieldPlate extends Usable {
-  
+
   public ShieldPlate(Position pos, boolean isActivable, int range) {
     super(pos, isActivable, range);
   }
-  
+
   /**
    * met tous les bouclier des joueurs à true
    * @param players liste des joueurs impliqués
@@ -19,9 +19,9 @@ public class ShieldPlate extends Usable {
       player.setHasShield(true);
     }
   }
-  
+
   @Override
   public String toString() {
-    return "@";
+    return "o";
   }
 }
