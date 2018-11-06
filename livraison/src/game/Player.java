@@ -85,7 +85,7 @@ public class Player extends AbstractTile {
 
   @Override
   public String toString() {
-    return "p";
+    return "" + this.name;
   }
 
 }
