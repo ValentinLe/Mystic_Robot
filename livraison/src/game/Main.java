@@ -6,32 +6,18 @@ import java.io.*;
 public class Main{
 
   public static void main(String[] args) {
-    //RobotFactory factory = new RobotFactory();
-    RealBoard b = new RealBoard(10,10,8);
+    RobotFactory factory = new RobotFactory();
+    //RealBoard b = new RealBoard(10,10,8);
     Scanner sc= new Scanner(System.in);
     Scanner sc2= new Scanner(System.in);
     Scanner sc3= new Scanner(System.in);
-
-    /*
-    System.out.println("Chose a class: tank(t), sniper(s), rocketman(r)");
-    Player playerRobot = null;
-    String playerClass = sc.nextLine();
-    if (playerClass.equals("t")) {
-      playerRobot = factory.createTank(new Position(0,0));
-      b.initPlayer(playerRobot);
-    } else if (playerClass.equals("s")) {
-      playerRobot = factory.createSniper(new Position(0,0));
-      b.initPlayer(playerRobot);
-    } else if (playerClass.equals("r")) {
-      playerRobot = factory.createRocketMan(new Position(0,0));
-      b.initPlayer(playerRobot);
-    }*/
 
     boolean saisie = true;
     boolean action = false;
 
     Player currentPlayer;
-
+    
+    RealBoard b = new RealBoard(10,10,2,factory.getRobotList());
     while(b.getPlayerList().size() != 1 || !saisie) {
       // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");
@@ -56,7 +42,7 @@ public class Main{
         ArrayList<Equipement> equipementListe = new ArrayList<>();
         System.out.println("list of stuf : \n");
         for (Equipement e : stuff.keySet()){
-          System.out.println(cpt + " : " + e + " = " + stuff.get(e));
+          System.out.println(cpt++ + " : " + e + " = " + stuff.get(e));
           equipementListe.add(e);
         }
 

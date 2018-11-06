@@ -21,9 +21,9 @@ public class RobotFactory {
     this.rocketManStuff.put(new Mine(),4);
     this.rocketManStuff.put(new Bomb(5),4);
 
-    this.tank = new Player("Tank",null,20,false,this.tankStuff);
-    this.sniper = new Player("Sniper",null,10,false,this.sniperStuff);
-    this.rocketMan = new Player("RocketMan",null,10,false,this.rocketManStuff);
+    this.tank = new Player("Tank",null,null,20,false,this.tankStuff);
+    this.sniper = new Player("Sniper",null,null,10,false,this.sniperStuff);
+    this.rocketMan = new Player("RocketMan",null,null,10,false,this.rocketManStuff);
   }
 
   public ArrayList<Player> getRobotList() {

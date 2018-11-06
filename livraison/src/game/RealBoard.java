@@ -9,10 +9,10 @@ public class RealBoard implements Board {
   private int width;
   private int height;
 
-  public RealBoard(int width, int height, int nbPlayer){
+  public RealBoard(int width, int height, int nbPlayer, ArrayList<Player> playerList){
     this.width = width;
     this.height = height;
-    initGrid(nbPlayer, 20);
+    initGrid(nbPlayer, 20, playerList);
   }
 
   public void generateGrid() {
@@ -24,7 +24,7 @@ public class RealBoard implements Board {
     }
   }
 
-  public void initGrid(int nbPlayer, int nbEnergy) {
+  public void initGrid(int nbPlayer, int nbEnergy, ArrayList<Player> playerList) {
     this.generateGrid();
     Random r = new Random();
     Player testPb = null;
@@ -72,7 +72,10 @@ public class RealBoard implements Board {
         positionPlayer.setX(xPlayer);
         positionPlayer.setY(yPlayer);
       }
-      Player player = new Player("" + i, this, positionPlayer, 10, false, new HashMap<>());
+      int robotChoice = r.nextInt(playerList.size());
+      Player robot = playerList.get(robotChoice);
+      Player player = new Player(robot.getName(),this,positionPlayer,robot.getEnergy(),false,robot.getEquipement());
+      //Player player = new Player("" + i, this, positionPlayer, 10, false, new HashMap<>());
       this.initPlayer(player);
     }
     testPb = this.getNextPlayer();
