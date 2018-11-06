@@ -136,7 +136,7 @@ public class RealBoard implements Board {
    * @return true si l'item à été utilisé
    */
   public boolean playerUseItem(Equipement item, Direction direction){
-    return this.getNextPlayer().playerUse(item,direction,this);
+    return this.getNextPlayer().playerUse(item,direction);
   }
 
   public void setTile(Tile tile) {

@@ -26,10 +26,12 @@ public class Player extends AbstractTile {
     this.hasShield = newState;
   }
 
-  public boolean playerUse(Equipement item, Direction direction,Board board) {
-    if(item.use(this.position,direction,board)){
-      equipement.put(item,equipement.get(item)-1);
-      return true;
+  public boolean playerUse(Equipement item, Direction direction) {
+    if(equipement.get(item)>0){
+      if(item.use(this.position,direction,this.board)){
+        equipement.put(item,equipement.get(item)-1);
+        return true;
+      }
     }
     return false;
   }
@@ -113,7 +115,7 @@ public class Player extends AbstractTile {
 
   @Override
   public String toString() {
-    return "" + this.name;
+    return "" + this.name.charAt(0);
   }
 
 }
