@@ -11,7 +11,6 @@ public abstract class Explosif extends Weapon {
     return this.damage;
   }
 
-  @Override
   public void applyDamage(RealBoard b, Position explosifPosition, Position direction) {
     int xExplosif = explosifPosition.getX();
     int yExplosif = explosifPosition.getY();

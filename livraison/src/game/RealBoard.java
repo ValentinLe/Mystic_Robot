@@ -38,7 +38,7 @@ public class RealBoard implements Board {
       Tile energyPlate = new EnergyPlate(new Position(xPlate, yPlate), true, 0, 5);
       this.setTile(energyPlate);
     }
-    
+
     // placement des explosifs
     int xBomb;
     int yBomb;
@@ -48,7 +48,7 @@ public class RealBoard implements Board {
       Tile bomb = new ExplosifPlate(new Position(xBomb, yBomb), true, 1, new Bomb(r.nextInt(10)+1,2), testPb);
       this.setTile(bomb);
     }
-    
+
     // placement des boucliers
     int xShield;
     int yShield;
@@ -58,7 +58,7 @@ public class RealBoard implements Board {
       Tile shield = new ShieldPlate(new Position(xShield, yShield), true, 0);
       this.setTile(shield);
     }
-    
+
     // placement des joueurs
     int xPlayer;
     int yPlayer;
@@ -77,7 +77,7 @@ public class RealBoard implements Board {
     }
     testPb = this.players.peek();
   }
-  
+
   /**
    * Ajoute un joueur dans la grille et dans la liste des joueurs
    * @param player le joueur à ajouter
@@ -122,7 +122,7 @@ public class RealBoard implements Board {
     if (this.canMove(new_pos)){
       // place le joueur qui joue à la fin de la file
       this.switchPlayer();
-      
+
       Tile tileTarget = this.grid[new_pos.getY()][new_pos.getX()];
 
       Tile new_tile = new EmptyTile(positionPlayer);
@@ -140,9 +140,9 @@ public class RealBoard implements Board {
     }
     return false;
   }
-  
+
   /**
-   * Active la case avec la liste des joueurs dans le voisinage de la case si 
+   * Active la case avec la liste des joueurs dans le voisinage de la case si
    * c'est une instance d'usable
    * @param tile la case à éventuellement activer
    */
@@ -153,6 +153,16 @@ public class RealBoard implements Board {
       List<Player> players = this.getPlayersAround(positionPlate, plate.getRange());
       plate.action(players);
     }
+  }
+
+  /**
+   * Utilise un item à l'emplacement i de l'ensemble des équipements du player
+   * actuel
+   * @param Equipement l'équipement à utiliser
+   * @return true si l'item à été utilisé
+   */
+  public boolean playerUseItem(Equipement item, Direction direction){
+    return this.getNextPlayer().playerUse(item,direction,this);
   }
 
   public void setTile(Tile tile) {
@@ -167,7 +177,7 @@ public class RealBoard implements Board {
   public Queue<Player> getPlayerList() {
     return this.players;
   }
-  
+
   /**
    * récupère le premier joueur de la file
    * @return le prochain joueur qui doit jouer
@@ -175,7 +185,7 @@ public class RealBoard implements Board {
   public Player getNextPlayer() {
     return this.players.peek();
   }
-  
+
   /**
    * place le joueur en tete de file à la fin de celle-ci
    */
@@ -250,7 +260,11 @@ public class RealBoard implements Board {
     List<Tile> voisins = this.consvois(position, range);
     return this.getPlayersInList(voisins);
   }
-  
+
+  public Map<Equipement, Integer> getPlayerEquipement(){
+    return this.getNextPlayer().getEquipement();
+  }
+
   /**
    * Recupére les cases depuis une position dans une direction selon une portée
    * @param position la position de départ
@@ -271,6 +285,31 @@ public class RealBoard implements Board {
       }
     }
     return listTile;
+  }
+
+  /**
+
+   */
+  public Player getPlayerInDirection(Position position,Direction direction,int range){
+    Position new_pos = new Position(position.getX(),position.getY());
+    for(int i = 0; i<range+1;i++){
+      new_pos.addX(direction.getX());
+      new_pos.addY(direction.getY());
+      if (!this.isInIndex(new_pos)){
+        return null;
+      }
+      if (this.isObstacleTile(new_pos)){
+        return null;
+      }
+      if (this.isPlayerOnPosition(new_pos)){
+        Tile t = this.getTileAt(new_pos);
+        if (t instanceof Player){
+          return ((Player)t);
+        }
+      }
+      return null;
+    }
+    return null;
   }
 
   /**

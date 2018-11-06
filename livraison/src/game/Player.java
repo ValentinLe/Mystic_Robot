@@ -19,13 +19,13 @@ public class Player extends AbstractTile {
     this.hasShield = hasShield;
     this.equipement = equipement;
   }
-  
+
   public void setHasShield(boolean newState) {
     this.hasShield = newState;
   }
 
-  public void use(Equipement item) {
-
+  public boolean playerUse(Equipement item, Direction direction,Board board) {
+    return item.use(this.position,direction,board);
   }
 
   // add + de l'énergie
@@ -49,6 +49,7 @@ public class Player extends AbstractTile {
       }
     }
   }
+
   // pour l'instant inutile peut etre à supprimer
   public void move(Direction direction) {
     int posX = direction.getX() + this.position.getX();

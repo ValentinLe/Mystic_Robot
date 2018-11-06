@@ -25,7 +25,15 @@ public class Position {
   public void setY(int y) {
     this.y = y;
   }
-  
+
+  public void addX(int x){
+    this.x+=x;
+  }
+
+  public void addY(int y){
+    this.y+=y;
+  }
+
   public Position getCopy() {
     return new Position(this.x, this.y);
   }
