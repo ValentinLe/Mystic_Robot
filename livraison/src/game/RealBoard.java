@@ -301,15 +301,13 @@ public class RealBoard implements Board {
         return null;
       }
       if (this.isObstacleTile(new_pos)){
+        if (this.isPlayerOnPosition(new_pos)){
+          if (this.getTileAt(new_pos) instanceof Player){
+            return ((Player)this.getTileAt(new_pos));
+          }
+        }
         return null;
       }
-      if (this.isPlayerOnPosition(new_pos)){
-        Tile t = this.getTileAt(new_pos);
-        if (t instanceof Player){
-          return ((Player)t);
-        }
-      }
-      return null;
     }
     return null;
   }

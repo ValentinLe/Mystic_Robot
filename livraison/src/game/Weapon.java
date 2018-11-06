@@ -18,6 +18,13 @@ public class Weapon implements Equipement {
     return this.range;
   }
 
+  /**
+   * Utilisation de l'arme
+   * @param position la position de départ
+   * @param direction la direction dans laquelle l'arme est utilisé
+   * @param board les fonctions contenue dans le board
+   * @return true si l'arme à été utilisée avec succé
+   */
   public boolean use(Position position,Direction direction,Board board){
     Player player = ((RealBoard)board).getPlayerInDirection(position,direction,this.range);
     if (player!=null){
@@ -25,6 +32,5 @@ public class Weapon implements Equipement {
       return true;
     }
     return false;
-
   }
 }

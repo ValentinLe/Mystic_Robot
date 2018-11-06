@@ -25,7 +25,11 @@ public class Player extends AbstractTile {
   }
 
   public boolean playerUse(Equipement item, Direction direction,Board board) {
-    return item.use(this.position,direction,board);
+    if(item.use(this.position,direction,board)){
+      equipement.put(item,equipement.get(item)-1);
+      return true;
+    }
+    return false;
   }
 
   // add + de l'énergie
@@ -85,7 +89,7 @@ public class Player extends AbstractTile {
 
   @Override
   public String toString() {
-    return "" + this.name;
+    return "" + this.name.charAt(0);
   }
 
 }
