@@ -11,13 +11,15 @@ public class Player extends AbstractTile {
   private int energy;
   private boolean hasShield;
   private Map<Equipement, Integer> equipement;
+  private Board board;
 
-  public Player(String name, Position position, int energy, boolean hasShield, Map<Equipement,Integer> equipement) {
+  public Player(String name, Board board, Position position, int energy, boolean hasShield, Map<Equipement,Integer> equipement) {
     super(position, true);
     this.name = name;
     this.energy = energy;
     this.hasShield = hasShield;
     this.equipement = equipement;
+    this.board = board;
   }
 
   public void setHasShield(boolean newState) {
@@ -27,6 +29,36 @@ public class Player extends AbstractTile {
   public boolean playerUse(Equipement item, Direction direction,Board board) {
     if(item.use(this.position,direction,board)){
       equipement.put(item,equipement.get(item)-1);
+      return true;
+    }
+    return false;
+  }
+
+  public boolean move(Direction direction) {
+    Player player = this.board.getNextPlayer();
+    Position positionPlayer = this.getPosition();
+    Position new_pos = new Position(
+            direction.getX() + positionPlayer.getX(),
+            direction.getY() + positionPlayer.getY()
+    );
+    if (this.board.canMove(new_pos)){
+      Tile[][] grid = this.board.getGrid();
+      // place le joueur qui joue à la fin de la file
+      this.board.switchPlayer();
+
+      Tile tileTarget = grid[new_pos.getY()][new_pos.getX()];
+
+      Tile new_tile = new EmptyTile(positionPlayer);
+      // positionnement de la nouvelle empty_tile dans le board
+      this.board.setTile(new_tile);
+      // changement de l'emplacement du joueur
+      player.setPosition(new_pos);
+
+      // positionnement du joueur dans le board
+      this.board.setTile(player);
+
+      // active le terrain sur lequelle le joueurva se déplacer
+      this.board.activate(tileTarget);
       return true;
     }
     return false;
@@ -52,14 +84,6 @@ public class Player extends AbstractTile {
         this.energy = 0;
       }
     }
-  }
-
-  // pour l'instant inutile peut etre à supprimer
-  public void move(Direction direction) {
-    int posX = direction.getX() + this.position.getX();
-    int posY = direction.getY() + this.position.getY();
-    this.position.setX(posX);
-    this.position.setY(posY);
   }
 
   public int getEnergy(){
@@ -89,7 +113,7 @@ public class Player extends AbstractTile {
 
   @Override
   public String toString() {
-    return "" + this.name.charAt(0);
+    return "" + this.name;
   }
 
 }

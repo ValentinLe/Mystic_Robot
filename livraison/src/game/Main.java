@@ -6,8 +6,8 @@ import java.io.*;
 public class Main{
 
   public static void main(String[] args) {
-    RobotFactory factory = new RobotFactory();
-    RealBoard b = new RealBoard(10,10,2,factory);
+    //RobotFactory factory = new RobotFactory();
+    RealBoard b = new RealBoard(10,10,8);
     Scanner sc= new Scanner(System.in);
     Scanner sc2= new Scanner(System.in);
     Scanner sc3= new Scanner(System.in);
@@ -30,22 +30,25 @@ public class Main{
     boolean saisie = true;
     boolean action = false;
 
+    Player currentPlayer;
+
     while(b.getPlayerList().size() != 1 || !saisie) {
       // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");
       System.out.println(b);
       System.out.println("Action: up(z), down(s), left(q), right(d), don't use the function use(u), quit(quit)");
+      currentPlayer = b.getNextPlayer();
       saisie = false;
       action = false;
       String nextAction = sc.nextLine();
       if (nextAction.equals("z")) {
-        saisie = b.move(Direction.UP);
+        saisie = currentPlayer.move(Direction.UP);
       } else if (nextAction.equals("q")) {
-        saisie = b.move(Direction.LEFT);
+        saisie = currentPlayer.move(Direction.LEFT);
       } else if (nextAction.equals("s")) {
-        saisie = b.move(Direction.DOWN);
+        saisie = currentPlayer.move(Direction.DOWN);
       } else if (nextAction.equals("d")) {
-        saisie = b.move(Direction.RIGHT);
+        saisie = currentPlayer.move(Direction.RIGHT);
       } else if (nextAction.equals("u")){
         System.out.println("no jamy, why did you do that !!!!");
         int cpt = 0;

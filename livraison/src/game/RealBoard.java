@@ -8,12 +8,10 @@ public class RealBoard implements Board {
   private Queue<Player> players = new LinkedList<>();;
   private int width;
   private int height;
-  private RobotFactory factory;
 
-  public RealBoard(int width, int height, int nbPlayer, RobotFactory factory){
+  public RealBoard(int width, int height, int nbPlayer){
     this.width = width;
     this.height = height;
-    this.factory = factory;
     initGrid(nbPlayer, 20);
   }
 
@@ -74,10 +72,10 @@ public class RealBoard implements Board {
         positionPlayer.setX(xPlayer);
         positionPlayer.setY(yPlayer);
       }
-      Player newPlayer = this.factory.createSniper(positionPlayer);//new Player("" + i, positionPlayer, 10, false, new HashMap<>());
-      this.initPlayer(newPlayer);
+      Player player = new Player("" + i, this, positionPlayer, 10, false, new HashMap<>());
+      this.initPlayer(player);
     }
-    testPb = this.players.peek();
+    testPb = this.getNextPlayer();
   }
 
   /**
@@ -110,35 +108,6 @@ public class RealBoard implements Board {
   public boolean canMove(Position position){
     if (this.isInIndex(position)) {
       return !(this.isObstacleTile(position));
-    }
-    return false;
-  }
-
-  public boolean move(Direction direction) {
-    Player player = this.getNextPlayer();
-    Position positionPlayer = player.getPosition();
-    Position new_pos = new Position(
-            direction.getX() + positionPlayer.getX(),
-            direction.getY() + positionPlayer.getY()
-    );
-    if (this.canMove(new_pos)){
-      // place le joueur qui joue à la fin de la file
-      this.switchPlayer();
-
-      Tile tileTarget = this.grid[new_pos.getY()][new_pos.getX()];
-
-      Tile new_tile = new EmptyTile(positionPlayer);
-      // positionnement de la nouvelle empty_tile dans le board
-      this.setTile(new_tile);
-      // changement de l'emplacement du joueur
-      player.setPosition(new_pos);
-
-      // positionnement du joueur dans le board
-      this.setTile(player);
-
-      // active le terrain sur lequelle le joueurva se déplacer
-      this.activate(tileTarget);
-      return true;
     }
     return false;
   }

@@ -22,6 +22,6 @@ public class ShieldPlate extends Usable {
 
   @Override
   public String toString() {
-    return "o";
+    return "*";
   }
 }
