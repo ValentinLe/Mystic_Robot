@@ -8,10 +8,12 @@ public class RealBoard implements Board {
   private Queue<Player> players = new LinkedList<>();;
   private int width;
   private int height;
+  private RobotFactory factory;
 
   public RealBoard(int width, int height, int nbPlayer, RobotFactory factory){
     this.width = width;
     this.height = height;
+    this.factory = factory;
     initGrid(nbPlayer, 20);
   }
 
@@ -72,7 +74,7 @@ public class RealBoard implements Board {
         positionPlayer.setX(xPlayer);
         positionPlayer.setY(yPlayer);
       }
-      Player newPlayer = new Player("" + i, positionPlayer, 10, false, new HashMap<>());
+      Player newPlayer = this.factory.createSniper(positionPlayer);//new Player("" + i, positionPlayer, 10, false, new HashMap<>());
       this.initPlayer(newPlayer);
     }
     testPb = this.players.peek();

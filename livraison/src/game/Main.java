@@ -7,7 +7,7 @@ public class Main{
 
   public static void main(String[] args) {
     RobotFactory factory = new RobotFactory();
-    RealBoard b = new RealBoard(10,10,8,factory);
+    RealBoard b = new RealBoard(10,10,2,factory);
     Scanner sc= new Scanner(System.in);
     Scanner sc2= new Scanner(System.in);
     Scanner sc3= new Scanner(System.in);
@@ -74,6 +74,7 @@ public class Main{
           }
           System.out.println("\n");
           action = b.playerUseItem(equipementListe.get(nextAction2),direction);
+          System.out.println("use : "+action);
         }
       } else if (nextAction.equals("quit")) {
         return;
