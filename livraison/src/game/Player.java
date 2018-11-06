@@ -28,6 +28,7 @@ public class Player extends AbstractTile {
 
   public boolean playerUse(Equipement item, Direction direction) {
     if(equipement.get(item)>0){
+      this.board.switchPlayer();
       if(item.use(this.position,direction,this.board)){
         equipement.put(item,equipement.get(item)-1);
         return true;
