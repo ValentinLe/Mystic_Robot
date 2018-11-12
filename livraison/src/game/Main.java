@@ -17,7 +17,7 @@ public class Main{
 
     Player currentPlayer;
     
-    RealBoard b = new RealBoard(10,10,2,factory.getRobotList());
+    RealGame b = new RealGame(10,10,2,factory.getRobotList());
     while(b.getPlayerList().size() != 1 || !saisie) {
       // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");

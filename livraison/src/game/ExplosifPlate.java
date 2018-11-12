@@ -33,6 +33,10 @@ public class ExplosifPlate extends Usable {
   public int getDamage() {
     return this.type.getDamage();
   }
+  
+  public Player getPlayer() {
+    return this.owner;
+  }
 
   @Override
   public String toString() {

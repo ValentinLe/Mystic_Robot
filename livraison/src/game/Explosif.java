@@ -12,14 +12,14 @@ public abstract class Explosif extends Weapon {
   }
 
   @Override
-  public boolean use(Position position,Direction direction,Board board){
+  public boolean use(Position position,Direction direction,Game board){
     Position newPosition = new Position(position.getX()+direction.getX(),position.getY()+direction.getY());
     ExplosifPlate newExplosifPlate = new ExplosifPlate(newPosition,true,this.range,this,((Player)board.getTileAt(position)));
-    ((RealBoard)board).setTile(newExplosifPlate);
+    ((RealGame)board).setTile(newExplosifPlate);
     return true;
   }
 
-  public void applyDamage(RealBoard b, Position explosifPosition, Position direction) {
+  public void applyDamage(RealGame b, Position explosifPosition, Position direction) {
     int xExplosif = explosifPosition.getX();
     int yExplosif = explosifPosition.getY();
     for (int i = -1; i < 2; i++) {

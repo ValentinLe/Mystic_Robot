@@ -25,8 +25,8 @@ public class Weapon implements Equipement {
    * @param board les fonctions contenue dans le board
    * @return true si l'arme à été utilisée avec succé
    */
-  public boolean use(Position position,Direction direction,Board board){
-    Player player = ((RealBoard)board).getPlayerInDirection(position,direction,this.range);
+  public boolean use(Position position,Direction direction,Game board){
+    Player player = ((RealGame)board).getPlayerInDirection(position,direction,this.range);
     if (player!=null){
       player.applyDamage(this.damage);
       return true;

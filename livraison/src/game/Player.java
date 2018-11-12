@@ -11,9 +11,9 @@ public class Player extends AbstractTile {
   private int energy;
   private boolean hasShield;
   private Map<Equipement, Integer> equipement;
-  private Board board;
+  private Game board;
 
-  public Player(String name, Board board, Position position, int energy, boolean hasShield, Map<Equipement,Integer> equipement) {
+  public Player(String name, Game board, Position position, int energy, boolean hasShield, Map<Equipement,Integer> equipement) {
     super(position, true);
     this.name = name;
     this.energy = energy;
