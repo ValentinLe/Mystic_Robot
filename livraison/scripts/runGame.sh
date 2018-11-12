@@ -1,8 +1,8 @@
 #!bin/sh
 
 cd $(dirname $0)
-if sh scripts/compile.sh
+if sh compile.sh
 then
-cd build/
+cd ../build/
 java game.Main
 fi
