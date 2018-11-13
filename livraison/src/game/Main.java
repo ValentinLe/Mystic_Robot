@@ -16,7 +16,7 @@ public class Main{
     boolean action = false;
 
     Player currentPlayer;
-    
+
     RealGame b = new RealGame(10,10,2,factory.getRobotList());
     while(b.getPlayerList().size() != 1 || !saisie) {
       // le print qui permet de stabiliser l'affichage
@@ -42,7 +42,11 @@ public class Main{
         ArrayList<Equipement> equipementListe = new ArrayList<>();
         System.out.println("list of stuf : \n");
         for (Equipement e : stuff.keySet()){
-          System.out.println(cpt++ + " : " + e + " = " + stuff.get(e));
+          String res = cpt++ + " : " + e + " = " + stuff.get(e);
+          if (e instanceof Weapon) {
+            res +=" range = "+ ((Weapon)e).getRange();
+          }
+          System.out.println(res);
           equipementListe.add(e);
         }
 

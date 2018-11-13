@@ -34,6 +34,7 @@ public class Player extends AbstractTile {
         return true;
       }
     }
+    equipement.put(item,equipement.get(item)-1);
     return false;
   }
 

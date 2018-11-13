@@ -13,7 +13,7 @@ public class RobotFactory {
   private Map<Equipement,Integer> rocketManStuff = new HashMap<Equipement,Integer>();
 
   public RobotFactory() {
-    this.tankStuff.put(new Winchester(),4);
+    this.tankStuff.put(new Shotgun(),6);
     this.tankStuff.put(new Mine(),2);
     this.tankStuff.put(new Bomb(5),2);
     this.sniperStuff.put(new Winchester(),20);
