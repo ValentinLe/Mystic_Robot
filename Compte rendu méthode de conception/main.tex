@@ -1,16 +1,19 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
 
-\title{Compte rendu méthode de conception}
-\author{Aubry Nicolas, Leblond Valentin, Mori Baptiste, Chagneux Dimitri}
-\date{Octobre - Novembre 2018}
+\title{ \bf Compte rendu méthode de conception:  Mystic Robot}
+\author{ Aubry Nicolas, Leblond Valentin, Mori Baptiste, Chagneux Dimitri}
+\date{ \bf Octobre - Novembre 2018}
 
 \usepackage{natbib}
 \usepackage{graphicx}
 
 \begin{document}
-
 \maketitle
+\tableofcontents
+
+\vspace{5\baselineskip}
 
 \section{Introduction}
 Voici notre jeu, pour la méthode de conception.
@@ -35,7 +38,7 @@ un ordre tiré aléatoirement à chaque tour.
     \item  Déclenchement du bouclier, qui protège des tirs et bombes lors du prochain tour.
     \item  Ne rien faire pour économiser son énergie.
 \end{itemize}
-	
+
 \vspace{1\baselineskip}
 
 \subsubsection{La grille :}
@@ -96,7 +99,22 @@ On s'en sert dans RobotFactory.java
 
 \subsection{Le pattern Proxy:}
 
-Le pattern Proxy permet de servir d'intermédiaire entre l'objet à contrôler et celui qui veut y accéder. 
+Le pattern Proxy permet de servir d'intermédiaire entre l'objet à contrôler et celui qui veut y accéder.
+
+\vspace{1\baselineskip}
+
+Dans notre jeu, nous avons implémenté le pattern Proxy, afin de permettre aux différents joueurs de ne pas voir les mines disposées par les ennemis. Mais de voir seulement les mines ou bombes que le joueur a lui-même poser.
+
+\vspace{1\baselineskip}
+
+Voici un exemple de ce que cela peut donner graphiquement :
+
+\begin{figure}[h]
+   \caption{\label Exemple d'utilisation du pattern Proxy :}
+   \vspace{0.5\baselineskip}
+   \includegraphics[scale=0.25]{DiagrammeUML.png}
+\end{figure}
+
 
 \subsection{Le pattern Decorator:}
 
@@ -114,7 +132,7 @@ Voici notre modèle:
 
 Le Modèle :
 
-La Vue :
+La Vue : La vue elle nous sert à afficher graphiquement notre jeu.
 
 Le contrôleur :
 
