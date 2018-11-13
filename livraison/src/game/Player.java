@@ -33,8 +33,8 @@ public class Player extends AbstractTile {
         equipement.put(item,equipement.get(item)-1);
         return true;
       }
+      equipement.put(item,equipement.get(item)-1);
     }
-    equipement.put(item,equipement.get(item)-1);
     return false;
   }
 

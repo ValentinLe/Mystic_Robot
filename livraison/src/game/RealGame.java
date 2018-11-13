@@ -5,7 +5,7 @@ import java.util.*;
 public class RealGame implements Game {
   private Tile[][] grid;
   // utilisation d'une file plutot qu'une liste
-  private Queue<Player> players = new LinkedList<>();;
+  private LinkedList<Player> players = new LinkedList<Player>();;
   private int width;
   private int height;
 
@@ -171,9 +171,21 @@ public class RealGame implements Game {
    * place le joueur en tete de file à la fin de celle-ci
    */
   public void switchPlayer() {
+    this.deadPlayer();
     Player HeadPlayer = this.players.poll();
     this.players.add(HeadPlayer);
     //this.bombCounter();
+  }
+
+  public void deadPlayer() {
+    Position position = new Position(-1,-1);
+    for (int i = 0; i < this.players.size(); i++) {
+      if (this.players.get(i).getEnergy() == 0) {
+        position = this.players.get(i).getPosition();
+        this.players.remove(i);
+        this.setTile(new EmptyTile(position));
+      }
+    }
   }
 
   /**
