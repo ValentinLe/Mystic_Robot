@@ -1,5 +1,7 @@
 package game;
 
+import java.util.*;
+
 public abstract class Explosif extends Weapon {
 
   public Explosif(int damage) {
@@ -19,16 +21,12 @@ public abstract class Explosif extends Weapon {
     return true;
   }
 
-  public void applyDamage(RealGame b, Position explosifPosition, Position direction) {
-    int xExplosif = explosifPosition.getX();
-    int yExplosif = explosifPosition.getY();
-    for (int i = -1; i < 2; i++) {
-      for (int j = -1; j < 2; j++) {
-        Tile tile = b.getTileAt(new Position(xExplosif + i, yExplosif + j));
-        if (tile instanceof Player) {
-          ((Player)tile).applyDamage(this.damage);
-        }
-      }
+  public void applyDamage(RealGame board, Position explosifPosition, Position direction) {
+    Position positionPlate = this.getPosition();
+    List<Player> players = this.board.getPlayersAround(positionPlate, this.range);
+    for (Player player : players) {
+      player.applyDamage(this.damage);
     }
+    return true;
   }
 }

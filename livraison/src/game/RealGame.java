@@ -80,12 +80,12 @@ public class RealGame implements Game {
     }
     testPb = this.getNextPlayer();
   }
-  
+
   @Override
   public int getWidth() {
     return this.width;
   }
-  
+
   @Override
   public int getHeight() {
     return this.height;
@@ -132,10 +132,7 @@ public class RealGame implements Game {
    */
   public void activate(Tile tile) {
     if (tile instanceof Usable){
-      Usable plate = ((Usable)tile);
-      Position positionPlate = plate.getPosition();
-      List<Player> players = this.getPlayersAround(positionPlate, plate.getRange());
-      plate.action(players);
+      plate.action(this);
     }
   }
 

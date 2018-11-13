@@ -19,10 +19,8 @@ public class ExplosifPlate extends Usable {
    * @param players liste des joueurs
    */
   @Override
-  public void action(List<Player> players) {
-    for (Player player : players) {
-      player.applyDamage(this.type.getDamage());
-    }
+  public void action(RealGame board) {
+    this.type.applyDamage(board,this.position,new Position(-1,-1));
   }
 
   @Override
