@@ -1,7 +1,7 @@
 package game;
 
 public class Bomb extends Explosif {
-  
+
   private int counter;
 
   public Bomb(int damage, int counter) {
@@ -11,6 +11,10 @@ public class Bomb extends Explosif {
 
   public Bomb(int counter) {
     this(5, counter);
+  }
+
+  public void setCounter(int counter) {
+    this.counter = counter;
   }
 
   @Override

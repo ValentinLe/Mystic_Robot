@@ -19,6 +19,20 @@ public class Main{
 
     RealGame b = new RealGame(10,10,2,factory.getRobotList());
     while(b.getPlayerList().size() != 1 || !saisie) {
+      Tile[][] b_grid = b.getGrid();
+      for (int i = 0; i < b_grid.length; i++) {
+        for (Tile tile : b_grid[i]) {
+          if (tile instanceof ExplosifPlate) {
+            Explosif explosif = ((ExplosifPlate)tile).getType();
+            if (explosif instanceof Bomb) {
+              System.out.println("ALLER");
+              ((Bomb)explosif).setCounter(((Bomb)explosif).getCounter()-1);
+              ((ExplosifPlate)tile).action();
+              System.out.println(((Bomb)explosif).getCounter());
+            }
+          }
+        }
+      }
       // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");
       System.out.println(b);
