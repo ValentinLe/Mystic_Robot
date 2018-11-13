@@ -22,11 +22,10 @@ public abstract class Explosif extends Weapon {
   }
 
   public void applyDamage(RealGame board, Position explosifPosition, Position direction) {
-    Position positionPlate = this.getPosition();
-    List<Player> players = this.board.getPlayersAround(positionPlate, this.range);
+    List<Player> players = board.getPlayersAround(explosifPosition, this.range);
     for (Player player : players) {
+      System.out.println(this + " " + this.damage);
       player.applyDamage(this.damage);
     }
-    return true;
   }
 }

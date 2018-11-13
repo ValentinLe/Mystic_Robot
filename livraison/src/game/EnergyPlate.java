@@ -12,14 +12,12 @@ public class EnergyPlate extends Usable {
   }
 
   /**
-   * Ajoute de l'energy aux joueurs de la liste 
+   * Ajoute de l'energy aux joueurs de la liste
    * @param players liste des joueurs
    */
   @Override
-  public void action(List<Player> players) {
-    for (Player player : players) {
-      player.addEnergy(this.energyAmount);
-    }
+  public void action(RealGame board) {
+    ((Player)board.getTileAt(this.position)).addEnergy(this.energyAmount);
   }
 
   @Override

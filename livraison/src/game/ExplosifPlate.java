@@ -20,6 +20,7 @@ public class ExplosifPlate extends Usable {
    */
   @Override
   public void action(RealGame board) {
+    System.out.println("ExplosifPlate action this.type : " + this.type);
     this.type.applyDamage(board,this.position,new Position(-1,-1));
   }
 

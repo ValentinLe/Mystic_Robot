@@ -132,7 +132,7 @@ public class RealGame implements Game {
    */
   public void activate(Tile tile) {
     if (tile instanceof Usable){
-      plate.action(this);
+      ((Usable)tile).action(this);
     }
   }
 
@@ -173,7 +173,7 @@ public class RealGame implements Game {
   public void switchPlayer() {
     Player HeadPlayer = this.players.poll();
     this.players.add(HeadPlayer);
-    this.bombCounter();
+    //this.bombCounter();
   }
 
   /**
@@ -224,7 +224,7 @@ public class RealGame implements Game {
           Explosif explosif = ((ExplosifPlate)tile).getType();
           if (explosif instanceof Bomb) {
             ((Bomb)explosif).setCounter(((Bomb)explosif).getCounter()-1);
-            this.action(((ExplosifPlate)tile));
+            this.activate(tile);
           }
         }
       }

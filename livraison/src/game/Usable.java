@@ -16,8 +16,8 @@ public abstract class Usable extends AbstractTile {
   public int getRange() {
     return this.range;
   }
-  
-  public abstract void action(List<Player> player);
+
+  public abstract void action(RealGame board);
 
   public boolean isActivable() {
     return this.isActivable;

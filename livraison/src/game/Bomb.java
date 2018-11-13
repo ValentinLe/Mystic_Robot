@@ -25,4 +25,9 @@ public class Bomb extends Explosif {
   public int getCounter() {
     return this.counter;
   }
+
+  @Override
+  public String toString(){
+    return "Bomb";
+  }
 }

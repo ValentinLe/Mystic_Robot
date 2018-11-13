@@ -12,4 +12,9 @@ public class Mine extends Explosif {
   public int getDamage() {
     return this.damage;
   }
+
+  @Override
+  public String toString(){
+    return "Mine";
+  }
 }

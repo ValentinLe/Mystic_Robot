@@ -14,10 +14,8 @@ public class ShieldPlate extends Usable {
    * @param players liste des joueurs impliqués
    */
   @Override
-  public void action(List<Player> players) {
-    for (Player player : players) {
-      player.setHasShield(true);
-    }
+  public void action(RealGame board) {
+    ((Player)board.getTileAt(this.position)).setHasShield(true);
   }
 
   @Override
