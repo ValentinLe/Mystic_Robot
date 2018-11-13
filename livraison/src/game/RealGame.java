@@ -173,6 +173,7 @@ public class RealGame implements Game {
   public void switchPlayer() {
     Player HeadPlayer = this.players.poll();
     this.players.add(HeadPlayer);
+    this.bombCounter();
   }
 
   /**
@@ -214,6 +215,20 @@ public class RealGame implements Game {
       }
     }
     return listConsvois;
+  }
+
+  public void bombCounter() {
+    for (int i = 0; i < this.grid.length; i++) {
+      for (Tile tile : this.grid[i]) {
+        if (tile instanceof ExplosifPlate) {
+          Explosif explosif = ((ExplosifPlate)tile).getType();
+          if (explosif instanceof Bomb) {
+            ((Bomb)explosif).setCounter(((Bomb)explosif).getCounter()-1);
+            this.action(((ExplosifPlate)tile));
+          }
+        }
+      }
+    }
   }
 
   /**
