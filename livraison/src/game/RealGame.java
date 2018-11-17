@@ -74,7 +74,7 @@ public class RealGame implements Game {
       }
       int robotChoice = r.nextInt(playerList.size());
       Player robot = playerList.get(robotChoice);
-      Player player = new Player(robot.getName(),this,positionPlayer,robot.getEnergy(),false,robot.getEquipement());
+      Player player = new Player(robot.getName(),this,positionPlayer,robot.getEnergy(),false,new HashMap(robot.getEquipement()));
       //Player player = new Player("" + i, this, positionPlayer, 10, false, new HashMap<>());
       this.initPlayer(player);
     }
