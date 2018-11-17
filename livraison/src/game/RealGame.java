@@ -172,8 +172,8 @@ public class RealGame implements Game {
    */
   public void switchPlayer() {
     this.deadPlayer();
-    Player HeadPlayer = this.players.poll();
-    this.players.add(HeadPlayer);
+    Player headPlayer = this.players.poll();
+    this.players.add(headPlayer);
     //this.bombCounter();
   }
 
@@ -298,8 +298,8 @@ public class RealGame implements Game {
   /**
 
    */
-  public Player getPlayerInDirection(Position position,Direction direction,int range){
-    Position new_pos = new Position(position.getX(),position.getY());
+  public Player getPlayerInDirection(Position position, Direction direction, int range){
+    Position new_pos = position.getCopy();
     for(int i = 0; i<range+1;i++){
       new_pos.addX(direction.getX());
       new_pos.addY(direction.getY());
