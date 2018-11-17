@@ -43,7 +43,7 @@ un ordre tiré aléatoirement à chaque tour.
 
 \subsubsection{La grille :}
 
-La grille peut contenir, lors de sa création, des murs (cases non utilisables par les combattants et infranchissables par les tirs), et des pastilles d'énergie que les combattants peuvent récupérer en se plaçant dessus.
+La grille peut contenir, lors de sa création, des murs (cases non-utilisables par les combattants et infranchissables par les tirs), et des pastilles d'énergie que les combattants peuvent récupérer en se plaçant dessus.
 
 \vspace{1\baselineskip}
 
@@ -94,7 +94,11 @@ Le pattern Strategy est un pattern qui permet d'externaliser le contenu de certa
 
 Le pattern Factory permet de générer dynamiquement des types d'objets.
 
-On s'en sert dans RobotFactory.java
+\vspace{0.3\baselineskip}
+
+Dans notre projet, on se sert du pattern afin de créer des objets Player qui ont des caractéristiques prédéfinies (énergie, stuff, rôle, etc...).
+On l'utilise dans la classe RobotFactory, c'est grâce à cela que l'on arrive à dire si on a des joueurs de types sniper, tank ou autres.
+
 
 
 \subsection{Le pattern Proxy:}
@@ -130,7 +134,7 @@ Voici notre modèle:
 
 \vspace{1\baselineskip}
 
-Le Modèle :
+Le Modèle : Le modèle de notre application est notre interface graphique.
 
 La Vue : La vue elle nous sert à afficher graphiquement notre jeu.
 
