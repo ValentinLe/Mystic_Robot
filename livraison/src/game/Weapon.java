@@ -4,10 +4,12 @@ public class Weapon implements Equipement {
 
   protected int damage;
   protected int range;
+  protected Player owner;
 
-  public Weapon(int damage, int range) {
+  public Weapon(int damage, int range, Player owner) {
     this.damage = damage;
     this.range = range;
+    this.owner = owner;
   }
 
   public int getDamage() {

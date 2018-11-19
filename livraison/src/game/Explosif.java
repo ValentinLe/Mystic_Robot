@@ -4,8 +4,8 @@ import java.util.*;
 
 public abstract class Explosif extends Weapon {
 
-  public Explosif(int damage) {
-    super(damage, 1);
+  public Explosif(int damage, int range, Player owner) {
+    super(damage, range, owner);
   }
 
   @Override
@@ -16,7 +16,7 @@ public abstract class Explosif extends Weapon {
   @Override
   public boolean use(Position position,Direction direction,Game board){
     Position newPosition = new Position(position.getX()+direction.getX(),position.getY()+direction.getY());
-    ExplosifPlate newExplosifPlate = new ExplosifPlate(newPosition,true,this.range,this,((Player)board.getTileAt(position)));
+    ExplosifPlate newExplosifPlate = new ExplosifPlate(newPosition,true,this.range,this.damage,((Player)board.getTileAt(position)));
     ((RealGame)board).setTile(newExplosifPlate);
     return true;
   }
@@ -28,4 +28,6 @@ public abstract class Explosif extends Weapon {
       player.applyDamage(this.damage);
     }
   }
+  
+  public abstract Tile toTile(Position position);
 }

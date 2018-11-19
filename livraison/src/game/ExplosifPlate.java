@@ -4,12 +4,12 @@ import java.util.*;
 
 public class ExplosifPlate extends Usable {
 
-  private Explosif type;
+  private int damage;
   private Player owner;
 
-  public ExplosifPlate(Position position, boolean isActivable, int range, Explosif type, Player owner) {
+  public ExplosifPlate(Position position, boolean isActivable, int range, int damage, Player owner) {
     super(position, isActivable, range);
-    this.type = type;
+    this.damage = damage;
     this.owner = owner;
     this.range = range;
   }
@@ -20,8 +20,10 @@ public class ExplosifPlate extends Usable {
    */
   @Override
   public void action(RealGame board) {
-    System.out.println("ExplosifPlate action this.type : " + this.type);
-    this.type.applyDamage(board,this.position,new Position(-1,-1));
+    List<Player> players = board.getPlayersAround(this.position, this.range);
+    for (Player player : players) {
+      player.applyDamage(this.damage);
+    }
   }
 
   @Override
@@ -30,15 +32,11 @@ public class ExplosifPlate extends Usable {
   }
 
   public int getDamage() {
-    return this.type.getDamage();
+    return this.damage;
   }
 
   public Player getPlayer() {
     return this.owner;
-  }
-
-  public Explosif getType() {
-    return this.type;
   }
 
   @Override

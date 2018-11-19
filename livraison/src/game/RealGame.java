@@ -45,7 +45,7 @@ public class RealGame implements Game {
     for (int k = 0; k < nbEnergy; k++) {
       xBomb = r.nextInt(width);
       yBomb = r.nextInt(height);
-      Tile bomb = new ExplosifPlate(new Position(xBomb, yBomb), true, 1, new Bomb(r.nextInt(10)+1,2), testPb);
+      Tile bomb = new ExplosifPlate(new Position(xBomb, yBomb), true, 1, r.nextInt(10)+1, testPb);
       this.setTile(bomb);
     }
 
@@ -228,7 +228,8 @@ public class RealGame implements Game {
     }
     return listConsvois;
   }
-
+  
+  /*
   public void bombCounter() {
     for (int i = 0; i < this.grid.length; i++) {
       for (Tile tile : this.grid[i]) {
@@ -241,7 +242,7 @@ public class RealGame implements Game {
         }
       }
     }
-  }
+  }*/
 
   /**
    * Retourne une liste de joueurs présent dans une liste de cases
