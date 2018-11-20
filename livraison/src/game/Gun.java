@@ -2,8 +2,8 @@ package game;
 
 public abstract class Gun extends Weapon {
 
-  public Gun(int damage, int range) {
-    super(damage, range);
+  public Gun(int damage, int range, Player owner) {
+    super(damage, range, owner);
   }
 
   @Override
