@@ -7,14 +7,14 @@ import parser.*;
 public class Main{
 
   public static void main(String[] args) {
-    RobotFactory factory = new RobotFactory();
+    Parser parser = new ParserCrochet("texture","config");
+    Map<String,Map<String,String>> config = parser.executeConfig();
+
+    RobotFactory factory = new RobotFactory(config);
     //RealBoard b = new RealBoard(10,10,8);
     Scanner sc= new Scanner(System.in);
     Scanner sc2= new Scanner(System.in);
     Scanner sc3= new Scanner(System.in);
-    Parser parser = new ParserCrochet("texture","config");
-    Map<String,Map<String,String>> config = parser.executeConfig();
-    Map<String,String> textures = parser.executeTexture();
 
     boolean saisie = true;
     boolean action = false;

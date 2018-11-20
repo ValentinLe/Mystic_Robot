@@ -1,9 +1,24 @@
 [winchester]
 range=5
+type=gun
 damage=3
 ;
 
-[gun]
+[shotgun]
+type=gun
 range=2
 damage=5
+;
+
+[mine]
+range=1
+damage=4
+type=mine
+;
+
+[bomb]
+range=1
+damage=4
+timer=5
+type=bomb
 ;
