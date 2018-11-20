@@ -4,10 +4,12 @@ public abstract class AbstractTile implements Tile {
 
   protected Position position;
   protected boolean isObstacle;
+  protected String type;
 
-  public AbstractTile(Position position, boolean isObstacle) {
+  public AbstractTile(String type, Position position, boolean isObstacle) {
     this.position = position;
     this.isObstacle = isObstacle;
+    this.type = type;
   }
 
   @Override
@@ -27,5 +29,10 @@ public abstract class AbstractTile implements Tile {
   @Override
   public void setIsObstacle(boolean isObstacle) {
     this.isObstacle = isObstacle;
+  }
+
+  @Override
+  public String getType(){
+    return this.type;
   }
 }

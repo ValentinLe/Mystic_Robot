@@ -6,7 +6,7 @@ import java.util.List;
 public class ShieldPlate extends Usable {
 
   public ShieldPlate(Position pos, boolean isActivable, int range) {
-    super(pos, isActivable, range);
+    super("ShieldPlate",pos, isActivable, range);
   }
 
   /**

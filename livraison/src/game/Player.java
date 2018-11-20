@@ -7,15 +7,14 @@ public class Player extends AbstractTile {
   // vie maximale d'un joueur
   public final static int MAX_ENERGY = 20;
 
-  private String name;
+
   private int energy;
   private boolean hasShield;
   private Map<Equipement, Integer> equipement;
   private Game board;
 
-  public Player(String name, Game board, Position position, int energy, boolean hasShield, Map<Equipement,Integer> equipement) {
-    super(position, true);
-    this.name = name;
+  public Player(String type, Game board, Position position, int energy, boolean hasShield, Map<Equipement,Integer> equipement) {
+    super(type, position, true);
     this.energy = energy;
     this.hasShield = hasShield;
     this.equipement = equipement;
@@ -99,10 +98,6 @@ public class Player extends AbstractTile {
     return true;
   }
 
-  public String getName() {
-    return this.name;
-  }
-
   public Map<Equipement,Integer> getEquipement() {
     return this.equipement;
   }
@@ -112,12 +107,12 @@ public class Player extends AbstractTile {
    * @return les stats du joueur
    */
   public String getStringStats() {
-    return "Player " + this.name + " " + this.position + " : energy=" + this.energy + "/" + MAX_ENERGY + " shield=" + this.hasShield;
+    return "Player " + this.type + " " + this.position + " : energy=" + this.energy + "/" + MAX_ENERGY + " shield=" + this.hasShield;
   }
 
   @Override
   public String toString() {
-    return "" + this.name.charAt(0);
+    return "" + this.type.charAt(0);
   }
 
 }

@@ -2,8 +2,8 @@ package game;
 
 public class Wall extends AbstractTile {
 
-  public Wall(Position position) {
-    super(position,true);
+  public Wall(String type,Position position) {
+    super(type,position,true);
   }
 
   @Override

@@ -7,4 +7,6 @@ public interface Tile {
   public boolean getIsObstacle();
 
   public void setIsObstacle(boolean isObstacle);
+
+  public String getType();
 }

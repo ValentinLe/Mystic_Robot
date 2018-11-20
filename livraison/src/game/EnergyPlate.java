@@ -7,7 +7,7 @@ public class EnergyPlate extends Usable {
   private int energyAmount;
 
   public EnergyPlate(Position pos, boolean isActivable, int range, int energyAmount) {
-    super(pos, isActivable, range);
+    super("EnergyPlate",pos, isActivable, range);
     this.energyAmount = energyAmount;
   }
 

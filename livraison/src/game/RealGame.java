@@ -45,7 +45,7 @@ public class RealGame implements Game {
     for (int k = 0; k < nbEnergy; k++) {
       xBomb = r.nextInt(width);
       yBomb = r.nextInt(height);
-      Tile bomb = new ExplosifPlate(new Position(xBomb, yBomb), true, 1, r.nextInt(10)+1, testPb);
+      Tile bomb = new ExplosifPlate("ExplosifPlate",new Position(xBomb, yBomb), true, 1, r.nextInt(10)+1, testPb);
       this.setTile(bomb);
     }
 
@@ -74,7 +74,7 @@ public class RealGame implements Game {
       }
       int robotChoice = r.nextInt(playerList.size());
       Player robot = playerList.get(robotChoice);
-      Player player = new Player(robot.getName(),this,positionPlayer,robot.getEnergy(),false,new HashMap(robot.getEquipement()));
+      Player player = new Player(robot.getType(),this,positionPlayer,robot.getEnergy(),false,new HashMap(robot.getEquipement()));
       //Player player = new Player("" + i, this, positionPlayer, 10, false, new HashMap<>());
       this.initPlayer(player);
     }

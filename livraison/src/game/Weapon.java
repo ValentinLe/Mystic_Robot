@@ -38,6 +38,10 @@ public class Weapon implements Equipement {
     return false;
   }
 
+  public String getType(){
+    return this.type;
+  }
+
   @Override
   public String toString(){
     return this.type;

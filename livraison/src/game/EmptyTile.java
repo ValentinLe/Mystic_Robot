@@ -3,7 +3,7 @@ package game;
 public class EmptyTile extends AbstractTile {
 
   public EmptyTile(Position position) {
-    super(position, false);
+    super("Empty", position, false);
   }
 
   @Override

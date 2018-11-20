@@ -7,8 +7,8 @@ public class ExplosifPlate extends Usable {
   private int damage;
   private Player owner;
 
-  public ExplosifPlate(Position position, boolean isActivable, int range, int damage, Player owner) {
-    super(position, isActivable, range);
+  public ExplosifPlate(String type, Position position, boolean isActivable, int range, int damage, Player owner) {
+    super(type, position, isActivable, range);
     this.damage = damage;
     this.owner = owner;
     this.range = range;
