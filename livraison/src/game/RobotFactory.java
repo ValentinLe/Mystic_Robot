@@ -38,12 +38,12 @@ public class RobotFactory {
       } else if (weapon.get("type").equals("mine")) {
         damage = Integer.parseInt(weapon.get("damage"));
         range = Integer.parseInt(weapon.get("range"));
-         Explosif mine = new Mine(elementName,damage,range,null);
+         Mine mine = new Mine(elementName,damage,range,null);
          weaponList.put(elementName,mine);
       } else if (weapon.get("type").equals("bomb")) {
         damage = Integer.parseInt(weapon.get("damage"));
         range = Integer.parseInt(weapon.get("range"));
-        Explosif bomb = new Bomb(elementName,damage,range,Integer.parseInt(weapon.get("timer")),null);
+        Bomb bomb = new Bomb(elementName,damage,range,Integer.parseInt(weapon.get("timer")),null);
         weaponList.put(elementName,bomb);
       }
     }
