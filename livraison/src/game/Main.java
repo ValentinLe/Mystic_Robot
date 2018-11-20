@@ -2,6 +2,7 @@ package game;
 
 import java.util.*;
 import java.io.*;
+import parser.*;
 
 public class Main{
 
@@ -11,6 +12,9 @@ public class Main{
     Scanner sc= new Scanner(System.in);
     Scanner sc2= new Scanner(System.in);
     Scanner sc3= new Scanner(System.in);
+    Parser parser = new ParserCrochet("texture","config");
+    Map<String,Map<String,String>> config = parser.executeConfig();
+    Map<String,String> textures = parser.executeTexture();
 
     boolean saisie = true;
     boolean action = false;

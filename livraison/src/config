@@ -1,0 +1,9 @@
+[winchester]
+range=5
+damage=3
+;
+
+[gun]
+range=2
+damage=5
+;
