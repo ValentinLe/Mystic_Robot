@@ -1,6 +1,15 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=fulse,       % false: liens encadrés; true: liens colorés
+    linkcolor=red,          % couleur des liens (ou bordures) internes
+    citecolor=green,        % couleur des liens (ou bordures) vers bilbio
+    filecolor=magenta,      % couleur des liens (ou bordures) vers fichiers
+    urlcolor=cyan           % couleur des liens (ou bordures) url
+}
 
 \title{ \bf Compte rendu méthode de conception:  Mystic Robot}
 \author{ Aubry Nicolas, Leblond Valentin, Mori Baptiste, Chagneux Dimitri}
@@ -8,6 +17,7 @@
 
 \usepackage{natbib}
 \usepackage{graphicx}
+\usepackage{listings}
 
 \begin{document}
 \maketitle
@@ -16,14 +26,13 @@
 \vspace{5\baselineskip}
 
 \section{Introduction}
-Voici notre jeu, pour la méthode de conception.
+Voici notre jeu, pour la méthode de conception. Nous avons voulu un jeu, avec des règles simples, une approche pour l'utilisateur assez intuitive. Mais en ayant un jeu respectant les différentes règles imposées par l'énoncé.
 
 \section{Le jeu }
 
 \subsection{Les règles du jeu : }
 
-A chaque tour de jeu, les joueurs jouent l'un après l'autre selon un ordre initialement défini, ou selon
-un ordre tiré aléatoirement à chaque tour.
+À chaque tour de jeu, les joueurs jouent l'un après l'autre selon un ordre initialement défini, ou selon un ordre tiré aléatoirement à chaque tour.
 
 \vspace{1\baselineskip}
 
@@ -56,8 +65,7 @@ La grille peut contenir, lors de sa création, des murs (cases non-utilisables p
     \item Une bombe explose au bout d'un certain délai t (compte à rebours en nombre de tours de jeu),
 	et impacte les combattants se trouvant sur l'une des 8 cases voisines, ou , comme une mine,	si l'on se place dessus.
 	\item Les bombes et les mines peuvent avoir deux types de visibilité: visible de tous les combattants, ou visible seulement du combattant qui l'a déposée.
-	\item Un tir horizontal impacte les combattants se trouvant sur la même ligne horizontale, à un nombre de cases inférieur à la distance d (portée limitée). Idem pour un tir vertical (i.e sur la même
-	colonne).
+	\item Un tir horizontal impacte les combattants se trouvant sur la même ligne horizontale, à un nombre de cases inférieur à la distance (portée limitée). Idem pour un tir vertical (i.e sur la même colonne).
 	\item Une explosion ou un tir impactant un combattant fait baisser son énergie d'une certaine valeur qui fera partie des paramètres du jeu.
 	\item Un déplacement et l'utilisation du bouclier ont eux aussi leurs coûts respectifs.
     \item Un combattant perd le jeu lorsque son énergie est négative ou nulle. Il disparaît alors du jeu.
@@ -73,12 +81,24 @@ La grille peut contenir, lors de sa création, des murs (cases non-utilisables p
 \vspace{3\baselineskip}
 
 
-\includegraphics[scale=0.25]{DiagrammeUML.png}
+\begin{figure}[ht]
+   \caption{\label Voici notre Diagramme UML}
+   \vspace{0.5\baselineskip}
+   \includegraphics[scale=0.25]{DiagrammeUML.png}
+\end{figure}
+
+
 
 
 \vspace{1\baselineskip}
 
 \subsection{Explications :}
+
+Nous avons voulu, un diagramme simple, mais en même temps assez complet afin de pouvoir s'y retrouver facilement et que toutes les personnes du groupe puissent le comprendre assez aisément. Ensuite, nous avons voulu le maximiser un maximum, c'est-à-dire éviter les redondances, les classes inutiles et la répétition de code inutile.
+
+\vspace{0.3\baselineskip}
+
+Donc après plusieurs relectures du diagramme et du code, nous avons pu ainsi enlever des parties du code qui devenaient à nos yeux inutiles.
 
 \vspace{1\baselineskip}
 
@@ -94,12 +114,22 @@ Le pattern Strategy est un pattern qui permet d'externaliser le contenu de certa
 
 Le pattern Factory permet de générer dynamiquement des types d'objets.
 
+Voici un exemple de code dans lequel nous utilisons le pattern Factory:
+
+
+
+
 \vspace{0.3\baselineskip}
 
-Dans notre projet, on se sert du pattern afin de créer des objets Player qui ont des caractéristiques prédéfinies (énergie, stuff, rôle, etc...).
+Dans notre projet, on se sert du pattern afin de créer des objets Player qui ont des caractéristiques prédéfinies (énergie, stuff, rôle, etc.).
 On l'utilise dans la classe RobotFactory, c'est grâce à cela que l'on arrive à dire si on a des joueurs de types sniper, tank ou autres.
 
+\vspace{1\baselineskip}
 
+
+\lstinputlisting[language=Java, firstline=2, lastline=7]{Winchester.java}
+
+\vspace{1\baselineskip}
 
 \subsection{Le pattern Proxy:}
 
@@ -111,12 +141,12 @@ Dans notre jeu, nous avons implémenté le pattern Proxy, afin de permettre aux 
 
 \vspace{1\baselineskip}
 
-Voici un exemple de ce que cela peut donner graphiquement :
+Voici un exemple de ce que cela peut donner graphiquement (cf: Figure 2) :
 
-\begin{figure}[h]
+\begin{figure}[ht]
    \caption{\label Exemple d'utilisation du pattern Proxy :}
    \vspace{0.5\baselineskip}
-   \includegraphics[scale=0.25]{DiagrammeUML.png}
+   \includegraphics[scale=0.60]{GUI.PNG}
 \end{figure}
 
 
@@ -124,34 +154,85 @@ Voici un exemple de ce que cela peut donner graphiquement :
 
 Le pattern Décorator permet d'éviter la redondance et l'explosion du nombre de classes. Donc on créer un objet B qui se fait passer pour un objet A en enrichissant ses fonctionnalités.
 
-\subsection{Le pattern Singleton:}
 
-Le pattern Singleton est un pattern de construction, il permet d'obtenir une instance unique d'une classe.
+\subsection{ \bf Le modèle MVC:}
 
-\subsection{Le modèle MVC:}
+\vspace{1.5\baselineskip}
 
-Voici notre modèle:
+\subsubsection{Le Modèle :}
+
 
 \vspace{1\baselineskip}
 
-Le Modèle : Le modèle de notre application est notre interface graphique.
+Le Modèle : Notre modèle est composé du package game, qui contient toutes nos classes gérant le modèle.
 
-La Vue : La vue elle nous sert à afficher graphiquement notre jeu.
+\vspace{1\baselineskip}
 
-Le contrôleur :
+\subsubsection{La Vue :}
 
+\vspace{1\baselineskip}
+
+La Vue : La vue, elle nous sert à afficher graphiquement notre jeu. Nous utilisons les JFrames ainsi que les JPanel. Notre vue est composée du package gui, qui contient toutes les classes permettant de générer graphiquement nos différentes interfaces graphiques.
+
+\vspace{1\baselineskip}
+
+\subsubsection{Le Contrôleur :}
+
+\vspace{1\baselineskip}
+
+Le Contrôleur : Le contrôleur est composé du package
+
+\vspace{1\baselineskip}
 
 \section{Test du jeu :}
 
 \section{Conclusion}
 
+La matière méthode de conception, nous a permis de mieux comprendre certains aspects de programmation ( Par exemple l'utilisation des différents patterns vus durant les CM et TP. ). De plus, la répartition des taches a été un des piliers centraux, concernant la mise en place du jeu.
+
+\vspace{0.3\baselineskip}
 
 
+
+\section{Références}
+
+\subsection{Références bibliographiques :}
 
 \bibliographystyle{plain}
 \bibliography{references}
 
 \vspace{1\baselineskip}
 
-Référence aux différents CM et TP de Yann Mathet.
+\bf Référence aux différents CM et TP de Yann Mathet.
+
+\vspace{0.5\baselineskip}
+
+\url{https://mathet.users.greyc.fr/}
+
+\vspace{0.3\baselineskip}
+
+\url{https://ecampus.unicaen.fr/course/view.php?id=15145}
+
+\vspace{0.5\baselineskip}
+
+\subsection{Références externes :}
+
+\vspace{1\baselineskip}
+
+\bf Référence aussi à différentes documentations présentes en ligne :
+
+\vspace{0.3\baselineskip}
+
+\bf Concernant la mise en page latex:
+
+\vspace{0.5\baselineskip}
+
+\url{http://www.xm1math.net/doculatex/url.html}
+
+\vspace{0.3\baselineskip}
+
+\url{https://urlz.fr/8eFS}
+
+\vspace{0.3\baselineskip}
+
 \end{document}
