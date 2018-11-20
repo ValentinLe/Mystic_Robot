@@ -5,11 +5,13 @@ public class Weapon implements Equipement {
   protected int damage;
   protected int range;
   protected Player owner;
+  protected String type;
 
-  public Weapon(int damage, int range, Player owner) {
+  public Weapon(String type, int damage, int range, Player owner) {
     this.damage = damage;
     this.range = range;
     this.owner = owner;
+    this.type = type;
   }
 
   public int getDamage() {
@@ -34,5 +36,10 @@ public class Weapon implements Equipement {
       return true;
     }
     return false;
+  }
+
+  @Override
+  public String toString(){
+    return this.type;
   }
 }

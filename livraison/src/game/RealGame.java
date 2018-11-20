@@ -81,16 +81,6 @@ public class RealGame implements Game {
     testPb = this.getNextPlayer();
   }
 
-  @Override
-  public int getWidth() {
-    return this.width;
-  }
-
-  @Override
-  public int getHeight() {
-    return this.height;
-  }
-
   /**
    * Ajoute un joueur dans la grille et dans la liste des joueurs
    * @param player le joueur à ajouter
@@ -146,26 +136,6 @@ public class RealGame implements Game {
     return this.getNextPlayer().playerUse(item,direction);
   }
 
-  public void setTile(Tile tile) {
-    Position posTile = tile.getPosition();
-    this.grid[posTile.getY()][posTile.getX()] = tile;
-  }
-
-  public Tile[][] getGrid() {
-    return this.grid;
-  }
-
-  public Queue<Player> getPlayerList() {
-    return this.players;
-  }
-
-  /**
-   * récupère le premier joueur de la file
-   * @return le prochain joueur qui doit jouer
-   */
-  public Player getNextPlayer() {
-    return this.players.peek();
-  }
 
   /**
    * place le joueur en tete de file à la fin de celle-ci
@@ -228,7 +198,7 @@ public class RealGame implements Game {
     }
     return listConsvois;
   }
-  
+
   /*
   public void bombCounter() {
     for (int i = 0; i < this.grid.length; i++) {
@@ -243,6 +213,37 @@ public class RealGame implements Game {
       }
     }
   }*/
+
+  public void setTile(Tile tile) {
+    Position posTile = tile.getPosition();
+    this.grid[posTile.getY()][posTile.getX()] = tile;
+  }
+
+  @Override
+  public int getWidth() {
+    return this.width;
+  }
+
+  @Override
+  public int getHeight() {
+    return this.height;
+  }
+
+  public Tile[][] getGrid() {
+    return this.grid;
+  }
+
+  public Queue<Player> getPlayerList() {
+    return this.players;
+  }
+
+  /**
+  * récupère le premier joueur de la file
+  * @return le prochain joueur qui doit jouer
+  */
+  public Player getNextPlayer() {
+    return this.players.peek();
+  }
 
   /**
    * Retourne une liste de joueurs présent dans une liste de cases
