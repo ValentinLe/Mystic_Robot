@@ -13,13 +13,13 @@ public class RobotFactory {
   private Map<Equipement,Integer> rocketManStuff = new HashMap<Equipement,Integer>();
 
   public RobotFactory() {
-    this.tankStuff.put(new Weapon(5, 5, this.tank),6);
-    this.tankStuff.put(new Mine(5, 1, this.tank),2);
-    this.tankStuff.put(new Bomb(5, 0, this.tank),2);
-    this.sniperStuff.put(new Weapon(3, 4, this.sniper),20);
-    this.rocketManStuff.put(new Weapon(8, 3, this.rocketMan),8);
-    this.rocketManStuff.put(new Mine(4, 0, this.rocketMan),4);
-    this.rocketManStuff.put(new Bomb(5, 1, this.rocketMan),4);
+    this.tankStuff.put(new Gun("", 5, 5, this.tank),6);
+    this.tankStuff.put(new Mine("", 5, 1, this.tank),2);
+    this.tankStuff.put(new Bomb("", 5, 0, this.tank),2);
+    this.sniperStuff.put(new Gun("", 3, 4, this.sniper),20);
+    this.rocketManStuff.put(new Gun("", 8, 3, this.rocketMan),8);
+    this.rocketManStuff.put(new Mine("", 4, 0, this.rocketMan),4);
+    this.rocketManStuff.put(new Bomb("", 5, 1, this.rocketMan),4);
 
     this.tank = new Player("Tank",null,null,20,false,this.tankStuff);
     this.sniper = new Player("Sniper",null,null,10,false,this.sniperStuff);
