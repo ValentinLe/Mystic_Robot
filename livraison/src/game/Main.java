@@ -11,7 +11,7 @@ public class Main{
     ArrayList<Map<String,Map<String,String>>> config = parser.executeConfig();
 
     RobotFactory factory = new RobotFactory(config);
-    //RealBoard b = new RealBoard(10,10,8);
+    
     Scanner sc= new Scanner(System.in);
     Scanner sc2= new Scanner(System.in);
     Scanner sc3= new Scanner(System.in);
@@ -20,10 +20,10 @@ public class Main{
     boolean action = false;
 
     Player currentPlayer;
-    
+
     GridGenerator gridGenerator = new GridGeneratorWithProbability(0.15, 0.05, 0.05);
 
-    RealGame b = new RealGame(10,10,2,factory.getRobotList(), gridGenerator);
+    RealGame b = new RealGame(10,10,factory.getRobotList(), gridGenerator);
     while(b.getPlayerList().size() != 1 || !saisie) {
       // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");

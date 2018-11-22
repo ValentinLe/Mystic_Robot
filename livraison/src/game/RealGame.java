@@ -10,7 +10,7 @@ public class RealGame implements Game {
   private int width;
   private int height;
 
-  public RealGame(int width, int height, int nbPlayer, ArrayList<Player> playerList, GridGenerator gridGenerator){
+  public RealGame(int width, int height, ArrayList<Player> playerList, GridGenerator gridGenerator){
     this.width = width;
     this.height = height;
     this.gridGenerator = gridGenerator;
