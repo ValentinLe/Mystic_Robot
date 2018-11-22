@@ -6,6 +6,6 @@ public interface Parser {
 
   public Map<String,String> executeTexture();
 
-  public Map<String,Map<String,String>> executeConfig();
+  public ArrayList<Map<String,Map<String,String>>> executeConfig();
 
 }

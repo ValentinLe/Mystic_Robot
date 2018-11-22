@@ -30,9 +30,12 @@ public class ParserCrochet implements Parser {
   }
 
   @Override
-  public Map<String,Map<String,String>> executeConfig() {
-    Map<String,Map<String,String>> map = new HashMap<String,Map<String,String>>();
+  public ArrayList<Map<String,Map<String,String>>> executeConfig() {
+    ArrayList<Map<String,Map<String,String>>> elementsList = new ArrayList<>(); //premier élément c'est les armes, 2ème c'est les robots
+    Map<String,Map<String,String>> weaponMap = new HashMap<String,Map<String,String>>();
+    Map<String,Map<String,String>> robotMap = new HashMap<String,Map<String,String>>();
     Map<String,String> elements;
+
     try  {
       BufferedReader br = new BufferedReader(new FileReader(this.configPath));
       String line;
@@ -46,13 +49,23 @@ public class ParserCrochet implements Parser {
               String[] attribute = line.split("=");
               elements.put(attribute[0],attribute[1]);
             }
-            map.put(elementName,elements);
+            weaponMap.put(elementName,elements);
+          } else if (line.charAt(0) == '{') {
+            elementName = line.substring(1,line.length()-1);
+            elements = new HashMap<String,String>();
+            while(!(line = br.readLine()).equals(";")) {
+              String[] attribute = line.split("=");
+              elements.put(attribute[0],attribute[1]);
+            }
+            robotMap.put(elementName,elements);
           }
         }
       }
+      elementsList.add(weaponMap);
+      elementsList.add(robotMap);
     } catch (IOException e){
       e.printStackTrace();
     }
-    return map;
+    return elementsList;
   }
 }
