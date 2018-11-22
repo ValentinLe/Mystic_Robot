@@ -26,6 +26,8 @@ public class ViewGrid extends JPanel {
         Tile tile = this.game.getTileAt(new Position(i,j));
         if (tile instanceof Player) {
           g.setColor(Color.YELLOW);
+        } else if (tile instanceof Wall) {
+          g.setColor(Color.BLACK);
         } else if (tile instanceof EnergyPlate) {
           g.setColor(Color.GREEN);
         } else if (tile instanceof ExplosifPlate) {

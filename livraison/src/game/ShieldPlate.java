@@ -8,6 +8,10 @@ public class ShieldPlate extends Usable {
   public ShieldPlate(Position pos, boolean isActivable, int range) {
     super("ShieldPlate",pos, isActivable, range);
   }
+  
+  public ShieldPlate(Position pos) {
+    this(pos, true, 0);
+  }
 
   /**
    * met tous les bouclier des joueurs à true

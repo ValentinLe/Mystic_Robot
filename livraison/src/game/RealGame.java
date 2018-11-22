@@ -4,6 +4,7 @@ import java.util.*;
 
 public class RealGame implements Game {
   private Tile[][] grid;
+  private GridGenerator gridGenerator = new GridGeneratorWithProbability(0.15, 0.05, 0.05);
   // utilisation d'une file plutot qu'une liste
   private LinkedList<Player> players = new LinkedList<Player>();;
   private int width;
@@ -12,73 +13,7 @@ public class RealGame implements Game {
   public RealGame(int width, int height, int nbPlayer, ArrayList<Player> playerList){
     this.width = width;
     this.height = height;
-    initGrid(nbPlayer, 20, playerList);
-  }
-
-  public void generateGrid() {
-    this.grid = new Tile[this.height][this.width];
-    for (int j = 0; j < this.height; j++) {
-      for (int i = 0; i < this.width; i++) {
-        this.setTile(new EmptyTile(new Position(i,j)));
-      }
-    }
-  }
-
-  public void initGrid(int nbPlayer, int nbEnergy, ArrayList<Player> playerList) {
-    this.generateGrid();
-    Random r = new Random();
-    Player testPb = null;
-
-    // placement des energies
-    int xPlate;
-    int yPlate;
-    for (int j = 0; j < nbEnergy; j++) {
-      xPlate = r.nextInt(width);
-      yPlate = r.nextInt(height);
-      Tile energyPlate = new EnergyPlate(new Position(xPlate, yPlate), true, 0, 5);
-      this.setTile(energyPlate);
-    }
-
-    // placement des explosifs
-    int xBomb;
-    int yBomb;
-    for (int k = 0; k < nbEnergy; k++) {
-      xBomb = r.nextInt(width);
-      yBomb = r.nextInt(height);
-      Tile bomb = new ExplosifPlate("ExplosifPlate",new Position(xBomb, yBomb), true, 1, r.nextInt(10)+1, testPb);
-      this.setTile(bomb);
-    }
-
-    // placement des boucliers
-    int xShield;
-    int yShield;
-    for (int s = 0; s < nbEnergy; s++) {
-      xShield = r.nextInt(width);
-      yShield = r.nextInt(height);
-      Tile shield = new ShieldPlate(new Position(xShield, yShield), true, 0);
-      this.setTile(shield);
-    }
-
-    // placement des joueurs
-    int xPlayer;
-    int yPlayer;
-    for (int i = 0; i < nbPlayer; i++) {
-      xPlayer = r.nextInt(width);
-      yPlayer = r.nextInt(height);
-      Position positionPlayer = new Position(xPlayer, yPlayer);
-      while (!this.canMove(positionPlayer)) {
-        xPlayer = r.nextInt(width);
-        yPlayer = r.nextInt(height);
-        positionPlayer.setX(xPlayer);
-        positionPlayer.setY(yPlayer);
-      }
-      int robotChoice = r.nextInt(playerList.size());
-      Player robot = playerList.get(robotChoice);
-      Player player = new Player(robot.getType(),this,positionPlayer,robot.getEnergy(),false,new HashMap(robot.getEquipement()));
-      //Player player = new Player("" + i, this, positionPlayer, 10, false, new HashMap<>());
-      this.initPlayer(player);
-    }
-    testPb = this.getNextPlayer();
+    this.grid = this.gridGenerator.generateGrid(width, height, playerList);
   }
 
   /**

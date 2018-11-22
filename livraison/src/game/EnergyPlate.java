@@ -10,6 +10,10 @@ public class EnergyPlate extends Usable {
     super("EnergyPlate",pos, isActivable, range);
     this.energyAmount = energyAmount;
   }
+  
+  public EnergyPlate(Position pos) {
+    this(pos, true, 0, 5);
+  }
 
   /**
    * Ajoute de l'energy aux joueurs de la liste
