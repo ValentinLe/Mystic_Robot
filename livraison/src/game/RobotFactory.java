@@ -4,7 +4,11 @@ import java.util.*;
 
 public class RobotFactory {
 
-  private Map<String,Map<String,String>> config;
+  private Map<String,Map<String,String>> weaponConfig;
+  private Map<String,Map<String,String>> robotConfig;
+
+  private Map<String,Weapon> weaponList = new HashMap<String,Weapon>();
+  private ArrayList<Player> robotList = new ArrayList<Player>();
 
   private Player tank;
   private Player sniper;
@@ -14,22 +18,24 @@ public class RobotFactory {
   private Map<Equipement,Integer> sniperStuff = new HashMap<Equipement,Integer>();
   private Map<Equipement,Integer> rocketManStuff = new HashMap<Equipement,Integer>();
 
-  public RobotFactory(Map<String,Map<String,String>> config) {
-    this.config = config;
+  public RobotFactory(ArrayList<Map<String,Map<String,String>>> config) {
+    this.weaponConfig = config.get(0);
+    this.robotConfig = config.get(1);
 
-    this.tank = new Player("Tank",null,null,20,false,this.tankStuff);
+    /*this.tank = new Player("Tank",null,null,20,false,this.tankStuff);
     this.sniper = new Player("Sniper",null,null,10,false,this.sniperStuff);
-    this.rocketMan = new Player("RocketMan",null,null,10,false,this.rocketManStuff);
+    this.rocketMan = new Player("RocketMan",null,null,10,false,this.rocketManStuff);*/
 
     this.createStuffs();
+    this.createRobots();
   }
 
   public void createStuffs() {
     Map<String,Weapon> weaponList = new HashMap<String,Weapon>();
     int damage;
     int range;
-    for (String elementName : this.config.keySet()) {
-      Map<String,String> weapon = this.config.get(elementName);
+    for (String elementName : this.weaponConfig.keySet()) {
+      Map<String,String> weapon = this.weaponConfig.get(elementName);
       if (weapon.get("type").equals("gun")) {
         damage = Integer.parseInt(weapon.get("damage"));
         range = Integer.parseInt(weapon.get("range"));
@@ -47,24 +53,30 @@ public class RobotFactory {
         weaponList.put(elementName,bomb);
       }
     }
+    this.weaponList = weaponList;
+  }
 
-    this.tankStuff.put(weaponList.get("shotgun"),8);
-    this.tankStuff.put(weaponList.get("mine"),2);
-
-    this.sniperStuff.put(weaponList.get("winchester"),10);
-    this.sniperStuff.put(weaponList.get("mine"),2);
-
-    this.rocketManStuff.put(weaponList.get("winchester"),5);
-    this.rocketManStuff.put(weaponList.get("mine"),5);
-    this.rocketManStuff.put(weaponList.get("bomb"),5);
+  public void createRobots() {
+    int life = 0;
+    int ammo;
+    Map<Equipement,Integer> stuff;
+    for (String elementName : this.robotConfig.keySet()) {
+      Map<String,String> elements = this.robotConfig.get(elementName);
+      stuff = new HashMap<Equipement,Integer>();
+      for (String weaponName : elements.keySet()) {
+        if (weaponName.equals("life")) {
+          life = Integer.parseInt(elements.get("life"));
+        } else {
+          ammo = Integer.parseInt(elements.get(weaponName));
+          stuff.put(this.weaponList.get(weaponName),ammo);
+        }
+      }
+      Player robot = new Player(elementName,null,null,life,false,stuff);
+      this.robotList.add(robot);
+    }
   }
 
   public ArrayList<Player> getRobotList() {
-    ArrayList<Player> robotList = new ArrayList<Player>();
-    robotList.add(tank);
-    robotList.add(sniper);
-    robotList.add(rocketMan);
-
-    return robotList;
+    return this.robotList;
   }
 }

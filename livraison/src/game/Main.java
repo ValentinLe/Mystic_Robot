@@ -8,7 +8,7 @@ public class Main{
 
   public static void main(String[] args) {
     Parser parser = new ParserCrochet("texture","config");
-    Map<String,Map<String,String>> config = parser.executeConfig();
+    ArrayList<Map<String,Map<String,String>>> config = parser.executeConfig();
 
     RobotFactory factory = new RobotFactory(config);
     //RealBoard b = new RealBoard(10,10,8);
