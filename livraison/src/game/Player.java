@@ -11,14 +11,14 @@ public class Player extends AbstractTile {
   private int energy;
   private boolean hasShield;
   private Map<Equipement, Integer> equipement;
-  private Game board;
+  private Game game;
 
-  public Player(String type, Game board, Position position, int energy, boolean hasShield, Map<Equipement,Integer> equipement) {
+  public Player(String type, Game game, Position position, int energy, boolean hasShield, Map<Equipement,Integer> equipement) {
     super(type, position, true);
     this.energy = energy;
     this.hasShield = hasShield;
     this.equipement = equipement;
-    this.board = board;
+    this.game = game;
   }
 
   public void setHasShield(boolean newState) {
@@ -27,8 +27,8 @@ public class Player extends AbstractTile {
 
   public boolean playerUse(Equipement item, Direction direction) {
     if(equipement.get(item)>0){
-      this.board.switchPlayer();
-      if(item.use(this.position,direction,this.board)){
+      this.game.switchPlayer();
+      if(item.use(this.position,direction,this.game)){
         equipement.put(item,equipement.get(item)-1);
         return true;
       }
@@ -38,30 +38,30 @@ public class Player extends AbstractTile {
   }
 
   public boolean move(Direction direction) {
-    Player player = this.board.getNextPlayer();
+    Player player = this.game.getNextPlayer();
     Position positionPlayer = this.getPosition();
     Position new_pos = new Position(
             direction.getX() + positionPlayer.getX(),
             direction.getY() + positionPlayer.getY()
     );
-    if (this.board.canMove(new_pos)){
-      Tile[][] grid = this.board.getGrid();
+    if (this.game.canMove(new_pos)){
+      Tile[][] grid = this.game.getGrid();
       // place le joueur qui joue à la fin de la file
-      this.board.switchPlayer();
+      this.game.switchPlayer();
 
       Tile tileTarget = grid[new_pos.getY()][new_pos.getX()];
 
       Tile new_tile = new EmptyTile(positionPlayer);
       // positionnement de la nouvelle empty_tile dans le board
-      this.board.setTile(new_tile);
+      this.game.setTile(new_tile);
       // changement de l'emplacement du joueur
       player.setPosition(new_pos);
 
       // positionnement du joueur dans le board
-      this.board.setTile(player);
+      this.game.setTile(player);
 
       // active le terrain sur lequelle le joueurva se déplacer
-      this.board.activate(tileTarget);
+      this.game.activate(tileTarget);
       return true;
     }
     return false;
@@ -100,6 +100,10 @@ public class Player extends AbstractTile {
 
   public Map<Equipement,Integer> getEquipement() {
     return this.equipement;
+  }
+
+  public void setGame(Game game) {
+      this.game = game;
   }
 
   /**

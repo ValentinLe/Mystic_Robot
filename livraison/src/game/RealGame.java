@@ -14,18 +14,15 @@ public class RealGame implements Game {
     this.width = width;
     this.height = height;
     this.gridGenerator = gridGenerator;
+    this.players = new LinkedList<>(playerList);
+    this.addGameToAllPlayer(playerList);
     this.grid = gridGenerator.generateGrid(width, height, playerList);
   }
 
-  /**
-   * Ajoute un joueur dans la grille et dans la liste des joueurs
-   * @param player le joueur à ajouter
-   */
-  public void initPlayer(Player player) {
-    if (this.canMove(player.getPosition())) {
-      this.players.add(player);
-      setTile(player);
-    }
+  public void addGameToAllPlayer(List<Player> listPlayers) {
+      for (Player player : listPlayers) {
+          player.setGame(this);
+      }
   }
 
   // verifie si une case à la position pos de la grille est un obstacle
