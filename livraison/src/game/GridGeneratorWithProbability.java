@@ -3,26 +3,49 @@ package game;
 
 import java.util.*;
 
-public class GridGeneratorWithProbability implements GridGenerator {
+/**
+ * Genere une grille avec des probabilites que chaque element soit present
+ * sur une case donnee
+ */
+public class GridGeneratorWithProbability extends AbstractGridGenerator {
     
   private final double probaWall;
   private final double probaEnergy;
-  private final double probaShield; 
-  private Random random;
+  private final double probaShield;
 
+  /**
+   * Creee une instance de generateur de grille
+   * @param probaWall probabilite qu'un mur soit place
+   * @param probaEnergy probabilite qu'une case d'energie soit place
+   * @param probaShield probabilite qu'une case de bouclier soit place
+   */
   public GridGeneratorWithProbability(double probaWall, double probaEnergy, double probaShield) {
     this.probaWall = probaWall;
     this.probaEnergy = probaEnergy;
     this.probaShield = probaShield;
-    this.random = new Random();
   }
 
-  public boolean isProba(double probability) {
-    double value = this.random.nextDouble();
+  /**
+   * Test si la probabilite est respectee en generant une valeur et test si
+   * la probabilite est inferieur a la valeur
+   * @param probability la probabilite a tester
+   * @return true si la probabilite est respectee
+   */
+  private boolean isProba(double probability) {
+    Random rand = new Random();
+    double value = rand.nextDouble();
     return probability > value;
   }
   
+  /**
+   * Renvoi une case selon si les probabilites des cases et renvoi une case vide
+   * si aucune des probabilites n'est respectees
+   * @param x la coordonnee en abscisse
+   * @param y la coordonne en ordonnee
+   * @return la case creee
+   */
   public Tile generateTile(int x, int y) {
+    // position de la case
     Position position = new Position(x, y);
     if (this.isProba(this.probaWall)) {
       return new Wall(position);
@@ -31,28 +54,18 @@ public class GridGeneratorWithProbability implements GridGenerator {
     } else if (this.isProba(this.probaShield)) {
       return new ShieldPlate(position);
     } else {
+      // aucune des case avec la proba respectee
       return new EmptyTile(position);
     }
   }
-  
-  public void placePlayers(Tile[][] grid, int width, int height, List<Player> listPlayers) {
-    boolean isPlace = false;
-    for (Player player : listPlayers) {
-      while (!isPlace) {
-        int x = this.random.nextInt(width);
-        int y = this.random.nextInt(height);
-        Tile tile = grid[y][x];
-        if (!tile.getIsObstacle()) {
-          Position position = new Position(x, y);
-          grid[y][x] = player;
-          player.setPosition(position);
-          isPlace = true;
-        }
-      }
-      isPlace = false;
-    } 
-  }
 
+  /**
+   * Permet de generer une grille
+   * @param width la largeur de la grille voulu
+   * @param height la hauteur de la grille voulu
+   * @param listPlayers la liste de joueurs a mettre dans la grille
+   * @return la grille creee
+   */
   @Override
   public Tile[][] generateGrid(int width, int height, List<Player> listPlayers) {
     Tile[][] grid = new Tile[height][width];
@@ -61,6 +74,7 @@ public class GridGeneratorWithProbability implements GridGenerator {
         grid[j][i] = this.generateTile(i, j);
       }
     }
+    // placement des joueurs
     this.placePlayers(grid, width, height, listPlayers);
     return grid;
   }

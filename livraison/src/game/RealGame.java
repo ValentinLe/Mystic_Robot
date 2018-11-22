@@ -4,16 +4,17 @@ import java.util.*;
 
 public class RealGame implements Game {
   private Tile[][] grid;
-  private GridGenerator gridGenerator = new GridGeneratorWithProbability(0.15, 0.05, 0.05);
+  private GridGenerator gridGenerator;
   // utilisation d'une file plutot qu'une liste
   private LinkedList<Player> players = new LinkedList<Player>();;
   private int width;
   private int height;
 
-  public RealGame(int width, int height, int nbPlayer, ArrayList<Player> playerList){
+  public RealGame(int width, int height, int nbPlayer, ArrayList<Player> playerList, GridGenerator gridGenerator){
     this.width = width;
     this.height = height;
-    this.grid = this.gridGenerator.generateGrid(width, height, playerList);
+    this.gridGenerator = gridGenerator;
+    this.grid = gridGenerator.generateGrid(width, height, playerList);
   }
 
   /**

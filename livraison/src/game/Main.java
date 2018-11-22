@@ -20,8 +20,10 @@ public class Main{
     boolean action = false;
 
     Player currentPlayer;
+    
+    GridGenerator gridGenerator = new GridGeneratorWithProbability(0.15, 0.05, 0.05);
 
-    RealGame b = new RealGame(10,10,2,factory.getRobotList());
+    RealGame b = new RealGame(10,10,2,factory.getRobotList(), gridGenerator);
     while(b.getPlayerList().size() != 1 || !saisie) {
       // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");
