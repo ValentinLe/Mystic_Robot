@@ -3,6 +3,7 @@
 \usepackage[french]{babel}
 \usepackage{hyperref}
 
+
 \hypersetup{
     colorlinks=fulse,       % false: liens encadrés; true: liens colorés
     linkcolor=red,          % couleur des liens (ou bordures) internes
@@ -117,7 +118,7 @@ Le pattern Factory permet de générer dynamiquement des types d'objets.
 Voici un exemple de code dans lequel nous utilisons le pattern Factory:
 
 
-
+\lstinputlisting[language=Java, firstline=2, lastline=7]{Winchester.java}
 
 \vspace{0.3\baselineskip}
 
@@ -127,7 +128,7 @@ On l'utilise dans la classe RobotFactory, c'est grâce à cela que l'on arrive �
 \vspace{1\baselineskip}
 
 
-\lstinputlisting[language=Java, firstline=2, lastline=7]{Winchester.java}
+
 
 \vspace{1\baselineskip}
 
@@ -180,18 +181,26 @@ La Vue : La vue, elle nous sert à afficher graphiquement notre jeu. Nous utilis
 
 \vspace{1\baselineskip}
 
-Le Contrôleur : Le contrôleur est composé du package
+Le Contrôleur : Le contrôleur est aussi composé du package gui.
 
 \vspace{1\baselineskip}
 
 \section{Test du jeu :}
 
+Pour les tests de notre jeu, nous vous mettons des images afin de voir le résultat sur différentes situations. Par exemple la pose d'une bombe, la mort d'un joueur, l'explosion d'une bombe, etc.
+
+
 \section{Conclusion}
 
 La matière méthode de conception, nous a permis de mieux comprendre certains aspects de programmation ( Par exemple l'utilisation des différents patterns vus durant les CM et TP. ). De plus, la répartition des taches a été un des piliers centraux, concernant la mise en place du jeu.
 
-\vspace{0.3\baselineskip}
+\vspace{0.5\baselineskip}
 
+Le plus long dans la gestion de ce projet a été de mettre en place les différents Pattterns comment les implémenter, ou les mettre, lesquels nous sont utiles et lesquels nous seront inutiles. Le plus long a été la mise en place du jeu en façon "console". Car nous avons d'abord dû tout implémenter avant de commencer à vraiment réaliser l'interface graphique de notre jeu.
+
+\vspace{0.5\baselineskip}
+
+Ce projet nous aura permis de mieux comprendre les différentes façons de concevoir la mise en place d'un projet à rendre, du papier à la version finale. Comment bien commencer et les bonnes façons d'y parvenir.
 
 
 \section{Références}
@@ -232,6 +241,14 @@ La matière méthode de conception, nous a permis de mieux comprendre certains a
 \vspace{0.3\baselineskip}
 
 \url{https://urlz.fr/8eFS}
+
+\vspace{0.3\baselineskip}
+
+\url{https://docs.oracle.com/javase/7/docs/index.html}
+
+\vspace{0.3\baselineskip}
+
+\url{https://stackoverflow.com/questions/50439945/strategy-pattern-java}
 
 \vspace{0.3\baselineskip}
 
