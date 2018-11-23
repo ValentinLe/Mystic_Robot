@@ -1,6 +1,7 @@
 
 package game;
 
+import java.util.List;
 import space.Position;
 import observer.*;
 
@@ -19,6 +20,8 @@ public interface Game extends ListenableModel {
   public Tile[][] getGrid();
 
   public Player getNextPlayer();
+  
+  public List<Player> getListPlayers();
   
   public int getWidth();
 

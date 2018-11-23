@@ -3,8 +3,8 @@ package gui;
 
 import javax.swing.*;
 import game.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
+import java.awt.*;
+import java.awt.event.*;
 import observer.*;
 import space.Direction;
 
@@ -13,11 +13,8 @@ public class GUI extends JFrame implements ModelListener {
   private Game game;
   
   public GUI(Game game) {
-    this.setTitle("Mystic Robot");
+    super("Mystic Robot");
     this.game = game;
-    
-    ViewGrid view = new ViewGrid(game);
-    this.add(view);
     
     this.addKeyListener(new KeyListener() {
       @Override
@@ -27,7 +24,7 @@ public class GUI extends JFrame implements ModelListener {
 
       @Override
       public void keyPressed(KeyEvent e) {
-        Player currentPlayer = GUI.this.game.getNextPlayer();
+        Player currentPlayer = game.getNextPlayer();
         if (e.getKeyCode() == KeyEvent.VK_UP) {
           currentPlayer.move(Direction.UP);
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
@@ -46,7 +43,16 @@ public class GUI extends JFrame implements ModelListener {
       }
     });
     
-    pack();
+    ViewGrid view = new ViewGrid(game);
+    JTable table = new JTable(new ListPlayersToTableModelAdapter(game.getListPlayers()));
+    table.setFocusable(false);
+    JScrollPane tablePlayers = new ViewListPlayers(table);
+    
+    Container cp = this.getContentPane();
+    cp.setLayout(new BorderLayout());
+    cp.add(view, BorderLayout.WEST);
+    cp.add(tablePlayers, BorderLayout.EAST);
+    this.pack();
     
     this.setLocationRelativeTo(null);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

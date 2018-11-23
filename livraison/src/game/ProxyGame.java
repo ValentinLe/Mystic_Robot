@@ -1,10 +1,11 @@
 
 package game;
 
+import java.util.List;
 import space.Position;
 import observer.*;
 
-public class ProxyGame extends AbstractListenableModel implements Game {
+public class ProxyGame implements Game {
 
   private Game game;
   private Player player;
@@ -13,6 +14,7 @@ public class ProxyGame extends AbstractListenableModel implements Game {
     this.game = game;
     this.player = player;
   }
+  
   @Override
   public void addModelListener(ModelListener l) {
     this.game.addModelListener(l);
@@ -76,6 +78,11 @@ public class ProxyGame extends AbstractListenableModel implements Game {
   @Override
   public int getHeight() {
     return this.game.getHeight();
+  }
+  
+  @Override
+  public List<Player> getListPlayers() {
+    return this.game.getListPlayers();
   }
   
   @Override

@@ -6,8 +6,8 @@ import java.util.*;
 
 public class Player extends AbstractTile {
 
-  // vie maximale d'un joueur
-  public final static int MAX_ENERGY = 20;
+  // vie maximale du joueur
+  public final int MAX_ENERGY = 20;
 
   private int energy;
   private boolean hasShield;
@@ -63,6 +63,7 @@ public class Player extends AbstractTile {
       // active le terrain sur lequelle le joueurva se déplacer
       this.game.activate(tileTarget);
       this.game.switchPlayer();
+      this.fireChange();
       return true;
     }
     return false;
@@ -74,6 +75,7 @@ public class Player extends AbstractTile {
     if (this.energy > MAX_ENERGY) {
       this.energy = MAX_ENERGY;
     }
+    this.fireChange();
   }
 
   // applique les dommages au joueur selon si il a un bouclier
@@ -88,10 +90,19 @@ public class Player extends AbstractTile {
         this.energy = 0;
       }
     }
+    this.fireChange();
   }
 
   public int getEnergy(){
     return this.energy;
+  }
+  
+  public boolean getShield() {
+    return this.hasShield;
+  }
+  
+  public int getMaxEnergy() {
+    return this.MAX_ENERGY;
   }
 
   @Override

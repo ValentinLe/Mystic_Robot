@@ -169,8 +169,9 @@ public class RealGame extends AbstractListenableModel implements Game {
   public Tile[][] getGrid() {
     return this.grid;
   }
-
-  public Queue<Player> getPlayerList() {
+  
+  @Override
+  public List<Player> getListPlayers() {
     return this.players;
   }
 

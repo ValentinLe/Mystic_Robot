@@ -15,6 +15,6 @@ public class Main {
     System.out.println(game);
     System.out.println(proxy);
     new GUI(game);
-    new GUI(proxy);
+    //new GUI(proxy);
   }
 }
