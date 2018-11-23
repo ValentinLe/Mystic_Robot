@@ -1,5 +1,7 @@
 package game;
 
+import space.Position;
+
 public class Mine extends Explosif {
 
   private Player owner;

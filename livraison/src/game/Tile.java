@@ -1,5 +1,7 @@
 package game;
 
+import space.Position;
+
 public interface Tile {
 
   public Position getPosition();

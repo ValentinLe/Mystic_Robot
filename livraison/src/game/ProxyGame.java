@@ -1,19 +1,31 @@
 
 package game;
 
-public class ProxyGame implements Game {
+import space.Position;
+import observer.*;
 
-  private Game board;
+public class ProxyGame extends AbstractListenableModel implements Game {
+
+  private Game game;
   private Player player;
 
-  public ProxyGame(Game board, Player player) {
-    this.board = board;
+  public ProxyGame(Game game, Player player) {
+    this.game = game;
     this.player = player;
+  }
+  @Override
+  public void addModelListener(ModelListener l) {
+    this.game.addModelListener(l);
+  }
+
+  @Override
+  public void removeModelListener(ModelListener l) {
+    this.game.addModelListener(l);
   }
 
   @Override
   public Tile getTileAt(Position position) {
-    Tile tile = this.board.getTileAt(position);
+    Tile tile = this.game.getTileAt(position);
     if (tile instanceof ExplosifPlate) {
       Player playerProprio = ((ExplosifPlate)tile).getPlayer();
       if (playerProprio == this.player) {
@@ -28,49 +40,49 @@ public class ProxyGame implements Game {
 
   @Override
   public boolean canMove(Position position) {
-    return this.board.canMove(position);
+    return this.game.canMove(position);
   }
 
   @Override
   public void setTile(Tile tile) {
-    this.board.setTile(tile);
+    this.game.setTile(tile);
   }
 
   @Override
   public void activate(Tile tile) {
-    this.board.activate(tile);
+    this.game.activate(tile);
   }
 
   @Override
   public void switchPlayer() {
-    this.board.switchPlayer();
+    this.game.switchPlayer();
   }
 
   @Override
   public Tile[][] getGrid() {
-    return this.board.getGrid();
+    return this.game.getGrid();
   }
 
   @Override
   public Player getNextPlayer() {
-    return this.board.getNextPlayer();
+    return this.game.getNextPlayer();
   }
   
   @Override
   public int getWidth() {
-    return this.board.getWidth();
+    return this.game.getWidth();
   }
   
   @Override
   public int getHeight() {
-    return this.board.getHeight();
+    return this.game.getHeight();
   }
   
   @Override
   public String toString() {
     String res = "  ";
-    int width = this.board.getWidth();
-    int height = this.board.getHeight();
+    int width = this.game.getWidth();
+    int height = this.game.getHeight();
     // numero superieurs
     for (int k = 0; k < width; k++) {
       res += " " + k + " ";

@@ -1,5 +1,6 @@
 package game;
 
+import space.Position;
 import java.util.*;
 
 public class EnergyPlate extends Usable {

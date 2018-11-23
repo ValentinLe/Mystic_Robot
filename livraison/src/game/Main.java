@@ -1,5 +1,6 @@
 package game;
 
+import space.Direction;
 import java.util.*;
 import java.io.*;
 import parser.*;
@@ -11,7 +12,7 @@ public class Main{
     ArrayList<Map<String,Map<String,String>>> config = parser.executeConfig();
 
     RobotFactory factory = new RobotFactory(config);
-    
+
     Scanner sc= new Scanner(System.in);
     Scanner sc2= new Scanner(System.in);
     Scanner sc3= new Scanner(System.in);

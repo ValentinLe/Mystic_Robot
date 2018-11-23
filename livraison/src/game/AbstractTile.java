@@ -1,6 +1,9 @@
 package game;
 
-public abstract class AbstractTile implements Tile {
+import space.Position;
+import observer.*;
+
+public abstract class AbstractTile extends AbstractListenableModel implements Tile {
 
   protected Position position;
   protected boolean isObstacle;

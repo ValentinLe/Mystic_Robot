@@ -1,6 +1,7 @@
 
 package game;
 
+import space.Position;
 import java.util.List;
 
 public class ShieldPlate extends Usable {

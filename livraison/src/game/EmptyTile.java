@@ -1,5 +1,7 @@
 package game;
 
+import space.Position;
+
 public class EmptyTile extends AbstractTile {
 
   public EmptyTile(Position position) {

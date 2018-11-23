@@ -1,5 +1,7 @@
 package game;
 
+import space.Position;
+import space.Direction;
 import java.util.*;
 
 public abstract class Explosif extends Weapon {

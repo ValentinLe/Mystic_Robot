@@ -1,12 +1,13 @@
 package game;
 
+import space.Position;
+import space.Direction;
 import java.util.*;
 
 public class Player extends AbstractTile {
 
   // vie maximale d'un joueur
   public final static int MAX_ENERGY = 20;
-
 
   private int energy;
   private boolean hasShield;
@@ -47,7 +48,6 @@ public class Player extends AbstractTile {
     if (this.game.canMove(new_pos)){
       Tile[][] grid = this.game.getGrid();
       // place le joueur qui joue à la fin de la file
-      this.game.switchPlayer();
 
       Tile tileTarget = grid[new_pos.getY()][new_pos.getX()];
 
@@ -62,6 +62,7 @@ public class Player extends AbstractTile {
 
       // active le terrain sur lequelle le joueurva se déplacer
       this.game.activate(tileTarget);
+      this.game.switchPlayer();
       return true;
     }
     return false;

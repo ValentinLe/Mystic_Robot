@@ -1,8 +1,10 @@
 package game;
 
+import space.*;
 import java.util.*;
+import observer.*;
 
-public class RealGame implements Game {
+public class RealGame extends AbstractListenableModel implements Game {
   private Tile[][] grid;
   private GridGenerator gridGenerator;
   // utilisation d'une file plutot qu'une liste
@@ -62,7 +64,8 @@ public class RealGame implements Game {
   /**
    * Utilise un item à l'emplacement i de l'ensemble des équipements du player
    * actuel
-   * @param Equipement l'équipement à utiliser
+   * @param item l'équipement à utiliser
+   * @param direction la direction dans laquelle poser l'item
    * @return true si l'item à été utilisé
    */
   public boolean playerUseItem(Equipement item, Direction direction){
@@ -77,6 +80,7 @@ public class RealGame implements Game {
     this.deadPlayer();
     Player headPlayer = this.players.poll();
     this.players.add(headPlayer);
+    this.fireChange();
     //this.bombCounter();
   }
 

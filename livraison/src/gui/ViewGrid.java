@@ -1,17 +1,20 @@
 
 package gui;
 
+import space.Position;
 import javax.swing.*;
 import java.awt.*;
 import game.*;
+import observer.*;
 
-public class ViewGrid extends JPanel {
+public class ViewGrid extends JPanel implements ModelListener {
   
   private Game game;
   private int tileSize;
   
   public ViewGrid(Game game) {
     this.game = game;
+    game.addModelListener(this);
     this.tileSize = 50;
     this.setPreferredSize(new Dimension(this.game.getWidth()*this.tileSize, this.game.getHeight()*this.tileSize));
   }
@@ -40,5 +43,10 @@ public class ViewGrid extends JPanel {
         g.fillRect(i*this.tileSize, j*this.tileSize, this.tileSize, this.tileSize);
       }
     }
+  }
+
+  @Override
+  public void somethingHasChanged(Object source) {
+    this.repaint();
   }
 }

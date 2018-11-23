@@ -1,5 +1,7 @@
 package game;
 
+import space.Position;
+
 public class Bomb extends Explosif {
 
   private int counter;

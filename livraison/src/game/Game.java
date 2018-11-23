@@ -1,7 +1,10 @@
 
 package game;
 
-public interface Game {
+import space.Position;
+import observer.*;
+
+public interface Game extends ListenableModel {
 
   public Tile getTileAt(Position position);
 

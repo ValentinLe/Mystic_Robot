@@ -1,5 +1,8 @@
 package game;
 
+import space.Position;
+import space.Direction;
+
 public class Weapon implements Equipement {
 
   protected int damage;
