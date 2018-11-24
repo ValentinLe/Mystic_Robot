@@ -64,6 +64,7 @@ public class Player extends AbstractTile {
       this.game.activate(tileTarget);
       this.game.switchPlayer();
       this.fireChange();
+      this.addEnergy(-1);
       return true;
     }
     return false;
@@ -96,11 +97,11 @@ public class Player extends AbstractTile {
   public int getEnergy(){
     return this.energy;
   }
-  
+
   public boolean getShield() {
     return this.hasShield;
   }
-  
+
   public int getMaxEnergy() {
     return this.MAX_ENERGY;
   }
