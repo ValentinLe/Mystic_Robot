@@ -29,7 +29,7 @@ public class Main{
       // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");
       System.out.println(b);
-      System.out.println("Action: up(z), down(s), left(q), right(d), don't use the function use(u), quit(quit)");
+      System.out.println("Action: up(z), down(s), left(q), right(d), skip(p), use(u), quit(quit)");
       currentPlayer = b.getNextPlayer();
       saisie = false;
       action = false;
@@ -42,8 +42,9 @@ public class Main{
         saisie = currentPlayer.move(Direction.DOWN);
       } else if (nextAction.equals("d")) {
         saisie = currentPlayer.move(Direction.RIGHT);
+      } else if (nextAction.equals("p")) {
+        b.skipTurn();
       } else if (nextAction.equals("u")){
-        System.out.println("no jamy, why did you do that !!!!");
         int cpt = 0;
         Map<Equipement,Integer> stuff = b.getPlayerEquipement();
         ArrayList<Equipement> equipementListe = new ArrayList<>();

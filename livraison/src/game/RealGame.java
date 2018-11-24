@@ -62,6 +62,13 @@ public class RealGame extends AbstractListenableModel implements Game {
   }
 
   /**
+   * Passe le tour du joueur courant
+   */
+  public void skipTurn() {
+    this.switchPlayer();
+  }
+
+  /**
    * Utilise un item à l'emplacement i de l'ensemble des équipements du player
    * actuel
    * @param item l'équipement à utiliser
