@@ -5,6 +5,7 @@ import javax.swing.*;
 import game.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import observer.*;
 import space.Direction;
 
@@ -44,7 +45,7 @@ public class GUI extends JFrame implements ModelListener {
     });
     
     ViewGrid view = new ViewGrid(game);
-    JTable table = new JTable(new ListPlayersToTableModelAdapter(game.getListPlayers()));
+    JTable table = new JTable(new ListPlayersToTableModelAdapter(game));
     table.setFocusable(false);
     JScrollPane tablePlayers = new ViewListPlayers(table);
     

@@ -1,19 +1,18 @@
 
 package gui;
 
-import game.Player;
-import java.util.List;
+import game.*;
+import java.util.*;
 import javax.swing.table.AbstractTableModel;
 import observer.ModelListener;
-import space.Position;
 
 public class ListPlayersToTableModelAdapter extends AbstractTableModel implements ModelListener {
   
   private final static int NB_CHAMPS = 4;
     
   // On peut changer l'ordre des colonnes en permuttant les valeurs 0, 1 et 2 ci-dessous :
-  private final static int NOM = 0;
-  private final static int POSITION = 1;
+  private final static int TOUR = 0;
+  private final static int NOM = 1;
   private final static int ENERGY = 2;
   private final static int SHIELD = 3;
 
@@ -21,17 +20,19 @@ public class ListPlayersToTableModelAdapter extends AbstractTableModel implement
 
   static {
     COL_NAME = new String[NB_CHAMPS];
+    COL_NAME[TOUR] = "Tour";
     COL_NAME[NOM] = "Name";
-    COL_NAME[POSITION] = "Position";
     COL_NAME[ENERGY] = "Energy";
     COL_NAME[SHIELD] = "Shield";
   }
   
+  private Game game;
   private List<Player> listPlayers;
   
-  public ListPlayersToTableModelAdapter(List<Player> listPlayers) {
-    this.listPlayers = listPlayers;
-    for (Player player : listPlayers) {
+  public ListPlayersToTableModelAdapter(Game game) {
+    this.game = game;
+    this.listPlayers = new ArrayList<>(game.getListPlayers());
+    for (Player player : this.listPlayers) {
       player.addModelListener(this);
     }
   }
@@ -50,11 +51,10 @@ public class ListPlayersToTableModelAdapter extends AbstractTableModel implement
   public Object getValueAt(int rowIndex, int columnIndex) {
     Player player = this.listPlayers.get(rowIndex);
     switch(columnIndex) {
+      case TOUR:
+        return (player == this.game.getNextPlayer() ? "---->" : "");
       case NOM:
         return player.getType();
-      case POSITION:
-        Position pos = player.getPosition();
-        return "(" + pos.getX() + " , " + pos.getY() + ")";
       case ENERGY:
         return player.getEnergy() + " / " + player.getMaxEnergy();
       case SHIELD:
