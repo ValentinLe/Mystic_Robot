@@ -10,21 +10,9 @@ public class RobotFactory {
   private Map<String,Weapon> weaponList = new HashMap<String,Weapon>();
   private ArrayList<Player> robotList = new ArrayList<Player>();
 
-  private Player tank;
-  private Player sniper;
-  private Player rocketMan;
-
-  private Map<Equipement,Integer> tankStuff = new HashMap<Equipement,Integer>();
-  private Map<Equipement,Integer> sniperStuff = new HashMap<Equipement,Integer>();
-  private Map<Equipement,Integer> rocketManStuff = new HashMap<Equipement,Integer>();
-
   public RobotFactory(ArrayList<Map<String,Map<String,String>>> config) {
     this.weaponConfig = config.get(0);
     this.robotConfig = config.get(1);
-
-    /*this.tank = new Player("Tank",null,null,20,false,this.tankStuff);
-    this.sniper = new Player("Sniper",null,null,10,false,this.sniperStuff);
-    this.rocketMan = new Player("RocketMan",null,null,10,false,this.rocketManStuff);*/
 
     this.createStuffs();
     this.createRobots();
