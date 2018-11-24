@@ -8,6 +8,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import observer.*;
 import space.Direction;
+import parser.*;
 
 public class GUI extends JFrame implements ModelListener {
 
@@ -43,7 +44,7 @@ public class GUI extends JFrame implements ModelListener {
       }
     });
 
-    ViewGrid view = new ViewGrid(game);
+    ViewGrid view = new ViewGrid(game, new ParserCrochet("texture", "config"));
     JTable table = new JTable(new ListPlayersToTableModelAdapter(game));
     table.setFocusable(false);
     JScrollPane tablePlayers = new ViewListPlayers(table);

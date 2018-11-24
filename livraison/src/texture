@@ -1,2 +1,7 @@
-nomarme=chemintexture
-nomrobot=chemintexture
+robot=../ressources/assets/robot.png
+robotPlay=../ressources/assets/robotPlay.png
+energy=../ressources/assets/energy.png
+shield=../ressources/assets/shield.png
+wall=../ressources/assets/wall.png
+emptyTile=../ressources/assets/emptyTile.png
+bomb=../ressources/assets/bomb.png

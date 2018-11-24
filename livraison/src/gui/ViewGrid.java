@@ -6,40 +6,71 @@ import javax.swing.*;
 import java.awt.*;
 import game.*;
 import observer.*;
+import parser.*;
+import java.util.*;
 
 public class ViewGrid extends JPanel implements ModelListener {
 
   private Game game;
+  private Parser parser;
+  private Map<String, Image> textures;
   private int tileSize;
 
-  public ViewGrid(Game game) {
+  public ViewGrid(Game game, Parser parser) {
     this.game = game;
     game.addModelListener(this);
     this.tileSize = 50;
+    this.parser = parser;
+    this.textures = this.buildTextures(parser);
     this.setPreferredSize(new Dimension(this.game.getWidth()*this.tileSize, this.game.getHeight()*this.tileSize));
+  }
+
+  private Map<String, Image> buildTextures(Parser parser) {
+    Map<String, Image> mapTextures = new HashMap<>();
+    Map<String, String> mapPathTextures = parser.executeTexture();
+    Image image;
+    for (String nameTexture : mapPathTextures.keySet()) {
+      image = Toolkit.getDefaultToolkit().getImage(mapPathTextures.get(nameTexture));
+      mapTextures.put(nameTexture, image);
+    }
+    return mapTextures;
+  }
+
+  private void paintImage(Graphics g, Image image, int x, int y) {
+    g.drawImage(image,this.tileSize*x,this.tileSize*y,this.tileSize,this.tileSize,this);
   }
 
   @Override
   public void paintComponent(Graphics g) {
+    Player playerPlaying = this.game.getNextPlayer();
     int width = this.game.getWidth();
     int height = this.game.getHeight();
     for (int j = 0; j<height; j++) {
       for (int i = 0; i<width; i++) {
         Tile tile = this.game.getTileAt(new Position(i,j));
+        paintImage(g, textures.get("emptyTile"), i, j);
         if (tile instanceof Player) {
-          g.setColor(Color.YELLOW);
+          Player player = (Player)tile;
+          if (player.getShield()) {
+            paintImage(g, textures.get("shield"), i, j);
+          }
+          if (player == playerPlaying) {
+            // test de référence pas d'utilisation de equals
+            // joueur en train de jouer
+            paintImage(g, textures.get("robotPlay"), i, j);
+          } else {
+            // joueur qui ne joue pas
+            paintImage(g, textures.get("robot"), i, j);
+          }
         } else if (tile instanceof Wall) {
-          g.setColor(Color.BLACK);
+          paintImage(g, textures.get("wall"), i, j);
         } else if (tile instanceof EnergyPlate) {
-          g.setColor(Color.GREEN);
+          paintImage(g, textures.get("energy"), i, j);
         } else if (tile instanceof ExplosifPlate) {
-          g.setColor(Color.RED);
+          paintImage(g, textures.get("bomb"), i, j);
         } else if (tile instanceof ShieldPlate) {
-          g.setColor(Color.BLUE);
-        } else {
-          g.setColor(Color.GRAY);
+          paintImage(g, textures.get("shield"), i, j);
         }
-        g.fillRect(i*this.tileSize, j*this.tileSize, this.tileSize, this.tileSize);
       }
     }
   }
