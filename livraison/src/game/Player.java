@@ -107,6 +107,10 @@ public class Player extends AbstractTile {
     return this.MAX_ENERGY;
   }
 
+  public boolean isDead() {
+    return this.energy <= 0;
+  }
+
   @Override
   public boolean getIsObstacle() {
     return true;

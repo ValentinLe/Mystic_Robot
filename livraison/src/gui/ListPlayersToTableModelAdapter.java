@@ -52,7 +52,13 @@ public class ListPlayersToTableModelAdapter extends AbstractTableModel implement
     Player player = this.listPlayers.get(rowIndex);
     switch(columnIndex) {
       case TOUR:
-        return (player == this.game.getNextPlayer() ? "---->" : "");
+        if (player == this.game.getNextPlayer()) {
+          return "----->";
+        } else if (player.isDead()) {
+          return "Dead";
+        } else {
+          return "";
+        }
       case NOM:
         return player.getType();
       case ENERGY:
