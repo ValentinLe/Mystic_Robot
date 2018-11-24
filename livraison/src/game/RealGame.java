@@ -102,6 +102,10 @@ public class RealGame extends AbstractListenableModel implements Game {
     }
   }
 
+  /**
+   * Teste si la liste des joueurs contient un ou plusieurs joueurs
+   *@return true si la liste des joueurs ne contient qu'un seul joueur ou moins
+   */
   public boolean isOver() {
     if (!(this.players.size() > 1)) {
       return true;
