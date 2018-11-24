@@ -95,6 +95,13 @@ public class RealGame extends AbstractListenableModel implements Game {
     }
   }
 
+  public boolean isOver() {
+    if (!(this.players.size() > 1)) {
+      return true;
+    }
+    return false;
+  }
+
   /**
    * Test si la position est dans la grille
    * @param position la position à tester
@@ -169,7 +176,7 @@ public class RealGame extends AbstractListenableModel implements Game {
   public Tile[][] getGrid() {
     return this.grid;
   }
-  
+
   @Override
   public List<Player> getListPlayers() {
     return this.players;
