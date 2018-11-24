@@ -62,9 +62,10 @@ public class Player extends AbstractTile {
 
       // active le terrain sur lequelle le joueurva se déplacer
       this.game.activate(tileTarget);
+      this.addEnergy(-1);
+      // rien mettre apres le switch et le fireChange pour le gui
       this.game.switchPlayer();
       this.fireChange();
-      this.addEnergy(-1);
       return true;
     }
     return false;

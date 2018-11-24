@@ -10,17 +10,17 @@ import observer.*;
 import space.Direction;
 
 public class GUI extends JFrame implements ModelListener {
-  
+
   private Game game;
-  
+
   public GUI(Game game) {
     super("Mystic Robot");
     this.game = game;
-    
+
     this.addKeyListener(new KeyListener() {
       @Override
       public void keyTyped(KeyEvent e) {
-        
+
       }
 
       @Override
@@ -35,26 +35,25 @@ public class GUI extends JFrame implements ModelListener {
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
           currentPlayer.move(Direction.RIGHT);
         }
-        System.out.println("g " + game);
       }
 
       @Override
       public void keyReleased(KeyEvent e) {
-        
+
       }
     });
-    
+
     ViewGrid view = new ViewGrid(game);
     JTable table = new JTable(new ListPlayersToTableModelAdapter(game));
     table.setFocusable(false);
     JScrollPane tablePlayers = new ViewListPlayers(table);
-    
+
     Container cp = this.getContentPane();
     cp.setLayout(new BorderLayout());
     cp.add(view, BorderLayout.WEST);
     cp.add(tablePlayers, BorderLayout.EAST);
     this.pack();
-    
+
     this.setLocationRelativeTo(null);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setVisible(true);

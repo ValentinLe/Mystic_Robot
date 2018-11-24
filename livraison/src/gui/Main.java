@@ -12,8 +12,6 @@ public class Main {
     RealGame game = new RealGame(10,10,factory.getRobotList(), gridGenerator);
     ProxyGame proxy = new ProxyGame(game, game.getNextPlayer());
 
-    System.out.println(game);
-    System.out.println(proxy);
     new GUI(game);
     //new GUI(proxy);
   }

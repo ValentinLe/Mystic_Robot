@@ -7,9 +7,9 @@ import javax.swing.table.AbstractTableModel;
 import observer.ModelListener;
 
 public class ListPlayersToTableModelAdapter extends AbstractTableModel implements ModelListener {
-  
+
   private final static int NB_CHAMPS = 4;
-    
+
   // On peut changer l'ordre des colonnes en permuttant les valeurs 0, 1 et 2 ci-dessous :
   private final static int TOUR = 0;
   private final static int NOM = 1;
@@ -25,10 +25,10 @@ public class ListPlayersToTableModelAdapter extends AbstractTableModel implement
     COL_NAME[ENERGY] = "Energy";
     COL_NAME[SHIELD] = "Shield";
   }
-  
+
   private Game game;
   private List<Player> listPlayers;
-  
+
   public ListPlayersToTableModelAdapter(Game game) {
     this.game = game;
     this.listPlayers = new ArrayList<>(game.getListPlayers());
@@ -62,7 +62,7 @@ public class ListPlayersToTableModelAdapter extends AbstractTableModel implement
     }
     return null;
   }
-  
+
   @Override
   public String getColumnName(int col) {
     return COL_NAME[col];
