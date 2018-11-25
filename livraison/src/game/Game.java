@@ -2,7 +2,7 @@
 package game;
 
 import java.util.List;
-import space.Position;
+import space.*;
 import observer.*;
 
 public interface Game extends ListenableModel {
@@ -20,10 +20,16 @@ public interface Game extends ListenableModel {
   public Tile[][] getGrid();
 
   public Player getNextPlayer();
-  
+
   public List<Player> getListPlayers();
-  
+
   public int getWidth();
 
   public int getHeight();
+
+  public List<Tile> getTileInDirection(Position position, Direction direction, int range);
+
+  public void skipTurn();
+
+  public boolean isInIndex(Position position);
 }

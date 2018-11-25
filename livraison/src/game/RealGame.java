@@ -11,14 +11,21 @@ public class RealGame extends AbstractListenableModel implements Game {
   private LinkedList<Player> players = new LinkedList<Player>();;
   private int width;
   private int height;
+  private IA ia;
 
-  public RealGame(int width, int height, ArrayList<Player> playerList, GridGenerator gridGenerator){
+  public RealGame(int width, int height, ArrayList<Player> playerList, GridGenerator gridGenerator,IA ia){
     this.width = width;
     this.height = height;
     this.gridGenerator = gridGenerator;
     this.players = new LinkedList<>(playerList);
     this.addGameToAllPlayer(playerList);
     this.grid = gridGenerator.generateGrid(width, height, playerList);
+    this.ia=ia;
+  }
+
+  public void iaExecute(){
+    this.ia.execute(this.getNextPlayer());
+    this.switchPlayer();
   }
 
   public void addGameToAllPlayer(List<Player> listPlayers) {

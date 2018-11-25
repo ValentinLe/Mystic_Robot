@@ -2,7 +2,7 @@
 package game;
 
 import java.util.List;
-import space.Position;
+import space.*;
 import observer.*;
 
 public class ProxyGame implements Game {
@@ -14,7 +14,7 @@ public class ProxyGame implements Game {
     this.game = game;
     this.player = player;
   }
-  
+
   @Override
   public void addModelListener(ModelListener l) {
     this.game.addModelListener(l);
@@ -41,8 +41,23 @@ public class ProxyGame implements Game {
   }
 
   @Override
+  public boolean isInIndex(Position position){
+    return this.game.isInIndex(position);
+  }
+
+  @Override
   public boolean canMove(Position position) {
     return this.game.canMove(position);
+  }
+
+  @Override
+  public List<Tile> getTileInDirection(Position position, Direction direction, int range){
+    return getTileInDirection(position,direction,range);
+  }
+
+  @Override
+  public void skipTurn(){
+    this.game.skipTurn();
   }
 
   @Override
@@ -69,22 +84,22 @@ public class ProxyGame implements Game {
   public Player getNextPlayer() {
     return this.game.getNextPlayer();
   }
-  
+
   @Override
   public int getWidth() {
     return this.game.getWidth();
   }
-  
+
   @Override
   public int getHeight() {
     return this.game.getHeight();
   }
-  
+
   @Override
   public List<Player> getListPlayers() {
     return this.game.getListPlayers();
   }
-  
+
   @Override
   public String toString() {
     String res = "  ";

@@ -116,6 +116,10 @@ public class Player extends AbstractTile {
     return true;
   }
 
+  public Game getGame(){
+    return this.game;
+  }
+
   public Map<Equipement,Integer> getEquipement() {
     return this.equipement;
   }
