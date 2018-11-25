@@ -11,7 +11,7 @@ public class Main{
     Parser parser = new ParserCrochet("texture","config");
     ArrayList<Map<String,Map<String,String>>> config = parser.executeConfig();
 
-    RobotFactory factory = new RobotFactory(config);
+    RobotFactory factory = new RobotFactory(config,5);
 
     Scanner sc= new Scanner(System.in);
     Scanner sc2= new Scanner(System.in);
@@ -26,7 +26,7 @@ public class Main{
 
     IA ia = new IARandom();
 
-    RealGame b = new RealGame(10,10,factory.getRobotList(), gridGenerator,ia);
+    RealGame b = new RealGame(10,10,factory.getPlayerList(), gridGenerator,ia);
 
     /*while(!(b.isOver())){
       System.out.println("\033[H\033[2J\n");

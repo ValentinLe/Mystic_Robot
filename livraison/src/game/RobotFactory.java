@@ -9,15 +9,25 @@ public class RobotFactory {
 
   private Map<String,Weapon> weaponList = new HashMap<String,Weapon>();
   private ArrayList<Player> robotList = new ArrayList<Player>();
+  private ArrayList<Player> playerList = new ArrayList<Player>();
 
-  public RobotFactory(ArrayList<Map<String,Map<String,String>>> config) {
+  /**
+    * Constructeur de la classe qui fait appel aux méthodes createStuffs, createRobots et initPlayerList
+    * @param config la configuration de la partie (les armes et les robots)
+    * @param playerNumber le nombre de joueurs pour la partie
+    */
+  public RobotFactory(ArrayList<Map<String,Map<String,String>>> config, int playerNumber) {
     this.weaponConfig = config.get(0);
     this.robotConfig = config.get(1);
 
     this.createStuffs();
     this.createRobots();
+    this.initPlayerList(playerNumber);
   }
 
+  /**
+    * Fonction qui génère une liste d'équipements à partir d'une config et qui l'ajoute à une variable globale
+    */
   public void createStuffs() {
     Map<String,Weapon> weaponList = new HashMap<String,Weapon>();
     int damage;
@@ -44,6 +54,9 @@ public class RobotFactory {
     this.weaponList = weaponList;
   }
 
+  /**
+    * Fonction qui génère une liste de robots à partir d'une config et qui l'ajoute à une variable globale
+    */
   public void createRobots() {
     int life = 0;
     int ammo;
@@ -64,7 +77,20 @@ public class RobotFactory {
     }
   }
 
-  public ArrayList<Player> getRobotList() {
-    return this.robotList;
+  /**
+    * Fonction qui génère autant de joueurs que voulus
+    *@param playerNumber le nombre de joueurs (robots) pour la partie
+    */
+  public void initPlayerList(int playerNumber) {
+    Random r = new Random();
+    for (int i = 0; i < playerNumber; i++) {
+      int choice = r.nextInt(this.robotList.size());
+      Player robot = this.robotList.get(choice);
+      this.playerList.add(new Player(robot.getType(), null, null, robot.getEnergy(), false, new HashMap(robot.getEquipement())));
+    }
+  }
+
+  public ArrayList<Player> getPlayerList() {
+    return this.playerList;
   }
 }
