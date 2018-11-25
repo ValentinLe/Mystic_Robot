@@ -6,7 +6,7 @@ import observer.*;
 
 /**
  * classe representant le jeu en vue globale
- * 
+ *
  */
 public class RealGame extends AbstractListenableModel implements Game {
   private Tile[][] grid;
@@ -17,6 +17,7 @@ public class RealGame extends AbstractListenableModel implements Game {
   private int width;
   private int height;
   private IA ia;
+  private int nbPlayer;
 
   /**
    * creer une instance de jeu
@@ -34,6 +35,7 @@ public class RealGame extends AbstractListenableModel implements Game {
     this.addGameToAllPlayer(playerList);
     this.grid = gridGenerator.generateGrid(width, height, playerList);
     this.ia=ia;
+    this.nbPlayer = playerList.size();
   }
 
   /**
@@ -146,7 +148,7 @@ public class RealGame extends AbstractListenableModel implements Game {
     Player headPlayer = this.players.poll();
     this.players.add(headPlayer);
     this.fireChange();
-    //this.bombCounter();
+    this.nbPlayer -= 1;
   }
 
   /**
@@ -161,6 +163,7 @@ public class RealGame extends AbstractListenableModel implements Game {
         this.deadPlayers.add(this.players.get(i));
         this.players.remove(i);
         this.setTile(new EmptyTile(position));
+        this.nbPlayer -= 1;
       }
     }
   }
@@ -219,6 +222,26 @@ public class RealGame extends AbstractListenableModel implements Game {
   }
 
   /**
+    * Méthode qui décrémente le compteur des bombes et fait appel à la méthode action si le compteur est égal à 0
+    */
+  public void bombCounter() {
+    for (int i = 0; i < this.grid.length; i++) {
+      for (Tile tile : this.grid[i]) {
+        if (tile instanceof ExplosifPlate) {
+          if (this.nbPlayer == 0) {
+            ((ExplosifPlate)tile).updateCounter();
+            this.nbPlayer = this.players.size();
+          }
+          if (((ExplosifPlate)tile).getCounter() == 0) {
+            ((ExplosifPlate)tile).action(this);
+            this.setTile(new EmptyTile(new Position(tile.getPosition().getX(),tile.getPosition().getY())));
+          }
+        }
+      }
+    }
+  }
+
+  /**
    * remplace une Tile par la tile passé en paramêtre
    * @param tile la Tile par laquelle on veut remplacer
    */
@@ -226,6 +249,14 @@ public class RealGame extends AbstractListenableModel implements Game {
   public void setTile(Tile tile) {
     Position posTile = tile.getPosition();
     this.grid[posTile.getY()][posTile.getX()] = tile;
+  }
+
+  /**
+    * Méthode qui modifie l'attribut nbPlayer
+    *@param nbPlayer le nombre de joueurs
+    */
+  public void setNbPlayer(int nbPlayer) {
+    this.nbPlayer = nbPlayer;
   }
 
   /**

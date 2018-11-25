@@ -79,6 +79,14 @@ public class ExplosifPlate extends Usable {
   }
 
   /**
+    * Retourne le compteur de l'objet
+    *@return l'attribut counter
+    */
+  public int getCounter() {
+    return this.counter;
+  }
+
+  /**
     * Retourne le propriétaire de l'objet
     *@return l'attribut owner
     */

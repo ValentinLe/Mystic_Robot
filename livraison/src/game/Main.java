@@ -38,6 +38,7 @@ public class Main{
     while(!(b.isOver()) || !saisie) {
       // le print qui permet de stabiliser l'affichage
       System.out.println("\033[H\033[2J\n");
+      b.bombCounter();
       System.out.println(b);
       System.out.println("Action: up(z), down(s), left(q), right(d), skip(p), ia(i), use(u), quit(quit)");
       currentPlayer = b.getNextPlayer();
