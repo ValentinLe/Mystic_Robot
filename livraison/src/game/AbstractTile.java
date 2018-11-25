@@ -15,25 +15,56 @@ public abstract class AbstractTile extends AbstractListenableModel implements Ti
     this.type = type;
   }
 
+/**
+  * Méthode permettant de connaître la posiion
+  * @return this.position
+  *
+  *
+  */
+
   @Override
   public Position getPosition() {
     return this.position;
   }
 
+  /**
+    * Méthode permettant de mettre à jour la position.
+    * @param posiion , qui est de type Position.
+    *
+    *
+    */
   public void setPosition(Position position) {
     this.position = position;
   }
 
+  /**
+    *Méthode permettant de savoir si un objet est un obstacle.
+    * @return this.isObstacle
+    *
+    *
+    */
   @Override
   public boolean getIsObstacle() {
     return this.isObstacle;
   }
 
+  /**
+    * Méthode permettant de dire si un objet est un obstacle.
+    * @param isObstacle , de type boolean.
+    *
+    *
+    */
   @Override
   public void setIsObstacle(boolean isObstacle) {
     this.isObstacle = isObstacle;
   }
 
+  /**
+    * Méthode permettant de retourner le type.
+    * @return this.type 
+    *
+    *
+    */
   @Override
   public String getType(){
     return this.type;
