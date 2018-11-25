@@ -86,7 +86,7 @@ public class RobotFactory {
     for (int i = 0; i < playerNumber; i++) {
       int choice = r.nextInt(this.robotList.size());
       Player robot = this.robotList.get(choice);
-      this.playerList.add(new Player(robot.getType(), null, null, robot.getEnergy(), false, new HashMap(robot.getEquipement())));
+      this.playerList.add(new Player(robot.getType(), null, null, robot.getEnergy(), false, new HashMap<>(robot.getEquipement())));
     }
   }
 

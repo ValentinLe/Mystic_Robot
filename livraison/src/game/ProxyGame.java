@@ -1,7 +1,7 @@
 
 package game;
 
-import java.util.List;
+import java.util.*;
 import space.*;
 import observer.*;
 
@@ -98,6 +98,11 @@ public class ProxyGame implements Game {
   @Override
   public List<Player> getListPlayers() {
     return this.game.getListPlayers();
+  }
+
+  @Override
+  public Map<Equipement, Integer> getEquipementOfPlayer() {
+    return this.player.getEquipement();
   }
 
   @Override

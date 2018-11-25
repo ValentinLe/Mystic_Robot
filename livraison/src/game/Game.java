@@ -1,7 +1,7 @@
 
 package game;
 
-import java.util.List;
+import java.util.*;
 import space.*;
 import observer.*;
 
@@ -32,4 +32,6 @@ public interface Game extends ListenableModel {
   public void skipTurn();
 
   public boolean isInIndex(Position position);
+
+  public Map<Equipement, Integer> getEquipementOfPlayer();
 }

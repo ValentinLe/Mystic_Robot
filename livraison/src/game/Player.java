@@ -62,7 +62,7 @@ public class Player extends AbstractTile {
 
       // active le terrain sur lequelle le joueurva se déplacer
       this.game.activate(tileTarget);
-      this.addEnergy(-1);
+      this.applyDamage(1, false); // degats sans utiliser le bouclier
       // rien mettre apres le switch et le fireChange pour le gui
       this.game.switchPlayer();
       this.fireChange();
@@ -80,9 +80,13 @@ public class Player extends AbstractTile {
     this.fireChange();
   }
 
-  // applique les dommages au joueur selon si il a un bouclier
   public void applyDamage(int damage) {
-    if (this.hasShield) {
+    this.applyDamage(damage, true);
+  }
+
+  // applique les dommages au joueur selon si il a un bouclier
+  public void applyDamage(int damage, boolean useShield) {
+    if (useShield && this.hasShield) {
       // retire le bouclier
       this.hasShield = false;
     } else {

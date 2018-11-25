@@ -209,6 +209,11 @@ public class RealGame extends AbstractListenableModel implements Game {
     return this.players;
   }
 
+  @Override
+  public Map<Equipement, Integer> getEquipementOfPlayer() {
+    return this.getNextPlayer().getEquipement();
+  }
+
   /**
   * récupère le premier joueur de la file
   * @return le prochain joueur qui doit jouer

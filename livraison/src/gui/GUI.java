@@ -45,14 +45,26 @@ public class GUI extends JFrame implements ModelListener {
     });
 
     ViewGrid view = new ViewGrid(game, new ParserCrochet("texture", "config"));
-    JTable table = new JTable(new ListPlayersToTableModelAdapter(game));
-    table.setFocusable(false);
-    JScrollPane tablePlayers = new ViewListPlayers(table);
+    JTable tableP = new JTable(new ListPlayersToTableModelAdapter(game));
+    tableP.setFocusable(false);
+    JScrollPane tablePlayers = new ViewJTable(tableP);
+    JTable tableE = new JTable(new EquipementMapToTableModelAdapter(game));
+    tableE.setFocusable(false);
+    JScrollPane tableEquipement = new ViewJTable(tableE);
+
+    JPanel zoneTable = new JPanel();
+    zoneTable.setLayout(new GridBagLayout());
+    GridBagConstraints gcz = new GridBagConstraints();
+    zoneTable.add(tablePlayers, gcz);
+    gcz.gridy = 1;
+    zoneTable.add(tableEquipement, gcz);
 
     Container cp = this.getContentPane();
-    cp.setLayout(new BorderLayout());
-    cp.add(view, BorderLayout.WEST);
-    cp.add(tablePlayers, BorderLayout.EAST);
+    cp.setLayout(new GridBagLayout());
+    GridBagConstraints gc = new GridBagConstraints();
+    cp.add(view, gc);
+    gc.gridx = 1;
+    cp.add(zoneTable, gc);
     this.pack();
 
     this.setLocationRelativeTo(null);
