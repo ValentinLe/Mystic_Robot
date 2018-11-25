@@ -3,7 +3,7 @@ package game;
 import space.Position;
 import space.Direction;
 
-public class Weapon implements Equipement {
+public abstract class Weapon implements Equipement {
 
   protected int damage;
   protected int range;
@@ -54,7 +54,7 @@ public class Weapon implements Equipement {
    * @return true si l'arme à été utilisée avec succé
    */
   public boolean use(Position position,Direction direction,Game board){
-    Player player = ((RealGame)board).getPlayerInDirection(position,direction,this.range);
+    Player player = board.getPlayerInDirection(position,direction,this.range);
     if (player!=null){
       player.applyDamage(this.damage);
       return true;
@@ -87,15 +87,6 @@ public class Weapon implements Equipement {
   @Override
   public Player getOwner() {
     return this.owner;
-  }
-
-  /**
-   * créé une copie de l'objet arme
-   * @return Equipement la copie de l'arme
-   */
-  @Override
-  public Equipement getCopy() {
-    return new Weapon(this.type,this.damage, this.range, this.owner);
   }
 
   /**

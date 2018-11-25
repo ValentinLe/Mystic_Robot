@@ -16,11 +16,15 @@ public class IARandom implements IA{
   public void execute(Player player){
     boolean continuer = true;
     Direction testPlayer = null;
-      Direction dir=this.sameLine(player);
-      if(dir!=null){
-        continuer=false;
-        player.playerUse(this.weapon,dir);
-      }
+    Direction dir=this.sameLine(player);
+    System.out.println("tire " +dir);
+    System.out.println("weapon : "+this.weapon);
+    if(dir!=null){
+      continuer=false;
+
+      boolean t = player.playerUse(this.weapon,dir);
+      System.out.println("ttttttttt : "+t);
+    }
 
     if(continuer){
       ArrayList<Direction> listDirection = new ArrayList<Direction>();
@@ -34,20 +38,23 @@ public class IARandom implements IA{
       System.out.println("ia random choix : "+ ran );
       switch (ran) {
         case 0:
+          // le joueur tente de bouger
           ArrayList<Direction> dirList = new ArrayList<>();
-          dirList=null;
+          System.out.println(dirList);
           boolean tmp = false;
+          // regarde les position possible où bouger
           for (Direction d : listDirection){
             Position positionPlayer = player.getPosition();
             Position new_pos = new Position(
             d.getX() + positionPlayer.getX(),
             d.getY() + positionPlayer.getY()
             );
-            if (player.getGame().isInIndex(new_pos) && !(player.getGame().getTileAt(new_pos) instanceof ExplosifPlate) && player.getGame().canMove(player.getPosition())){
+            if (player.getGame().isInIndex(new_pos) && !(player.getGame().getTileAt(new_pos) instanceof ExplosifPlate) && player.getGame().canMove(new_pos)){
               dirList.add(d);
             }
           }
-          if(dirList!=null){
+          // si il a des cases où se déplacer il en choisit une parmit cella la
+          if(!(dirList.isEmpty())){
             while(!tmp){
               int ran2 = rnd.nextInt(dirList.size());
               Position positionPlayer = player.getPosition();
@@ -63,13 +70,16 @@ public class IARandom implements IA{
           }
 
         case 1:
+          // placement d'un Explosif
           Equipement item = null;
+          // verifie si il a un explosif a placer et le récupère
           for (Equipement w : player.getEquipement().keySet()) {
             if (w instanceof Explosif && player.getEquipement().get(w)>0) {
               item = w;
               break;
             }
           }
+          // si il a trouver un explosif a placer
           if (item != null){
             for ( Direction d : listDirection){
               Position positionPlayer = player.getPosition();
@@ -77,6 +87,7 @@ public class IARandom implements IA{
                       d.getX() + positionPlayer.getX(),
                       d.getY() + positionPlayer.getY()
               );
+              // il le place à la premiere place où il peu
               if(player.getGame().isInIndex(new_pos) && player.getGame().getTileAt(new_pos) instanceof EmptyTile){
                 player.playerUse(item,d);
                 break;
@@ -84,6 +95,8 @@ public class IARandom implements IA{
             }
           }
         case 2:
+          // soit le random choisit ce cas soit les 2 cas précédent n'ont rien donnée
+          // et le player passe son tour
           player.getGame().skipTurn();
           break;
       }
@@ -99,6 +112,8 @@ public class IARandom implements IA{
   public Direction sameLine(Player player) {
     int weaponRange = 0;
     List<Tile> listTile = new ArrayList<Tile>();
+    // regarde et récupère si il y a une arme disponnible
+    // et récupère la range
     for (Equipement w : player.getEquipement().keySet()) {
       if (w instanceof Gun && player.getEquipement().get(w)>0) {
         weaponRange = ((Gun)w).getRange();
@@ -111,11 +126,12 @@ public class IARandom implements IA{
     listDirection.add(Direction.DOWN);
     listDirection.add(Direction.LEFT);
     listDirection.add(Direction.RIGHT);
-
+    // pour toutes les directions il regarde si un player est présent dans la direction
     for(Direction direction : listDirection) {
       listTile = player.getGame().getTileInDirection(player.getPosition(), direction, weaponRange);
       for(Tile tile : listTile) {
         if (tile instanceof Player) {
+          // si il trouve un joueur dans une direction il retourne la direction
           return direction;
         }
       }
