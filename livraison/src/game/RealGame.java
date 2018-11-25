@@ -34,6 +34,15 @@ public class RealGame extends AbstractListenableModel implements Game {
       }
   }
 
+  /**
+   * Initialise une nouvelle grille
+   */
+  public void restart(ArrayList<Player> playerList) {
+    this.players = new LinkedList<>(playerList);
+    this.addGameToAllPlayer(playerList);
+    this.grid = gridGenerator.generateGrid(width, height, playerList);
+  }
+
   // verifie si une case à la position pos de la grille est un obstacle
   public boolean isObstacleTile(Position pos){
     return this.grid[pos.getY()][pos.getX()].getIsObstacle();
