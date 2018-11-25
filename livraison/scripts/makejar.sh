@@ -6,5 +6,5 @@ sh scripts/compile.sh
 [ -d jar/dist ] || mkdir jar/dist
 
 nameArchive="Archive.jar"
-jar cf $nameArchive build/ src/
+jar cf $nameArchive build/ src/ ressources/
 mv $nameArchive jar/dist/
