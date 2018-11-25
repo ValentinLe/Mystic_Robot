@@ -57,7 +57,7 @@ public class RealGame extends AbstractListenableModel implements Game {
   // verifie si une case à la position pos de la grille est un player
   public boolean isPlayerOnPosition(Position pos){
     for(Player p : this.players){
-      if (p.getPosition().getX()==pos.getX() && p.getPosition().getY()==pos.getY()){
+      if (p.getPosition().equals(pos)) {
         return true;
       }
     }
