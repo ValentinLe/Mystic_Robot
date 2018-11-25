@@ -80,6 +80,7 @@ public class RobotFactory {
   /**
     * Fonction qui génère autant de joueurs que voulus
     *@param playerNumber le nombre de joueurs (robots) pour la partie
+    * @return this.playerList 
     */
   public void initPlayerList(int playerNumber) {
     Random r = new Random();

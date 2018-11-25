@@ -11,6 +11,7 @@ public class AbstractListenableModel implements ListenableModel {
     listeners = new ArrayList<>();
   }
 
+
   @Override
   public void addModelListener(ModelListener l) {
     listeners.add(l);
@@ -26,5 +27,5 @@ public class AbstractListenableModel implements ListenableModel {
       l.somethingHasChanged(this);
     }
   }
-  
+
 }
