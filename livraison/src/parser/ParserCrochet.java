@@ -8,11 +8,20 @@ public class ParserCrochet implements Parser {
   private String texturePath;
   private String configPath;
 
+  /**
+    * Constructeur de la classe
+    *@param texturePath le chemin du fichier contenant les textures
+    *@param configPath le chemin du fichier contenant les configurations (robots et armes)
+    */
   public ParserCrochet(String texturePath, String configPath) {
     this.texturePath = texturePath;
     this.configPath = configPath;
   }
 
+  /**
+    * Méthode qui lit un fichier nommé texture et qui créé un map
+    *@return un Map ayant pour clé le nom d'un élément et pour valeur le lien de sa texture
+    */
   @Override
   public Map<String,String> executeTexture() {
     Map<String,String> map = new HashMap<String,String>();
@@ -29,6 +38,10 @@ public class ParserCrochet implements Parser {
     return map;
   }
 
+  /**
+    * Méthode qui lit un fichier config et créé un map contenant les armes et un autre contenant les robots
+    *@return une liste de Map ayant pour clé un nom et pour valeur un Map correspodant aux attributs
+    */
   @Override
   public ArrayList<Map<String,Map<String,String>>> executeConfig() {
     ArrayList<Map<String,Map<String,String>>> elementsList = new ArrayList<>(); //premier élément c'est les armes, 2ème c'est les robots
