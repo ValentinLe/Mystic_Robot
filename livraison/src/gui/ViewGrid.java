@@ -9,6 +9,10 @@ import observer.*;
 import parser.*;
 import java.util.*;
 
+/**
+ * vue sur la grille du jeu
+ * 
+ */
 public class ViewGrid extends JPanel implements ModelListener {
 
   private Game game;
@@ -16,6 +20,11 @@ public class ViewGrid extends JPanel implements ModelListener {
   private Map<String, Image> textures;
   private int tileSize;
 
+  /**
+   * creer une instance de la vue
+   * @param game le jeu a representer
+   * @param parser le parser qui permettre de recuperer les textures
+   */
   public ViewGrid(Game game, Parser parser) {
     this.game = game;
     game.addModelListener(this);
@@ -25,6 +34,11 @@ public class ViewGrid extends JPanel implements ModelListener {
     this.setPreferredSize(new Dimension(this.game.getWidth()*this.tileSize, this.game.getHeight()*this.tileSize));
   }
 
+  /**
+   * creer une map avec (nomElement : image correspondant)
+   * @param parser le parser a utiliser
+   * @return la map creer
+   */
   private Map<String, Image> buildTextures(Parser parser) {
     Map<String, Image> mapTextures = new HashMap<>();
     Map<String, String> mapPathTextures = parser.executeTexture();
@@ -36,10 +50,21 @@ public class ViewGrid extends JPanel implements ModelListener {
     return mapTextures;
   }
 
+  /**
+   * paint l'image au coordonnee donnee (coordonnees de grille pas du canvas) 
+   * @param g l'endroit ou le dessiner
+   * @param image l'image a dessiner
+   * @param x l'abssisce de la case a dessiner
+   * @param y l'ordonnee de la case a dessiner
+   */
   private void paintImage(Graphics g, Image image, int x, int y) {
     g.drawImage(image,this.tileSize*x,this.tileSize*y,this.tileSize,this.tileSize,this);
   }
 
+  /**
+   * paint la grille
+   * @param g le support de dessin
+   */
   @Override
   public void paintComponent(Graphics g) {
     Player playerPlaying = this.game.getNextPlayer();
@@ -52,6 +77,7 @@ public class ViewGrid extends JPanel implements ModelListener {
         if (tile instanceof Player) {
           Player player = (Player)tile;
           if (player.getShield()) {
+            // si le joueur a un bouclier on dessine le bouclier avant
             paintImage(g, textures.get("shield"), i, j);
           }
           if (player == playerPlaying) {
@@ -74,7 +100,11 @@ public class ViewGrid extends JPanel implements ModelListener {
       }
     }
   }
-
+  
+  /**
+   * update la grille
+   * @param source la source
+   */
   @Override
   public void somethingHasChanged(Object source) {
     this.repaint();

@@ -17,33 +17,6 @@ public class GUI extends JFrame implements ModelListener {
   public GUI(Game game) {
     super("Mystic Robot");
     this.game = game;
-    /*
-    this.addKeyListener(new KeyListener() {
-      @Override
-      public void keyTyped(KeyEvent e) {
-
-      }
-
-      @Override
-      public void keyPressed(KeyEvent e) {
-        Player currentPlayer = game.getNextPlayer();
-        if (e.getKeyCode() == KeyEvent.VK_UP) {
-          currentPlayer.move(Direction.UP);
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-          currentPlayer.move(Direction.DOWN);
-        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-          currentPlayer.move(Direction.LEFT);
-        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-          currentPlayer.move(Direction.RIGHT);
-        }
-      }
-
-      @Override
-      public void keyReleased(KeyEvent e) {
-
-      }
-    });
-    */
 
     ViewGrid view = new ViewGrid(game, new ParserCrochet("texture", "config"));
     JTable tableP = new JTable(new ListPlayersToTableModelAdapter(game));
