@@ -72,16 +72,27 @@ public class Weapon implements Equipement {
     return this.type;
   }
 
+  /**
+   * modifie le proprietaire de l'arme
+   */
   @Override
   public void setOwner(Player owner) {
     this.owner = owner;
   }
 
+  /**
+   * récupère le proprietaire de l'arme
+   * @return le Player proprietaire
+   */
   @Override
   public Player getOwner() {
     return this.owner;
   }
 
+  /**
+   * créé une copie de l'objet arme
+   * @return Equipement la copie de l'arme
+   */
   @Override
   public Equipement getCopy() {
     return new Weapon(this.type,this.damage, this.range, this.owner);
