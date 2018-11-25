@@ -47,6 +47,7 @@ public class Position {
   /**
     * Permet de modifier X
     *
+    * @param x le nombre a ajouter
     */
   public void addX(int x){
     this.x+=x;
@@ -54,6 +55,7 @@ public class Position {
   /**
     * Permet de modifier Y
     *
+    * @param y le nombre a ajouter
     */
   public void addY(int y){
     this.y+=y;
@@ -66,7 +68,7 @@ public class Position {
   public Position getCopy() {
     return new Position(this.x, this.y);
   }
-
+  
   @Override
   public boolean equals(Object o) {
     if (this==o) {
@@ -82,7 +84,7 @@ public class Position {
   }
 
   /**
-    *
+    * string representation
     * @return une chaine de caractère.
     */
   @Override

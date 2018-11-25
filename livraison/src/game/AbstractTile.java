@@ -29,7 +29,7 @@ public abstract class AbstractTile extends AbstractListenableModel implements Ti
 
   /**
     * Méthode permettant de mettre à jour la position.
-    * @param posiion , qui est de type Position.
+    * @param position qui est de type Position.
     *
     *
     */
@@ -61,7 +61,7 @@ public abstract class AbstractTile extends AbstractListenableModel implements Ti
 
   /**
     * Méthode permettant de retourner le type.
-    * @return this.type 
+    * @return this.type
     *
     *
     */
