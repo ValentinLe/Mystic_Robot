@@ -47,22 +47,21 @@ public class IARandom implements IA{
               dirList.add(d);
             }
           }
-          if(dirList==null){
-            dirList=listDirection;
+          if(dirList!=null){
+            while(!tmp){
+              int ran2 = rnd.nextInt(dirList.size());
+              Position positionPlayer = player.getPosition();
+              Position new_pos = new Position(
+              dirList.get(ran2).getX() + positionPlayer.getX(),
+              dirList.get(ran2).getY() + positionPlayer.getY()
+              );
+              if (player.getGame().isInIndex(new_pos)){
+                tmp = player.move(dirList.get(ran2));
+              }
+            }
+            break;
           }
 
-          while(!tmp){
-            int ran2 = rnd.nextInt(dirList.size());
-            Position positionPlayer = player.getPosition();
-            Position new_pos = new Position(
-            dirList.get(ran2).getX() + positionPlayer.getX(),
-            dirList.get(ran2).getY() + positionPlayer.getY()
-            );
-            if (player.getGame().isInIndex(new_pos)){
-              tmp = player.move(dirList.get(ran2));
-            }
-          }
-          break;
         case 1:
           Equipement item = null;
           for (Equipement w : player.getEquipement().keySet()) {
@@ -84,7 +83,6 @@ public class IARandom implements IA{
               }
             }
           }
-          break;
         case 2:
           player.getGame().skipTurn();
           break;

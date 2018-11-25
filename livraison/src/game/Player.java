@@ -7,7 +7,7 @@ import java.util.*;
 public class Player extends AbstractTile {
 
   // vie maximale du joueur
-  public final int MAX_ENERGY = 20;
+  public final int MAX_ENERGY;
 
   private int energy;
   private boolean hasShield;
@@ -17,6 +17,7 @@ public class Player extends AbstractTile {
   public Player(String type, Game game, Position position, int energy, boolean hasShield, Map<Equipement,Integer> equipement) {
     super(type, position, true);
     this.energy = energy;
+    MAX_ENERGY = energy;
     this.hasShield = hasShield;
     this.equipement = this.buildCopyEquipement(equipement);
     this.game = game;
@@ -101,6 +102,10 @@ public class Player extends AbstractTile {
 
   public void applyDamage(int damage) {
     this.applyDamage(damage, true);
+  }
+
+  public void skipTurn() {
+    this.fireChange();
   }
 
   // applique les dommages au joueur selon si il a un bouclier

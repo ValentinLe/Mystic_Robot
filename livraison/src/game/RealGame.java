@@ -63,7 +63,7 @@ public class RealGame extends AbstractListenableModel implements Game {
   public boolean isObstacleTile(Position pos){
     return this.grid[pos.getY()][pos.getX()].getIsObstacle();
   }
-  
+
   /**
    * verifie si une case à la position pos de la grille est un player
    * @return true si il y a un joueur sur la case
@@ -122,6 +122,7 @@ public class RealGame extends AbstractListenableModel implements Game {
    * place le joueur en tete de file à la fin de celle-ci
    */
   public void switchPlayer() {
+    this.getNextPlayer().skipTurn();
     this.deadPlayer();
     Player headPlayer = this.players.poll();
     this.players.add(headPlayer);
