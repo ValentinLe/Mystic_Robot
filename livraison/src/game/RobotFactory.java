@@ -80,7 +80,7 @@ public class RobotFactory {
   /**
     * Fonction qui génère autant de joueurs que voulus
     *@param playerNumber le nombre de joueurs (robots) pour la partie
-    * @return this.playerList 
+    * @return this.playerList
     */
   public void initPlayerList(int playerNumber) {
     Random r = new Random();
@@ -91,6 +91,10 @@ public class RobotFactory {
     }
   }
 
+  /**
+    * Méthode qui retourne l'attribut playerList
+    *@return une liste de joueurs
+    */
   public ArrayList<Player> getPlayerList() {
     return this.playerList;
   }
