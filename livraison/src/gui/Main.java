@@ -5,6 +5,7 @@ import game.*;
 import parser.*;
 import java.util.*;
 
+
 public class Main {
   public static void main(String[] args) {
     Parser parser = new ParserCrochet("texture","config");
@@ -16,5 +17,17 @@ public class Main {
 
     new GUI(game);
     new GUI(proxy);
+    Main.loopIa(game);
+  }
+
+  public static void loopIa(RealGame game) {
+    while (!game.isOver()) {
+      game.iaExecute();
+      try {
+        Thread.sleep(1000);
+      } catch(InterruptedException e) {
+
+      }
+    }
   }
 }

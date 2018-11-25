@@ -17,7 +17,7 @@ public class GUI extends JFrame implements ModelListener {
   public GUI(Game game) {
     super("Mystic Robot");
     this.game = game;
-
+    /*
     this.addKeyListener(new KeyListener() {
       @Override
       public void keyTyped(KeyEvent e) {
@@ -43,6 +43,7 @@ public class GUI extends JFrame implements ModelListener {
 
       }
     });
+    */
 
     ViewGrid view = new ViewGrid(game, new ParserCrochet("texture", "config"));
     JTable tableP = new JTable(new ListPlayersToTableModelAdapter(game));
