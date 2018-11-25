@@ -12,11 +12,15 @@ public class Main {
     RobotFactory factory = new RobotFactory(parser.executeConfig(), 3);
     GridGenerator gridGenerator = new GridGeneratorWithProbability(0.15, 0.05, 0.05);
     IA ia = new IARandom();
-    RealGame game = new RealGame(10,10,factory.getPlayerList(), gridGenerator, ia);
+    List<Player> listPlayer = factory.getPlayerList();
+    RealGame game = new RealGame(10,10,listPlayer , gridGenerator, ia);
 
     new GUI(game);
-    for (Player pl : game.getListPlayers()) {
+    for (Player pl : listPlayer) {
       new GUI(new ProxyGame(game, pl));
+      for (Equipement equi : pl.getEquipement().keySet()) {
+        System.out.println(equi + " -- " + equi.getOwner());
+      }
     }
     Main.loopIa(game);
   }

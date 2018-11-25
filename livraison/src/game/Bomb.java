@@ -5,7 +5,6 @@ import space.Position;
 public class Bomb extends Explosif {
 
   private int counter;
-  private Player owner;
 
   public Bomb(int damage, int range, int counter, Player owner) {
     super("Bomb", damage, range, owner);
@@ -18,6 +17,11 @@ public class Bomb extends Explosif {
 
   public int getCounter() {
     return this.counter;
+  }
+
+  @Override
+  public Equipement getCopy() {
+    return new Bomb(damage, range, counter, owner);
   }
 
   @Override
