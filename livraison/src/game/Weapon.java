@@ -10,6 +10,15 @@ public class Weapon implements Equipement {
   protected Player owner;
   protected String type;
 
+
+/**
+  * Constructeur de la classe
+  * @param type , de type String.
+  * @param damage , qui est un int .
+  * @param range , qui est un int .
+  * @param owner , qui est un joueur.
+  */
+
   public Weapon(String type, int damage, int range, Player owner) {
     this.damage = damage;
     this.range = range;
@@ -17,10 +26,22 @@ public class Weapon implements Equipement {
     this.type = type;
   }
 
+
+  /**
+    * Fonction qui permet de retourner les dommages
+    * @return this.damage
+    *
+    */
   public int getDamage() {
     return this.damage;
   }
 
+
+  /**
+    * Fonction qui permet de donner la portée.
+    * @return this.range
+    *
+    */
   public int getRange() {
     return this.range;
   }
@@ -41,10 +62,21 @@ public class Weapon implements Equipement {
     return false;
   }
 
+
+  /**
+    * Fonction permettant de retourner le type.
+    * @return this.type
+    *
+    */
   public String getType(){
     return this.type;
   }
 
+  /**
+    * Fonction toString qui permet d'afficher textuellement le type.
+    * @return this.type 
+    *
+    */
   @Override
   public String toString(){
     return this.type;
