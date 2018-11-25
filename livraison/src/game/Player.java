@@ -4,6 +4,10 @@ import space.Position;
 import space.Direction;
 import java.util.*;
 
+/**
+ * represente un combattant
+ *
+ */
 public class Player extends AbstractTile {
 
   // vie maximale du joueur
@@ -14,6 +18,15 @@ public class Player extends AbstractTile {
   private Map<Equipement, Integer> equipement;
   private Game game;
 
+  /**
+   * Creer un joueur à une position
+   * @param type le nom du joueur
+   * @param game sa vision (proxy ou non)
+   * @param position la position du joueur
+   * @param energy l'energy du joueur
+   * @param hasShield si le joueur possède un bouclier
+   * @param equipement les equipement du joueur
+   */
   public Player(String type, Game game, Position position, int energy, boolean hasShield, Map<Equipement,Integer> equipement) {
     super(type, position, true);
     this.energy = energy;
@@ -23,6 +36,9 @@ public class Player extends AbstractTile {
     this.game = game;
   }
 
+  /**
+   * Reinitialise la vie joueur et le bouclier
+   */
   public void initPlayer() {
     this.energy = MAX_ENERGY;
     this.hasShield = false;
@@ -30,8 +46,10 @@ public class Player extends AbstractTile {
   }
 
   /**
-    * assigne this en proprietaire de tous les equipements
-    */
+   * Creer une copy de tous les equipements
+   * @param equipement les equipements
+   * @return une copy des equipements
+   */
   public Map<Equipement, Integer> buildCopyEquipement(Map<Equipement, Integer> equipement) {
     Map<Equipement, Integer> copyEquipement = new HashMap<>();
     for (Equipement e : equipement.keySet()) {
@@ -41,11 +59,21 @@ public class Player extends AbstractTile {
     }
     return copyEquipement;
   }
-
+  
+  /**
+   * setter sur le bouclier du joueur
+   * @param newState la nouvelle valeur du bouclier
+   */
   public void setHasShield(boolean newState) {
     this.hasShield = newState;
   }
-
+  
+  /**
+   * utilise un equipement dans une direction donnees
+   * @param item l'equipement a utiliser
+   * @param direction la direction dans laquelle l'utiliser
+   * @return true si l'objet a bien ete utilise
+   */
   public boolean playerUse(Equipement item, Direction direction) {
     if(equipement.get(item)>0){
       this.game.switchPlayer();
@@ -58,6 +86,11 @@ public class Player extends AbstractTile {
     return false;
   }
 
+  /**
+   * deplace le joueur dans une direction donnee
+   * @param direction la direction dans laquelle le joueur se deplace
+   * @return true si le joueur a ete deplace
+   */
   public boolean move(Direction direction) {
     Player player = this.game.getNextPlayer();
     Position positionPlayer = this.getPosition();
@@ -91,7 +124,10 @@ public class Player extends AbstractTile {
     return false;
   }
 
-  // add + de l'énergie
+  /**
+   * ajoute de l'energy au joueur
+   * @param energy le nombre d'energy a ajouter
+   */
   public void addEnergy(int energy){
     this.energy += energy;
     if (this.energy > MAX_ENERGY) {
@@ -100,15 +136,28 @@ public class Player extends AbstractTile {
     this.fireChange();
   }
 
+  /**
+   * applique un nombre de domage au joueur en consommant le bouclier si il
+   * en a un
+   * @param damage le nombre de domage a infliger
+   */
   public void applyDamage(int damage) {
     this.applyDamage(damage, true);
   }
-
+  
+  /**
+   * tour passer var simplement actualiser les listeners
+   */
   public void skipTurn() {
     this.fireChange();
   }
 
-  // applique les dommages au joueur selon si il a un bouclier
+  /**
+   * applique les dommages au joueur si l'utilisation du bouclier est actif et
+   * applique les domages si le joueur n'a pas de bouclier et le retire sinon
+   * @param damage le nombre de domage a aplliquer
+   * @param useShield utilisation du bouclier ou non
+   */
   public void applyDamage(int damage, boolean useShield) {
     if (useShield && this.hasShield) {
       // retire le bouclier
@@ -123,35 +172,67 @@ public class Player extends AbstractTile {
     this.fireChange();
   }
 
+  /**
+   * getter du nombre d'energy du joueur
+   * @return le nombre d'energy du joueur
+   */
   public int getEnergy(){
     return this.energy;
   }
 
+  /**
+   * getter sur le bouclier du joueur
+   * @return true si le joueur possede un bouclier
+   */
   public boolean getShield() {
     return this.hasShield;
   }
 
+  /**
+   * getter sur la vie maximale du joueur
+   * @return la vie maximale du joueur
+   */
   public int getMaxEnergy() {
     return this.MAX_ENERGY;
   }
 
+  /**
+   * test si le joueur n'a plus de vie
+   * @return true si le joueur est mort
+   */
   public boolean isDead() {
     return this.energy <= 0;
   }
 
+  /**
+   * getter si le joueur est un obstacle
+   * @return true car le joueur est un obstacle
+   */
   @Override
   public boolean getIsObstacle() {
     return true;
   }
 
+  /**
+   * getter du jeu du joueur (proxy ou non)
+   * @return le jeu du joueur
+   */
   public Game getGame(){
     return this.game;
   }
 
+  /**
+   * getter sur l'equipement du joeur
+   * @return l'equipement du joueur
+   */
   public Map<Equipement,Integer> getEquipement() {
     return this.equipement;
   }
 
+  /**
+   * setter sur le jeu du joueur
+   * @param game le nonveau jeu a lui associer
+   */
   public void setGame(Game game) {
       this.game = game;
   }
@@ -164,11 +245,20 @@ public class Player extends AbstractTile {
     return "Player " + this.type + " " + this.position + " : energy=" + this.energy + "/" + MAX_ENERGY + " shield=" + this.hasShield;
   }
 
+  /**
+   * representation en String du joueur
+   * @return la premiere lettre du joueur (pour version console)
+   */
   @Override
   public String toString() {
     return "" + this.type.charAt(0);
   }
 
+  /**
+   * test si 2 joueurs sont egaux
+   * @param o l'autre objet pour le test
+   * @return true si c'est les memes joueurs (il auront la meme position)
+   */
   @Override
   public boolean equals(Object o) {
     if (this==o) {
