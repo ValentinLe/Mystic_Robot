@@ -25,6 +25,10 @@ public class ProxyGame implements Game {
     this.game.addModelListener(l);
   }
 
+  public void restart() {
+    this.game.restart();
+  }
+
   @Override
   public Tile getTileAt(Position position) {
     Tile tile = this.game.getTileAt(position);

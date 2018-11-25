@@ -48,6 +48,16 @@ public class GUI extends JFrame implements ModelListener {
     JTable tableP = new JTable(new ListPlayersToTableModelAdapter(game));
     tableP.setFocusable(false);
     JScrollPane tablePlayers = new ViewJTable(tableP);
+
+    JButton bRestart = new JButton("Restart");
+    bRestart.setFocusable(false);
+    bRestart.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        game.restart();
+      }
+    });
+
     JTable tableE = new JTable(new EquipementMapToTableModelAdapter(game));
     tableE.setFocusable(false);
     JScrollPane tableEquipement = new ViewJTable(tableE);
@@ -63,6 +73,9 @@ public class GUI extends JFrame implements ModelListener {
     cp.setLayout(new GridBagLayout());
     GridBagConstraints gc = new GridBagConstraints();
     cp.add(view, gc);
+    gc.gridy = 1;
+    cp.add(bRestart, gc);
+    gc.gridy = 0;
     gc.gridx = 1;
     cp.add(zoneTable, gc);
     this.pack();

@@ -22,6 +22,12 @@ public class Player extends AbstractTile {
     this.game = game;
   }
 
+  public void initPlayer() {
+    this.energy = MAX_ENERGY;
+    this.hasShield = false;
+    this.fireChange();
+  }
+
   public void setHasShield(boolean newState) {
     this.hasShield = newState;
   }
