@@ -2,9 +2,8 @@
 
 cd $(dirname $0)/..
 sh scripts/compile.sh
-[ -d jar ] || mkdir jar
-[ -d jar/dist ] || mkdir jar/dist
+[ -d dist ] || mkdir dist/
 
-nameArchive="Archive.jar"
+nameArchive="Mystic_Robot.jar"
 jar cf $nameArchive build/ src/ ressources/
-mv $nameArchive jar/dist/
+mv $nameArchive dist/
