@@ -22,6 +22,6 @@ public class Bomb extends Explosif {
 
   @Override
   public Tile toTile(Position position) {
-    return  new ExplosifPlate(this.type,position, true, this.range, damage, this.owner);
+    return new ExplosifPlate(this.type,position, true, this.range, damage, this.counter, this.owner);
   }
 }

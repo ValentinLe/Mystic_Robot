@@ -12,7 +12,7 @@ public class Mine extends Explosif {
 
   @Override
   public Tile toTile(Position position) {
-    return new ExplosifPlate(this.type,position, true, this.range, this.damage, owner);
+    return new ExplosifPlate(this.type, position, true, this.range, this.damage, this.owner);
   }
 
 }

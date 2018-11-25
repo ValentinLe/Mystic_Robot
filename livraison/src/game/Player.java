@@ -18,7 +18,7 @@ public class Player extends AbstractTile {
     super(type, position, true);
     this.energy = energy;
     this.hasShield = hasShield;
-    this.equipement = equipement;
+    this.equipement = this.buildCopyEquipement(equipement);
     this.game = game;
   }
 
@@ -26,6 +26,19 @@ public class Player extends AbstractTile {
     this.energy = MAX_ENERGY;
     this.hasShield = false;
     this.fireChange();
+  }
+
+  /**
+    * assigne this en proprietaire de tous les equipements
+    */
+  public Map<Equipement, Integer> buildCopyEquipement(Map<Equipement, Integer> equipement) {
+    Map<Equipement, Integer> copyEquipement = new HashMap<>();
+    for (Equipement e : equipement.keySet()) {
+      Equipement equi = e.getCopy();
+      equi.setOwner(this);
+      copyEquipement.put(equi, new Integer(equipement.get(e)));
+    }
+    return copyEquipement;
   }
 
   public void setHasShield(boolean newState) {
@@ -149,6 +162,19 @@ public class Player extends AbstractTile {
   @Override
   public String toString() {
     return "" + this.type.charAt(0);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this==o) {
+      return true;
+    } else {
+      if (o instanceof Player) {
+        return this.position.equals(((Player)o).getPosition());
+      } else {
+        return false;
+      }
+    }
   }
 
 }

@@ -72,9 +72,24 @@ public class Weapon implements Equipement {
     return this.type;
   }
 
+  @Override
+  public void setOwner(Player owner) {
+    this.owner = owner;
+  }
+
+  @Override
+  public Player getOwner() {
+    return this.owner;
+  }
+
+  @Override
+  public Equipement getCopy() {
+    return new Weapon(this.type,this.damage, this.range, this.owner);
+  }
+
   /**
     * Fonction toString qui permet d'afficher textuellement le type.
-    * @return this.type 
+    * @return this.type
     *
     */
   @Override

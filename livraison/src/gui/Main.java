@@ -13,10 +13,11 @@ public class Main {
     GridGenerator gridGenerator = new GridGeneratorWithProbability(0.15, 0.05, 0.05);
     IA ia = new IARandom();
     RealGame game = new RealGame(10,10,factory.getPlayerList(), gridGenerator, ia);
-    ProxyGame proxy = new ProxyGame(game, game.getNextPlayer());
 
     new GUI(game);
-    new GUI(proxy);
+    for (Player pl : game.getListPlayers()) {
+      new GUI(new ProxyGame(game, pl));
+    }
     Main.loopIa(game);
   }
 
