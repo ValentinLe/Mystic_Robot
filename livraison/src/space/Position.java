@@ -67,6 +67,20 @@ public class Position {
     return new Position(this.x, this.y);
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this==o) {
+      return true;
+    } else {
+      if (o instanceof Position) {
+        Position pos = (Position) o;
+        return this.x == pos.getX() && this.y == pos.getY();
+      } else {
+        return false;
+      }
+    }
+  }
+
   /**
     *
     * @return une chaine de caractère.
