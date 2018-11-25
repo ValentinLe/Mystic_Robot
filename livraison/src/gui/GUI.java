@@ -68,6 +68,7 @@ public class GUI extends JFrame implements ModelListener {
     this.pack();
 
     this.setLocationRelativeTo(null);
+    this.setResizable(false);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setVisible(true);
   }

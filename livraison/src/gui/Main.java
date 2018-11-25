@@ -15,6 +15,6 @@ public class Main {
     ProxyGame proxy = new ProxyGame(game, game.getNextPlayer());
 
     new GUI(game);
-    //new GUI(proxy);
+    new GUI(proxy);
   }
 }
