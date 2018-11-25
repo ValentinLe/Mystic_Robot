@@ -56,6 +56,11 @@ public interface Game extends ListenableModel {
     */
   public List<Tile> getTileInDirection(Position position, Direction direction, int range);
   /**
+    * retourne le premier joueur dans la direction
+    */
+  public Player getPlayerInDirection(Position position, Direction direction, int range);
+
+  /**
     * permet de passer un tour.
     */
   public void skipTurn();

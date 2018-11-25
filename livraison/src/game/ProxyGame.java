@@ -56,7 +56,12 @@ public class ProxyGame implements Game {
 
   @Override
   public List<Tile> getTileInDirection(Position position, Direction direction, int range){
-    return getTileInDirection(position,direction,range);
+    return this.game.getTileInDirection(position,direction,range);
+  }
+
+  @Override
+  public Player getPlayerInDirection(Position position, Direction direction, int range){
+    return this.game.getPlayerInDirection(position,direction,range);
   }
 
   @Override

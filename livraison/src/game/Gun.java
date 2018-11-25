@@ -7,17 +7,22 @@ public class Gun extends Weapon {
     * @param type , qui est de type String.
     * @param damage , qui est de type int.
     * @param owner , qui est de type Player.
-    *
     */
   public Gun(String type, int damage, int range, Player owner) {
     super(type, damage, range, owner);
   }
 
   /**
+   * Methode renvoyant une copie
+   * @return Equipement copié
+   */
+  public Equipement getCopy() {
+    return new Gun(this.type,this.damage, this.range, this.owner);
+  }
+
+  /**
     * Méthode permettant de retourner les dommages.
     * @return this.damage
-    *
-    *
     */
   @Override
   public int getDamage() {
@@ -26,9 +31,7 @@ public class Gun extends Weapon {
 
   /**
     * Méthode permettant de retourner la portée de l'arme.
-    * @return this.range 
-    *
-    *
+    * @return this.range
     */
   @Override
   public int getRange() {
