@@ -7,14 +7,18 @@ public class IARandom implements IA{
 
   private Equipement weapon;
 
+  /**
+   * Fais jouer un robot avec comme priorité d'attaquer un autre robot si celui
+   * ci est à ça portée sinon il choisit une action aléatoirement
+   * @param player la position de départ
+   */
+
   public void execute(Player player){
     boolean continuer = true;
     Direction testPlayer = null;
-    // si un joueur se trouve sur la même ligne ou colonne
       Direction dir=this.sameLine(player);
       if(dir!=null){
         continuer=false;
-        // si un joueur est dans la range lui tiré dessus
         player.playerUse(this.weapon,dir);
       }
 
@@ -25,13 +29,11 @@ public class IARandom implements IA{
       listDirection.add(Direction.LEFT);
       listDirection.add(Direction.RIGHT);
 
-      // random pour choisir l'action
       Random rnd = new Random();
       int ran = rnd.nextInt(3);
       System.out.println("ia random choix : "+ ran );
       switch (ran) {
         case 0:
-          // move
           ArrayList<Direction> dirList = new ArrayList<>();
           dirList=null;
           boolean tmp = false;
@@ -62,7 +64,6 @@ public class IARandom implements IA{
           }
           break;
         case 1:
-          // placer un explosif
           Equipement item = null;
           for (Equipement w : player.getEquipement().keySet()) {
             if (w instanceof Explosif && player.getEquipement().get(w)>0) {
@@ -85,12 +86,17 @@ public class IARandom implements IA{
           }
           break;
         case 2:
-          // passer son tour
           player.getGame().skipTurn();
           break;
       }
     }
   }
+
+  /**
+   * cherche dans quelle direction il y a un autre robot
+   * @param player le robot à partir du quelle on récupère la position
+   * @return la direction qu'il trouve où il y a un autre robot sinon null
+   */
 
   public Direction sameLine(Player player) {
     int weaponRange = 0;

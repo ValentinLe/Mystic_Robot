@@ -58,7 +58,7 @@ public class Main{
         b.skipTurn();
       } else if (nextAction.equals("u")){
         int cpt = 0;
-        Map<Equipement,Integer> stuff = b.getPlayerEquipement();
+        Map<Equipement,Integer> stuff = b.getEquipementOfPlayer();
         ArrayList<Equipement> equipementListe = new ArrayList<>();
         System.out.println("list of stuf : \n");
         for (Equipement e : stuff.keySet()){

@@ -14,7 +14,7 @@ public class RealGame extends AbstractListenableModel implements Game {
   private int height;
   private IA ia;
 
-  public RealGame(int width, int height, ArrayList<Player> playerList, GridGenerator gridGenerator,IA ia){
+  public RealGame(int width, int height, List<Player> playerList, GridGenerator gridGenerator,IA ia){
     this.width = width;
     this.height = height;
     this.gridGenerator = gridGenerator;
@@ -24,11 +24,18 @@ public class RealGame extends AbstractListenableModel implements Game {
     this.ia=ia;
   }
 
+  /**
+   * Execute l'IA pour le player courant puis change le joueurs
+   */
   public void iaExecute(){
     this.ia.execute(this.getNextPlayer());
     this.switchPlayer();
   }
 
+  /**
+   * ajoute le Game a tous les joueurs de la liste
+   * @param listPlayers la liste de players aux quelle ajouter la Game
+   */
   public void addGameToAllPlayer(List<Player> listPlayers) {
       for (Player player : listPlayers) {
           player.setGame(this);
@@ -49,12 +56,18 @@ public class RealGame extends AbstractListenableModel implements Game {
     this.fireChange();
   }
 
-  // verifie si une case à la position pos de la grille est un obstacle
+  /**
+   * verifie si une case à la position pos de la grille est un obstacle
+   * @return true si la Tile est un obstacle
+   */
   public boolean isObstacleTile(Position pos){
     return this.grid[pos.getY()][pos.getX()].getIsObstacle();
   }
-
-  // verifie si une case à la position pos de la grille est un player
+  
+  /**
+   * verifie si une case à la position pos de la grille est un player
+   * @return true si il y a un joueur sur la case
+   */
   public boolean isPlayerOnPosition(Position pos){
     for(Player p : this.players){
       if (p.getPosition().equals(pos)) {
@@ -64,7 +77,10 @@ public class RealGame extends AbstractListenableModel implements Game {
     return false;
   }
 
-  // savoir si un player peut bouger
+  /**
+   * test si un joueur peut se déplacer sur la nouvelle position
+   * @return true si le peux se déplacer à la nouvelle position
+   */
   public boolean canMove(Position position){
     if (this.isInIndex(position)) {
       return !(this.isObstacleTile(position));
@@ -113,6 +129,10 @@ public class RealGame extends AbstractListenableModel implements Game {
     //this.bombCounter();
   }
 
+  /**
+   * Supprime l'ensemble des player dont l'énergie est égal à 0, de la list des players
+   * et ajoute ceci à la liste des deadPlayers
+   */
   public void deadPlayer() {
     Position position = new Position(-1,-1);
     for (int i = 0; i < this.players.size(); i++) {
@@ -192,30 +212,54 @@ public class RealGame extends AbstractListenableModel implements Game {
     }
   }*/
 
+  /**
+   * remplace une Tile par la tile passé en paramêtre
+   * @param tile la Tile par laquelle on veut remplacer
+   */
   public void setTile(Tile tile) {
     Position posTile = tile.getPosition();
     this.grid[posTile.getY()][posTile.getX()] = tile;
   }
 
+  /**
+   * Retourne la largeur de la map
+   * @return int
+   */
   @Override
   public int getWidth() {
     return this.width;
   }
 
+  /**
+   * Retourne la hauteur de la map
+   * @return int
+   */
   @Override
   public int getHeight() {
     return this.height;
   }
 
+  /**
+   * Retourne la map de jeu
+   * @return Tile[][]
+   */
   public Tile[][] getGrid() {
     return this.grid;
   }
 
+  /**
+   * Retourne la liste des joueurs sur la map
+   * @return List<Player>
+   */
   @Override
   public List<Player> getListPlayers() {
     return this.players;
   }
 
+  /**
+   * Retourne l'équipement du joueur courrant
+   * @return le map d'équipement du joueur
+   */
   @Override
   public Map<Equipement, Integer> getEquipementOfPlayer() {
     return this.getNextPlayer().getEquipement();
@@ -255,10 +299,6 @@ public class RealGame extends AbstractListenableModel implements Game {
     return this.getPlayersInList(voisins);
   }
 
-  public Map<Equipement, Integer> getPlayerEquipement(){
-    return this.getNextPlayer().getEquipement();
-  }
-
   /**
    * Recupére les cases depuis une position dans une direction selon une portée
    * @param position la position de départ
@@ -282,7 +322,11 @@ public class RealGame extends AbstractListenableModel implements Game {
   }
 
   /**
-
+   * retourne le player qui se trouve dans la direction indiqué
+   * @param position position à partir de laquelle on cherche
+   * @param direction direction dans laquelle chercher
+   * @param range jusqu'où cherché dans la direction voulus
+   * @return le player trouvé
    */
   public Player getPlayerInDirection(Position position, Direction direction, int range){
     Position new_pos = position.getCopy();
@@ -314,6 +358,11 @@ public class RealGame extends AbstractListenableModel implements Game {
     return this.grid[position.getY()][position.getX()];
   }
 
+  /**
+   * fonction toString permet de retourner la grille de jeu sous forme de chaine
+   * de caractères
+   * @return String
+   */
   @Override
   public String toString() {
     String res = "  ";
