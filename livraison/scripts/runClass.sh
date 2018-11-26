@@ -6,5 +6,5 @@ then
     cd ..
     cp src/config src/texture build/
     cd build/
-    java $1
+    java $@
 fi
