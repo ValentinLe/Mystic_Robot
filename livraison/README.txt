@@ -4,8 +4,9 @@
 Pour lancer la compilation, il faut se rendre dans le dossier scripts puis lancer le script complile.sh
 
 Pour lancer l'interface graphique , il faut se rendre dans le dossier scripts puis lancer le 
-script runGUI.sh [nombre de joueurs] [delai entre chaque action de joueur]
+script runGUI.sh [nombre de joueurs] [delai entre chaque action de joueur (en millis)]
 ou bien utiliser sh runGuiDefaultArgs.sh qui execute le script précédent avec les paramettre 10 et 500
+cela lancera 2 fenetres une avec la vue totale du jeu et l'autre avec le proxy du premier joueur de la liste de la table superieur
 
 Pour lancer le jeux en mode console, il suffit de lancer le script  dans le dossier scripts nommé runGame.sh
 
