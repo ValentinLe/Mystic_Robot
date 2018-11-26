@@ -32,12 +32,12 @@ bomb=5
 {Sniper}
 life=20
 winchester=30
-mine=2
+mine=3
 ;
 
 {Rocket-man}
 life=25
 winchester=20
-mine=3
+mine=5
 bomb=10
 ;

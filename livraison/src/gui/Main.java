@@ -17,6 +17,6 @@ public class Main {
 
     new GUI("Mystic Robot (proxy of first player)", new ProxyGame(game, game.getNextPlayer()));
     new GUI("Mystic Robot (RealGame)", game);
-    game.loopIa(500);
+    game.loopIa(100);
   }
 }

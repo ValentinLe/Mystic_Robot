@@ -81,7 +81,7 @@ public class IARandom implements IA{
           }
           // si il a trouver un explosif a placer
           if (item != null){
-            for ( Direction d : listDirection){
+            for (Direction d : listDirection){
               Position positionPlayer = player.getPosition();
               Position new_pos = new Position(
                       d.getX() + positionPlayer.getX(),

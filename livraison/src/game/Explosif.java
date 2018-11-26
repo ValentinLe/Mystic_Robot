@@ -38,7 +38,7 @@ public abstract class Explosif extends Weapon {
   @Override
   public boolean use(Position position,Direction direction,Game game){
     Position newPosition = new Position(position.getX()+direction.getX(),position.getY()+direction.getY());
-    ((RealGame)game).setTile(this.toTile(newPosition));
+    game.setTile(this.toTile(newPosition));
     return true;
   }
 
