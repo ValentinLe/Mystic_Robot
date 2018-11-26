@@ -51,7 +51,7 @@ public class RealGame extends AbstractListenableModel implements Game {
     while (!this.isOver()) {
       this.iaExecute();
       try {
-        Thread.sleep(500);
+        Thread.sleep(100);
       } catch(InterruptedException e) {
 
       }
