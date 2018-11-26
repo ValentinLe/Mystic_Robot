@@ -44,15 +44,17 @@ public class RealGame extends AbstractListenableModel implements Game {
     this.ia.execute(this.getNextPlayer());
   }
 
-  @Override
+  /**
+    * fait tourner l'ia
+    */
   public void loopIa() {
     while (!this.isOver()) {
+      this.iaExecute();
       try {
-        Thread.sleep(100);
+        Thread.sleep(500);
       } catch(InterruptedException e) {
 
       }
-      this.iaExecute();
     }
   }
 

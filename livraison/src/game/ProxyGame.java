@@ -27,11 +27,6 @@ public class ProxyGame implements Game {
   }
 
   @Override
-  public void loopIa() {
-    this.game.loopIa();
-  }
-
-  @Override
   public void restart(List<Player> listPlayers) {
     this.game.restart(listPlayers);
   }

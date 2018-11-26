@@ -38,9 +38,6 @@ public class GUI extends JFrame implements ModelListener {
     cp.setLayout(new GridBagLayout());
     GridBagConstraints gc = new GridBagConstraints();
     cp.add(view, gc);
-    gc.gridy = 1;
-    cp.add(bRestart, gc);
-    gc.gridy = 0;
     gc.gridx = 1;
     cp.add(zoneTable, gc);
     this.pack();

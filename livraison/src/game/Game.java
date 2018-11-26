@@ -14,8 +14,6 @@ public interface Game extends ListenableModel {
     */
   public Tile getTileAt(Position position);
 
-  public void loopIa();
-
   /**
     * permet de recommencer une partie.
     * @param listPlayers la liste des joueurs pour la nouvelle partie
