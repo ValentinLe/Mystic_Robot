@@ -75,7 +75,11 @@ public class Player extends AbstractTile {
    * @return true si l'objet a bien ete utilise
    */
   public boolean playerUse(Equipement item, Direction direction) {
-    if(equipement.get(item)>0){
+    Position new_pos = new Position(
+            direction.getX() + this.position.getX(),
+            direction.getY() + this.position.getY()
+    );
+    if(equipement.get(item)>0 && this.game.isInIndex(new_pos)){
       this.game.switchPlayer();
       if(item.use(this.position,direction,this.game)){
         equipement.put(item,equipement.get(item)-1);
