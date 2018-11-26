@@ -14,7 +14,7 @@ public class GUI extends JFrame implements ModelListener {
 
   private Game game;
 
-  public GUI(Game game) {
+  public GUI(Game game, RobotFactory factory) {
     super("Mystic Robot");
     this.game = game;
 
@@ -22,15 +22,6 @@ public class GUI extends JFrame implements ModelListener {
     JTable tableP = new JTable(new ListPlayersToTableModelAdapter(game));
     tableP.setFocusable(false);
     JScrollPane tablePlayers = new ViewJTable(tableP);
-
-    JButton bRestart = new JButton("Restart");
-    bRestart.setFocusable(false);
-    bRestart.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        game.restart();
-      }
-    });
 
     JTable tableE = new JTable(new EquipementMapToTableModelAdapter(game));
     tableE.setFocusable(false);

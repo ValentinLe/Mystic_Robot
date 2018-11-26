@@ -8,8 +8,10 @@ public class RobotFactory {
   private Map<String,Map<String,String>> robotConfig;
 
   private Map<String,Weapon> weaponList = new HashMap<String,Weapon>();
-  private ArrayList<Player> robotList = new ArrayList<Player>();
-  private ArrayList<Player> playerList = new ArrayList<Player>();
+  private List<Player> robotList = new ArrayList<Player>();
+  private List<Player> playerList = new ArrayList<Player>();
+
+  private int playerNumber;
 
   /**
     * Constructeur de la classe qui fait appel aux méthodes createStuffs, createRobots et initPlayerList
@@ -19,11 +21,13 @@ public class RobotFactory {
   public RobotFactory(ArrayList<Map<String,Map<String,String>>> config, int playerNumber) {
     this.weaponConfig = config.get(0);
     this.robotConfig = config.get(1);
+    this.playerNumber = playerNumber;
 
     this.createStuffs();
     this.createRobots();
-    this.initPlayerList(playerNumber);
+    this.playerList = this.createPlayerList(playerNumber);
   }
+
 
   /**
     * Fonction qui génère une liste d'équipements à partir d'une config et qui l'ajoute à une variable globale
@@ -82,20 +86,31 @@ public class RobotFactory {
     *@param playerNumber le nombre de joueurs (robots) pour la partie
     * @return this.playerList
     */
-  public void initPlayerList(int playerNumber) {
+  public List<Player> createPlayerList(int playerNumber) {
+    List<Player> listPlayers = new ArrayList<>();
     Random r = new Random();
     for (int i = 0; i < playerNumber; i++) {
       int choice = r.nextInt(this.robotList.size());
       Player robot = this.robotList.get(choice);
-      this.playerList.add(new Player(robot.getType(), null, null, robot.getEnergy(), false, new HashMap<>(robot.getEquipement())));
+      listPlayers.add(new Player(robot.getType(), null, null, robot.getEnergy(), false, new HashMap<>(robot.getEquipement())));
     }
+    return listPlayers;
+  }
+
+  /**
+    * Fonction qui génère autant de joueurs que le nombre present dans la classe
+    *@param playerNumber le nombre de joueurs (robots) pour la partie
+    * @return this.playerList
+    */
+  public List<Player> createPlayerList() {
+    return this.createPlayerList(this.playerNumber);
   }
 
   /**
     * Méthode qui retourne l'attribut playerList
     *@return une liste de joueurs
     */
-  public ArrayList<Player> getPlayerList() {
+  public List<Player> getPlayerList() {
     return this.playerList;
   }
 }

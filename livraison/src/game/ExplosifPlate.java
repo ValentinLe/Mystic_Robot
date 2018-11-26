@@ -8,6 +8,7 @@ public class ExplosifPlate extends Usable {
   private int damage;
   private Player owner;
   private int counter;
+  private boolean isBomb;
 
   /**
     * Le constructeur principal de la classe
@@ -17,14 +18,30 @@ public class ExplosifPlate extends Usable {
     *@param range la portée de l'objet
     *@param damage les dégats de l'objet
     *@param counter le compteur avant explosion de l'objet
+    *@param isBomb true si c'est une explosifPlate avec detonation
     *@param owner le joueur propriétaire de l'objet
     */
-  public ExplosifPlate(String type, Position position, boolean isActivable, int range, int damage, int counter, Player owner) {
+  public ExplosifPlate(String type, Position position, boolean isActivable, int range, int damage, int counter, boolean isBomb, Player owner) {
     super(type, position, isActivable, range);
     this.damage = damage;
     this.owner = owner;
     this.range = range;
     this.counter = counter;
+    this.isBomb = isBomb;
+  }
+
+  /**
+    * Un constructeur faisant appel au constructeur principal de la classe
+    *@param type le type d'explosif
+    *@param position la position de l'objet dans la grille
+    *@param isActivable si l'objet est activable ou non
+    *@param range la portée de l'objet
+    *@param damage les dégats de l'objet
+    *@param counter le conteur avant explosion de l'explosifPlate
+    *@param owner le joueur propriétaire de l'objet
+    */
+  public ExplosifPlate(String type, Position position, boolean isActivable, int range, int damage, int counter, Player owner) {
+    this(type, position, isActivable, range, damage, counter, true, owner);
   }
 
   /**
@@ -37,7 +54,7 @@ public class ExplosifPlate extends Usable {
     *@param owner le joueur propriétaire de l'objet
     */
   public ExplosifPlate(String type, Position position, boolean isActivable, int range, int damage, Player owner) {
-    this(type, position, isActivable, range, damage, -1, owner);
+    this(type, position, isActivable, range, damage, -1, false, owner);
   }
 
   /**
@@ -59,6 +76,14 @@ public class ExplosifPlate extends Usable {
     if (this.counter >= 0) {
       this.counter -= 1;
     }
+  }
+
+  /**
+    * Test si l'explosif plate est une bombe
+    * @return true si le conteur est coherent (mis à -1 si ce n'est pas le cas)
+    */
+  public boolean isBomb() {
+    return this.counter >= 0;
   }
 
   /**

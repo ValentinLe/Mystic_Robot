@@ -12,7 +12,6 @@ public class RealGame extends AbstractListenableModel implements Game {
   private Tile[][] grid;
   private GridGenerator gridGenerator;
   // utilisation d'une file plutot qu'une liste
-  private List<Player> deadPlayers = new ArrayList<>();
   private LinkedList<Player> players;
   private int width;
   private int height;
@@ -45,6 +44,18 @@ public class RealGame extends AbstractListenableModel implements Game {
     this.ia.execute(this.getNextPlayer());
   }
 
+  @Override
+  public void loopIa() {
+    while (!this.isOver()) {
+      try {
+        Thread.sleep(100);
+      } catch(InterruptedException e) {
+
+      }
+      this.iaExecute();
+    }
+  }
+
   /**
    * ajoute le Game a tous les joueurs de la liste
    * @param listPlayers la liste de players aux quelle ajouter la Game
@@ -59,13 +70,10 @@ public class RealGame extends AbstractListenableModel implements Game {
    * Initialise une nouvelle grille
    */
   @Override
-  public void restart() {
-    this.players.addAll(this.deadPlayers);
-    this.deadPlayers = new ArrayList<>();
-    for (Player player : this.players) {
-      player.initPlayer();
-    }
-    this.grid = gridGenerator.generateGrid(width, height, this.players);
+  public void restart(List<Player> playerList) {
+    this.players = new LinkedList<>(playerList);
+    this.addGameToAllPlayer(playerList);
+    this.grid = gridGenerator.generateGrid(width, height, playerList);
     this.fireChange();
   }
 
@@ -159,7 +167,6 @@ public class RealGame extends AbstractListenableModel implements Game {
     for (int i = 0; i < this.players.size(); i++) {
       if (this.players.get(i).getEnergy() == 0) {
         position = this.players.get(i).getPosition();
-        this.deadPlayers.add(this.players.get(i));
         this.players.remove(i);
         this.setTile(new EmptyTile(position));
         this.nbPlayer -= 1;

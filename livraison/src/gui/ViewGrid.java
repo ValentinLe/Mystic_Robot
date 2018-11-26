@@ -11,7 +11,7 @@ import java.util.*;
 
 /**
  * vue sur la grille du jeu
- * 
+ *
  */
 public class ViewGrid extends JPanel implements ModelListener {
 
@@ -51,7 +51,7 @@ public class ViewGrid extends JPanel implements ModelListener {
   }
 
   /**
-   * paint l'image au coordonnee donnee (coordonnees de grille pas du canvas) 
+   * paint l'image au coordonnee donnee (coordonnees de grille pas du canvas)
    * @param g l'endroit ou le dessiner
    * @param image l'image a dessiner
    * @param x l'abssisce de la case a dessiner
@@ -93,14 +93,18 @@ public class ViewGrid extends JPanel implements ModelListener {
         } else if (tile instanceof EnergyPlate) {
           paintImage(g, textures.get("energy"), i, j);
         } else if (tile instanceof ExplosifPlate) {
-          paintImage(g, textures.get("bomb"), i, j);
+          if (((ExplosifPlate)tile).isBomb()) {
+            paintImage(g, textures.get("bomb"), i, j);
+          } else {
+            paintImage(g, textures.get("mine"), i, j);
+          }
         } else if (tile instanceof ShieldPlate) {
           paintImage(g, textures.get("shield"), i, j);
         }
       }
     }
   }
-  
+
   /**
    * update la grille
    * @param source la source

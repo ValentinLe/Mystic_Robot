@@ -8,7 +8,7 @@ import observer.ModelListener;
 
 /**
  * adapter d'une map d'equipement d'un joueur a une table model
- * 
+ *
  */
 public class EquipementMapToTableModelAdapter extends AbstractTableModel implements ModelListener {
 

@@ -26,8 +26,14 @@ public class ProxyGame implements Game {
     this.game.addModelListener(l);
   }
 
-  public void restart() {
-    this.game.restart();
+  @Override
+  public void loopIa() {
+    this.game.loopIa();
+  }
+
+  @Override
+  public void restart(List<Player> listPlayers) {
+    this.game.restart(listPlayers);
   }
 
   @Override

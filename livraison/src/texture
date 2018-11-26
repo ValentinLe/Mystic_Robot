@@ -5,3 +5,4 @@ shield=../ressources/assets/shield.png
 wall=../ressources/assets/wall.png
 emptyTile=../ressources/assets/emptyTile.png
 bomb=../ressources/assets/bomb.png
+mine=../ressources/assets/mine.png
