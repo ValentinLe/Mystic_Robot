@@ -61,6 +61,12 @@ public class ViewGrid extends JPanel implements ModelListener {
     g.drawImage(image,this.tileSize*x,this.tileSize*y,this.tileSize,this.tileSize,this);
   }
 
+  public void paintString(Graphics g, String str, int x, int y) {
+    g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 25));
+    g.setColor(Color.GREEN);
+    g.drawString(str, x*tileSize + tileSize/2 - 10, y*tileSize + tileSize/2 + 10);
+  }
+
   /**
    * paint la grille
    * @param g le support de dessin
@@ -93,8 +99,10 @@ public class ViewGrid extends JPanel implements ModelListener {
         } else if (tile instanceof EnergyPlate) {
           paintImage(g, textures.get("energy"), i, j);
         } else if (tile instanceof ExplosifPlate) {
-          if (((ExplosifPlate)tile).isBomb()) {
+          ExplosifPlate explosifPlate = (ExplosifPlate)tile;
+          if (explosifPlate.isBomb()) {
             paintImage(g, textures.get("bomb"), i, j);
+            paintString(g, "" + explosifPlate.getCounter(), i, j);
           } else {
             paintImage(g, textures.get("mine"), i, j);
           }
