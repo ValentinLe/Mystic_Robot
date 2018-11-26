@@ -59,7 +59,7 @@ public class Player extends AbstractTile {
     }
     return copyEquipement;
   }
-  
+
   /**
    * setter sur le bouclier du joueur
    * @param newState la nouvelle valeur du bouclier
@@ -67,7 +67,7 @@ public class Player extends AbstractTile {
   public void setHasShield(boolean newState) {
     this.hasShield = newState;
   }
-  
+
   /**
    * utilise un equipement dans une direction donnees
    * @param item l'equipement a utiliser
@@ -144,7 +144,7 @@ public class Player extends AbstractTile {
   public void applyDamage(int damage) {
     this.applyDamage(damage, true);
   }
-  
+
   /**
    * tour passer var simplement actualiser les listeners
    */

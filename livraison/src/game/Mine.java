@@ -4,8 +4,6 @@ import space.Position;
 
 public class Mine extends Explosif {
 
-  private Player owner;
-
   /**
     * Constructeur de la classe.
     * @param damage , qui est de type int .

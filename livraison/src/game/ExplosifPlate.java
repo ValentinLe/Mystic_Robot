@@ -80,6 +80,15 @@ public class ExplosifPlate extends Usable {
   }
 
   /**
+    * test si le joueur passer en parametre est le proprietaire de l'explosif
+    * @param player le joueur a tester
+    * @return true si le joueur est le proprietaire
+    */
+  public boolean isPlayerOwner(Player player) {
+    return this.owner.equals(player);
+  }
+
+  /**
     * Test si l'explosif plate est une bombe
     * @return true si le conteur est coherent (mis à -1 si ce n'est pas le cas)
     */

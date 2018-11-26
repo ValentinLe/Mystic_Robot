@@ -15,15 +15,13 @@ public class IARandom implements IA{
 
   public void execute(Player player){
     boolean continuer = true;
+    Random rnd = new Random();
     Direction testPlayer = null;
     Direction dir=this.sameLine(player);
-    System.out.println("tire " +dir);
-    System.out.println("weapon : "+this.weapon);
     if(dir!=null){
       continuer=false;
 
       boolean t = player.playerUse(this.weapon,dir);
-      System.out.println("ttttttttt : "+t);
     }
 
     if(continuer){
@@ -33,14 +31,11 @@ public class IARandom implements IA{
       listDirection.add(Direction.LEFT);
       listDirection.add(Direction.RIGHT);
 
-      Random rnd = new Random();
       int ran = rnd.nextInt(3);
-      System.out.println("ia random choix : "+ ran );
       switch (ran) {
         case 0:
           // le joueur tente de bouger
           ArrayList<Direction> dirList = new ArrayList<>();
-          System.out.println(dirList);
           boolean tmp = false;
           // regarde les position possible où bouger
           for (Direction d : listDirection){
@@ -49,8 +44,22 @@ public class IARandom implements IA{
             d.getX() + positionPlayer.getX(),
             d.getY() + positionPlayer.getY()
             );
-            if (player.getGame().isInIndex(new_pos) && !(player.getGame().getTileAt(new_pos) instanceof ExplosifPlate) && player.getGame().canMove(new_pos)){
-              dirList.add(d);
+            if (player.getGame().isInIndex(new_pos) && player.getGame().canMove(new_pos)){
+              boolean acceptMove = false;
+              Tile tile = player.getGame().getTileAt(new_pos);
+              if (tile instanceof ExplosifPlate) {
+                if (!((ExplosifPlate)tile).isPlayerOwner(player) || rnd.nextDouble() < 0.5) {
+                  // accepte de se deplacer sur la mine avec 1 chance sur 2
+                  // pour eviter qu'ils se bloquent tout seul avec leur mine
+                  acceptMove = true;
+                }
+              } else {
+                // deplacement accepte
+                acceptMove = true;
+              }
+              if (acceptMove) {
+                dirList.add(d);
+              }
             }
           }
           // si il a des cases où se déplacer il en choisit une parmit cella la
