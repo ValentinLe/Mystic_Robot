@@ -43,7 +43,6 @@ public class RealGame extends AbstractListenableModel implements Game {
    */
   public void iaExecute(){
     this.ia.execute(this.getNextPlayer());
-    this.switchPlayer();
   }
 
   /**

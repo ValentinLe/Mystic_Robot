@@ -25,19 +25,19 @@ type=bomb
 
 {Tank}
 life=30
-shotgun=8
+shotgun=30
 mine=2
 ;
 
 {Sniper}
 life=20
-winchester=10
+winchester=30
 mine=2
 ;
 
 {Rocket-man}
 life=25
-winchester=5
+winchester=30
 mine=5
 bomb=5
 ;
