@@ -14,8 +14,8 @@ public class GUI extends JFrame implements ModelListener {
 
   private Game game;
 
-  public GUI(Game game, RobotFactory factory) {
-    super("Mystic Robot");
+  public GUI(String title,Game game) {
+    super(title);
     this.game = game;
 
     ViewGrid view = new ViewGrid(game, new ParserCrochet("texture", "config"));

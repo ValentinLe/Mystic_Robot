@@ -108,7 +108,6 @@ public class ViewGrid extends JPanel implements ModelListener {
             paintString(g, "" + explosifPlate.getCounter(), i, j);
           } else {
             paintImage(g, textures.get("mine"), i, j);
-            paintString(g, "" + (-1*explosifPlate.getCounter()), i, j);
           }
         } else if (tile instanceof ShieldPlate) {
           paintImage(g, textures.get("shield"), i, j);

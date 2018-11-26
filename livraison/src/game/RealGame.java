@@ -46,12 +46,13 @@ public class RealGame extends AbstractListenableModel implements Game {
 
   /**
     * fait tourner l'ia
+    * @param sleep le temps entre chaque action de player
     */
-  public void loopIa() {
+  public void loopIa(int sleep) {
     while (!this.isOver()) {
       this.iaExecute();
       try {
-        Thread.sleep(100);
+        Thread.sleep(sleep);
       } catch(InterruptedException e) {
 
       }

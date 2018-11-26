@@ -13,7 +13,6 @@ public class ProxyGame implements Game {
   public ProxyGame(Game game, Player player) {
     this.game = game;
     this.player = player;
-    player.setGame(this);
   }
 
   @Override

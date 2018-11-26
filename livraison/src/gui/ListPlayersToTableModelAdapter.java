@@ -5,6 +5,7 @@ import game.*;
 import java.util.*;
 import javax.swing.table.AbstractTableModel;
 import observer.ModelListener;
+import space.*;
 
 /**
  * adapter de la liste player a une table model
@@ -12,19 +13,21 @@ import observer.ModelListener;
  */
 public class ListPlayersToTableModelAdapter extends AbstractTableModel implements ModelListener {
 
-  private final static int NB_CHAMPS = 4;
+  private final static int NB_CHAMPS = 5;
 
   // On peut changer l'ordre des colonnes en permuttant les valeurs 0, 1 et 2 ci-dessous :
   private final static int TOUR = 0;
-  private final static int NOM = 1;
-  private final static int ENERGY = 2;
-  private final static int SHIELD = 3;
+  private final static int POSITION = 1;
+  private final static int NOM = 2;
+  private final static int ENERGY = 3;
+  private final static int SHIELD = 4;
 
   private final static String[] COL_NAME;
 
   static {
     COL_NAME = new String[NB_CHAMPS];
-    COL_NAME[TOUR] = "Tour";
+    COL_NAME[TOUR] = "Turn";
+    COL_NAME[POSITION] = "Position";
     COL_NAME[NOM] = "Name";
     COL_NAME[ENERGY] = "Energy";
     COL_NAME[SHIELD] = "Shield";
@@ -83,6 +86,9 @@ public class ListPlayersToTableModelAdapter extends AbstractTableModel implement
         } else {
           return "";
         }
+      case POSITION:
+        Position pos = player.getPosition();
+        return "(" + pos.getX() + "," + pos.getY() + ")";
       case NOM:
         return player.getType();
       case ENERGY:
