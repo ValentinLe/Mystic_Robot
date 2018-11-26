@@ -12,7 +12,7 @@ public class ProxyGame implements Game {
 
   /**
    * creer une instance de proxyboard
-   * @param game la vision du proxy 
+   * @param game la vision du proxy
    * @param player le joueur qui voit le proxy
    */
   public ProxyGame(Game game, Player player) {
@@ -21,11 +21,19 @@ public class ProxyGame implements Game {
     player.setGame(this);
   }
 
+  /**
+    * ajoute un listener sur le vrai jeu
+    * @param l le listener a ajouter
+    */
   @Override
   public void addModelListener(ModelListener l) {
     this.game.addModelListener(l);
   }
 
+  /**
+    * ajoute un listener sur le vrai jeu
+    * @param l le listener a ajouter
+    */
   @Override
   public void removeModelListener(ModelListener l) {
     this.game.addModelListener(l);
@@ -52,10 +60,9 @@ public class ProxyGame implements Game {
   }
 
   /**
-   * Test si la coordonnée (x,y) est dans la grille
-   * @param x la coordonnée en absisce
-   * @param y la coordonnée en ordonnée
-   * @return true si (x,y) est dans la grille
+   * Test si la position est dans la grille
+   * @param position la position a tester
+   * @return true si la position est dans la grille
    */
   @Override
   public boolean isInIndex(Position position){

@@ -82,6 +82,7 @@ public class ViewGrid extends JPanel implements ModelListener {
     for (int j = 0; j<height; j++) {
       for (int i = 0; i<width; i++) {
         Tile tile = this.game.getTileAt(new Position(i,j));
+        // on dessine une case vide avant de tester ce qu'il y a l'emplacement
         paintImage(g, textures.get("emptyTile"), i, j);
         if (tile instanceof Player) {
           Player player = (Player)tile;
@@ -104,9 +105,11 @@ public class ViewGrid extends JPanel implements ModelListener {
         } else if (tile instanceof ExplosifPlate) {
           ExplosifPlate explosifPlate = (ExplosifPlate)tile;
           if (explosifPlate.isBomb()) {
+            // bombe avec compteur
             paintImage(g, textures.get("bomb"), i, j);
             paintString(g, "" + explosifPlate.getCounter(), i, j);
           } else {
+            // mine sans compteur
             paintImage(g, textures.get("mine"), i, j);
           }
         } else if (tile instanceof ShieldPlate) {

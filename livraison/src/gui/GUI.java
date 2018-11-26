@@ -10,10 +10,20 @@ import observer.*;
 import space.Direction;
 import parser.*;
 
+/**
+  * Fenetre principale de l'application contenant la grille du jeu et 2
+  * table sur les joueurs et leurs equipements
+  */
 public class GUI extends JFrame implements ModelListener {
 
   private Game game;
 
+  /**
+    * Construit la fenetre
+    * @param title le tire de la fenetre
+    * @param game le jeu que la fenetre doit representer
+    * @param parser le parser pour recuperer les textures des elements pour la grille
+    */
   public GUI(String title, Game game, Parser parser) {
     super(title);
     this.game = game;
@@ -48,6 +58,10 @@ public class GUI extends JFrame implements ModelListener {
     this.setVisible(true);
   }
 
+  /**
+    * repaint la fenetre
+    * @param source la source
+    */
   @Override
   public void somethingHasChanged(Object source) {
     this.repaint();
