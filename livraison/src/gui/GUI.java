@@ -14,11 +14,11 @@ public class GUI extends JFrame implements ModelListener {
 
   private Game game;
 
-  public GUI(String title,Game game) {
+  public GUI(String title, Game game, Parser parser) {
     super(title);
     this.game = game;
 
-    ViewGrid view = new ViewGrid(game, new ParserCrochet("texture", "config"));
+    ViewGrid view = new ViewGrid(game, parser);
     JTable tableP = new JTable(new ListPlayersToTableModelAdapter(game));
     tableP.setFocusable(false);
     JScrollPane tablePlayers = new ViewJTable(tableP);

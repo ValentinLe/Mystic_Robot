@@ -5,5 +5,5 @@ sh scripts/compile.sh
 [ -d dist ] || mkdir dist/
 
 nameArchive="Mystic_Robot.jar"
-jar cf $nameArchive build/ src/ ressources/
+jar cfe $nameArchive  src.gui.Main build/ src/
 mv $nameArchive dist/

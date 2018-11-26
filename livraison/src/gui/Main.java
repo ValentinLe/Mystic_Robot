@@ -27,15 +27,15 @@ public class Main {
         throw new InvalidParameterException("the second parameter must be an integer, you gave : " + args[1]);
     }
 
-    Parser parser = new ParserCrochet("texture","config");
+    Parser parser = new ParserCrochet("ressources/configs/texture","ressources/configs/config");
     RobotFactory factory = new RobotFactory(parser.executeConfig(), nbRobots);
     GridGenerator gridGenerator = new GridGeneratorWithProbability(0.15, 0.15, 0.15);
     IA ia = new IARandom();
     List<Player> listPlayers = factory.createPlayerList();
     RealGame game = new RealGame(10,10,listPlayers , gridGenerator, ia);
 
-    new GUI("Mystic Robot (proxy of first player)", new ProxyGame(game, game.getNextPlayer()));
-    new GUI("Mystic Robot (RealGame)", game);
+    new GUI("Mystic Robot (proxy of first player)", new ProxyGame(game, game.getNextPlayer()), parser);
+    new GUI("Mystic Robot (RealGame)", game, parser);
     game.loopIa(delai);
   }
 }

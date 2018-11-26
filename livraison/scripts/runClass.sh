@@ -4,7 +4,7 @@ cd $(dirname $0)
 if sh compile.sh
 then
     cd ..
-    cp src/config src/texture build/
+    cp -r src/ressources/ build/
     cd build/
     java $@
 fi

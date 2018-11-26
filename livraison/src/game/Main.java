@@ -8,7 +8,7 @@ import parser.*;
 public class Main{
 
   public static void main(String[] args) {
-    Parser parser = new ParserCrochet("texture","config");
+    Parser parser = new ParserCrochet("ressources/configs/texture","ressources/configs/config");
     ArrayList<Map<String,Map<String,String>>> config = parser.executeConfig();
 
     RobotFactory factory = new RobotFactory(config,5);
