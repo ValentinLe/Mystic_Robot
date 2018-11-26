@@ -62,9 +62,12 @@ public class ViewGrid extends JPanel implements ModelListener {
   }
 
   public void paintString(Graphics g, String str, int x, int y) {
-    g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 25));
+    FontMetrics fm = g.getFontMetrics();
+    g.setFont(new Font(Font.MONOSPACED, Font.BOLD, 20));
     g.setColor(Color.GREEN);
-    g.drawString(str, x*tileSize + tileSize/2 - 10, y*tileSize + tileSize/2 + 10);
+    int coordX = x*tileSize + tileSize/2 - fm.stringWidth(str)/2;
+    int coordY = y*tileSize + tileSize/2 + fm.getAscent()/2;
+    g.drawString(str, coordX, coordY);
   }
 
   /**
@@ -105,6 +108,7 @@ public class ViewGrid extends JPanel implements ModelListener {
             paintString(g, "" + explosifPlate.getCounter(), i, j);
           } else {
             paintImage(g, textures.get("mine"), i, j);
+            paintString(g, "" + (-1*explosifPlate.getCounter()), i, j);
           }
         } else if (tile instanceof ShieldPlate) {
           paintImage(g, textures.get("shield"), i, j);

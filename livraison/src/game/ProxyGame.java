@@ -27,11 +27,6 @@ public class ProxyGame implements Game {
   }
 
   @Override
-  public void restart(List<Player> listPlayers) {
-    this.game.restart(listPlayers);
-  }
-
-  @Override
   public Tile getTileAt(Position position) {
     Tile tile = this.game.getTileAt(position);
     if (tile instanceof ExplosifPlate) {

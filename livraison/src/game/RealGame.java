@@ -16,7 +16,7 @@ public class RealGame extends AbstractListenableModel implements Game {
   private int width;
   private int height;
   private IA ia;
-  private int nbPlayer;
+  private int nbPlayerInTurn;
 
   /**
    * creer une instance de jeu
@@ -34,7 +34,7 @@ public class RealGame extends AbstractListenableModel implements Game {
     this.addGameToAllPlayer(playerList);
     this.grid = gridGenerator.generateGrid(width, height, playerList);
     this.ia=ia;
-    this.nbPlayer = playerList.size();
+    this.nbPlayerInTurn = playerList.size();
   }
 
   /**
@@ -66,17 +66,6 @@ public class RealGame extends AbstractListenableModel implements Game {
       for (Player player : listPlayers) {
           player.setGame(this);
       }
-  }
-
-  /**
-   * Initialise une nouvelle grille
-   */
-  @Override
-  public void restart(List<Player> playerList) {
-    this.players = new LinkedList<>(playerList);
-    this.addGameToAllPlayer(playerList);
-    this.grid = gridGenerator.generateGrid(width, height, playerList);
-    this.fireChange();
   }
 
   /**
@@ -156,23 +145,33 @@ public class RealGame extends AbstractListenableModel implements Game {
     this.deadPlayer();
     Player headPlayer = this.players.poll();
     this.players.add(headPlayer);
-    this.fireChange();
-    this.nbPlayer -= 1;
+    this.ChangeNbPlayerInTurn();
     this.bombCounter();
+    this.fireChange();
+  }
+
+  /**
+    * decremente la variable de tour et si elle est inferieur à 0 on la met a 0
+    */
+  private void ChangeNbPlayerInTurn() {
+    this.nbPlayerInTurn -= 1;
+    if (this.nbPlayerInTurn < 0) {
+      this.nbPlayerInTurn = 0;
+    }
   }
 
   /**
    * Supprime l'ensemble des player dont l'énergie est égal à 0, de la list des players
    * et ajoute ceci à la liste des deadPlayers
    */
-  public void deadPlayer() {
+  private void deadPlayer() {
     Position position = new Position(-1,-1);
     for (int i = 0; i < this.players.size(); i++) {
       if (this.players.get(i).getEnergy() == 0) {
         position = this.players.get(i).getPosition();
         this.players.remove(i);
         this.setTile(new EmptyTile(position));
-        this.nbPlayer -= 1;
+        this.ChangeNbPlayerInTurn();
       }
     }
   }
@@ -237,18 +236,18 @@ public class RealGame extends AbstractListenableModel implements Game {
     for (int i = 0; i < this.grid.length; i++) {
       for (Tile tile : this.grid[i]) {
         if (tile instanceof ExplosifPlate) {
-          if (this.nbPlayer == 0) {
+          if (this.nbPlayerInTurn == 0) {
             ((ExplosifPlate)tile).updateCounter();
           }
           if (((ExplosifPlate)tile).getCounter() == 0) {
             ((ExplosifPlate)tile).action(this);
-            this.setTile(new EmptyTile(new Position(tile.getPosition().getX(),tile.getPosition().getY())));
+            this.setTile(new EmptyTile(tile.getPosition().getCopy()));
           }
         }
       }
     }
-    if (this.nbPlayer == 0) {
-      this.nbPlayer = this.players.size();
+    if (this.nbPlayerInTurn == 0) {
+      this.nbPlayerInTurn = this.players.size();
     }
   }
 
@@ -263,11 +262,11 @@ public class RealGame extends AbstractListenableModel implements Game {
   }
 
   /**
-    * Méthode qui modifie l'attribut nbPlayer
-    *@param nbPlayer le nombre de joueurs
+    * Méthode qui modifie l'attribut nbPlayerInTurn
+    *@param nbPlayerInTurn le nombre de joueurs
     */
-  public void setNbPlayer(int nbPlayer) {
-    this.nbPlayer = nbPlayer;
+  public void setnbPlayerInTurn(int nbPlayerInTurn) {
+    this.nbPlayerInTurn = nbPlayerInTurn;
   }
 
   /**

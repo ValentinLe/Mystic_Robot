@@ -73,7 +73,7 @@ public class ExplosifPlate extends Usable {
     * Méthode qui décrémente l'attribut counter de 1, si counter est supérieur ou égal à 0
     */
   public void updateCounter() {
-    if (this.counter >= 0) {
+    if (this.counter > 0) {
       this.counter -= 1;
     }
   }
@@ -83,7 +83,7 @@ public class ExplosifPlate extends Usable {
     * @return true si le conteur est coherent (mis à -1 si ce n'est pas le cas)
     */
   public boolean isBomb() {
-    return this.counter >= 0;
+    return this.isBomb;
   }
 
   /**

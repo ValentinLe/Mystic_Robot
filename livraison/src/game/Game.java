@@ -15,12 +15,6 @@ public interface Game extends ListenableModel {
   public Tile getTileAt(Position position);
 
   /**
-    * permet de recommencer une partie.
-    * @param listPlayers la liste des joueurs pour la nouvelle partie
-    */
-  public void restart(List<Player> listPlayers);
-
-  /**
     * permet de savoir si on peut bouger sur une position.
     * @param position la position sur laquelle on veut bouger
     * @return true si la case est libre
