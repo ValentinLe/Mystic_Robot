@@ -158,6 +158,7 @@ public class RealGame extends AbstractListenableModel implements Game {
     this.players.add(headPlayer);
     this.fireChange();
     this.nbPlayer -= 1;
+    this.bombCounter();
   }
 
   /**
@@ -238,7 +239,6 @@ public class RealGame extends AbstractListenableModel implements Game {
         if (tile instanceof ExplosifPlate) {
           if (this.nbPlayer == 0) {
             ((ExplosifPlate)tile).updateCounter();
-            this.nbPlayer = this.players.size();
           }
           if (((ExplosifPlate)tile).getCounter() == 0) {
             ((ExplosifPlate)tile).action(this);
@@ -246,6 +246,9 @@ public class RealGame extends AbstractListenableModel implements Game {
           }
         }
       }
+    }
+    if (this.nbPlayer == 0) {
+      this.nbPlayer = this.players.size();
     }
   }
 
