@@ -30,18 +30,18 @@ public class EnergyPlate extends Usable {
   }
 
   /**
-   * Ajoute de l'energy aux joueurs de la liste
-   * @param players liste des joueurs
+   * Ajoute de l'energy au joueur present sur la position
+   * de l'EnergyPlate
+   * @param game le jeu dans lequel se trouve l'energyPlate
    */
   @Override
-  public void action(RealGame board) {
-    ((Player)board.getTileAt(this.position)).addEnergy(this.energyAmount);
+  public void action(RealGame game) {
+    ((Player)game.getTileAt(this.position)).addEnergy(this.energyAmount);
   }
 
   /**
     * Méthode permettant de voir si une tile est activable.
     * @return this.isActivable
-    *
     *
     */
   @Override

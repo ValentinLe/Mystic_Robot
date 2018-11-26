@@ -27,19 +27,17 @@ public class ShieldPlate extends Usable {
   }
 
   /**
-   * met tous les bouclier des joueurs à true
-   * @param players liste des joueurs impliqués
+   * met le bouclier sur le joueur present sur la shieldPlate
+   * @param game le jeu dans laquelle se trouve la shieldPlate
    */
   @Override
-  public void action(RealGame board) {
-    ((Player)board.getTileAt(this.position)).setHasShield(true);
+  public void action(RealGame game) {
+    ((Player)game.getTileAt(this.position)).setHasShield(true);
   }
 
 /**
   * Méthode permettant de renvoyer une chaine de caractère.
-  *
-  *
-  *
+  * @return la representation string d'une shieldPlate
   */
   @Override
   public String toString() {

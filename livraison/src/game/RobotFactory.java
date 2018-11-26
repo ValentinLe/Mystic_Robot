@@ -83,8 +83,8 @@ public class RobotFactory {
 
   /**
     * Fonction qui génère autant de joueurs que voulus
-    *@param playerNumber le nombre de joueurs (robots) pour la partie
-    * @return this.playerList
+    * @param playerNumber le nombre de joueurs (robots) pour la partie
+    * @return la liste de joueurs creee
     */
   public List<Player> createPlayerList(int playerNumber) {
     List<Player> listPlayers = new ArrayList<>();
@@ -99,8 +99,7 @@ public class RobotFactory {
 
   /**
     * Fonction qui génère autant de joueurs que le nombre present dans la classe
-    *@param playerNumber le nombre de joueurs (robots) pour la partie
-    * @return this.playerList
+    * @return la liste creee
     */
   public List<Player> createPlayerList() {
     return this.createPlayerList(this.playerNumber);

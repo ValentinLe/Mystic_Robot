@@ -8,7 +8,7 @@ import observer.ModelListener;
 
 /**
  * adapter de la liste player a une table model
- * 
+ *
  */
 public class ListPlayersToTableModelAdapter extends AbstractTableModel implements ModelListener {
 
@@ -35,7 +35,7 @@ public class ListPlayersToTableModelAdapter extends AbstractTableModel implement
 
   /**
    * creer une instance de l'adapter
-   * @param game 
+   * @param game le jeu dans lequel representer les joueurs
    */
   public ListPlayersToTableModelAdapter(Game game) {
     this.game = game;
@@ -102,7 +102,7 @@ public class ListPlayersToTableModelAdapter extends AbstractTableModel implement
   public String getColumnName(int col) {
     return COL_NAME[col];
   }
-  
+
   /**
    * dis a la table de s'actualiser
    * @param source la source

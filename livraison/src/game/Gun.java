@@ -6,6 +6,7 @@ public class Gun extends Weapon {
     * Constructeur de la classe
     * @param type , qui est de type String.
     * @param damage , qui est de type int.
+    * @param range la distance de tir de l'arme
     * @param owner , qui est de type Player.
     */
   public Gun(String type, int damage, int range, Player owner) {

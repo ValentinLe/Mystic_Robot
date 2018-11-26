@@ -30,15 +30,15 @@ public abstract class Explosif extends Weapon {
 
   /**
     * Méthode permettant de utiliser un equipement.
-    * @param posiion , qui est de type Position.
+    * @param position , qui est de type Position.
     * @param direction , qui est de type Direction.
-    * @param board , qui est de type Game.
-    * @return true .
+    * @param game , qui est de type Game.
+    * @return true car l'explosif a bien ete utilise
     */
   @Override
-  public boolean use(Position position,Direction direction,Game board){
+  public boolean use(Position position,Direction direction,Game game){
     Position newPosition = new Position(position.getX()+direction.getX(),position.getY()+direction.getY());
-    ((RealGame)board).setTile(this.toTile(newPosition));
+    ((RealGame)game).setTile(this.toTile(newPosition));
     return true;
   }
 
@@ -57,10 +57,9 @@ public abstract class Explosif extends Weapon {
   }
 
   /**
-    * Méthode permettant de mettre en Tile
-    *
-    *
-    *
+    * Méthode permettant de mettre en Tile avec une certaine position
+    * @param position la position que devra avoir la case
+    * @return la case construite avec la position
     */
   public abstract Tile toTile(Position position);
 

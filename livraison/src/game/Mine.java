@@ -10,7 +10,6 @@ public class Mine extends Explosif {
     * Constructeur de la classe.
     * @param damage , qui est de type int .
     * @param range , qui est de type int.
-    * @param counter , qui est à -1 pour dire qu'il n'y a pas de counter.
     * @param owner , qui est de type Player.
     *
     */

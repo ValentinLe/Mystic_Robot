@@ -212,7 +212,7 @@ public class RealGame extends AbstractListenableModel implements Game {
   /**
    * Récupère la liste des voisins d'un position selon une portée
    * @param position la position centrale
-   * @param range la porté du voisinage 0 <= range
+   * @param range la porté du voisinage qui dooit etre superieur a 0
    * @return la liste de case dans le voisinage de la position
    */
   public List<Tile> consvois(Position position, int range) {

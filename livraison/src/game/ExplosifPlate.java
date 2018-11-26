@@ -58,12 +58,13 @@ public class ExplosifPlate extends Usable {
   }
 
   /**
-   * Retire de la vie à tous les joueurs de la liste
-   * @param players liste des joueurs
+   * Retire de la vie à tous les joueurs present autour de l'explosifPlate
+   * selon sa range
+   * @param game le jeu dans laquelle aller chercher les joueurs
    */
   @Override
-  public void action(RealGame board) {
-    List<Player> players = board.getPlayersAround(this.position, this.range);
+  public void action(RealGame game) {
+    List<Player> players = game.getPlayersAround(this.position, this.range);
     for (Player player : players) {
       player.applyDamage(this.damage);
     }
